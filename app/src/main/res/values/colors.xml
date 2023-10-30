@@ -29,4 +29,8 @@
     <color name="nav_header_drawer_text">#08346A</color>
     <color name="statusBarColor">#17768E</color>
 
+
+    <color name="contentMainCardView">#0D80A1</color>
+    <color name="contentMainTexView">#FFFFFF</color>
+
 </resources>

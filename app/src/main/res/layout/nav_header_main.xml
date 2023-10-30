@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#177A93"
+    android:gravity="bottom"
+    android:orientation="vertical"
+    android:id="@+id/nav_header"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="16dp"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+    <TextView
+        android:id="@+id/auliaApp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="53sp"
+        style="@style/NavigationHeaderTextStyle"
+        android:text="@string/aulia_app" />
+
+    <TextView
+        android:id="@+id/auliaApps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="33sp"
+        style="@style/NavigationHeaderTextStyleWhite"
+        android:text="@string/aulia_apps" />
+
+    <TextView
+        android:id="@+id/disclaimer"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        style="@style/Navigation_Kontrol"
+        android:text="@string/disclaimer_text" />
+
+    <TextView
+        android:id="@+id/checkForUpdate"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        style="@style/Navigation_Kontrol"
+        android:text="@string/check_for_update_text"  />
+
+</LinearLayout>

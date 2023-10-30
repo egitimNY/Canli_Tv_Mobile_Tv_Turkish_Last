@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/turkishLiveTv"
+            android:icon="@drawable/turk_bayrak"
+            android:title="@string/ulusal_tvler" />
+
+        <item
+            android:id="@+id/turkishLiveTvCategories"
+            android:icon="@drawable/category"
+            android:title="@string/ulusal_tvler_kategori" />
+
+
+        <item
+            android:id="@+id/yerel_tv"
+            android:icon="@drawable/turk_bayrak"
+            android:title="@string/yerel_tvler" />
+
+        <item
+            android:id="@+id/nav_yerel_tv_kategori"
+            android:icon="@drawable/category"
+            android:title="@string/yerel_tvler_kategori" />
+
+        <item
+            android:id="@+id/cartoon"
+            android:icon="@drawable/ic_movie"
+            android:title="@string/cizgi_filmler" />
+
+        <item
+            android:id="@+id/radyo"
+            android:icon="@drawable/ic_radio"
+            android:title="@string/radyo_dinle" />
+
+        <item
+            android:id="@+id/turkYabanciFilm"
+            android:icon="@drawable/ic_movie"
+            android:title="@string/yabanci_filmler" />
+
+    </group>
+
+</menu>
