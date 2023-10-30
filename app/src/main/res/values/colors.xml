@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#2897B3</color>
+    <color name="purple_700">#137188</color>
+    <color name="teal_200">#FF0015</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+
+    <color name="beyaz">#50A5EF</color>
+
+    <color name="colorPrimary">#0E4A8A</color>
+    <color name="colorPrimaryDark">#D20E4A8A</color>
+    <color name="colorAccent">#adcdc0</color>
+    <color name="button">#2E26A6</color>
+    <color name="white">#FFFFFF</color>
+
+    <color name="toastColorText">#FFFFFF</color>
+    <color name="toastColorBackground">#2982EF</color>
+    <color name="toastColorBackground2">#FF001D</color>
+
+    <color name="redChannelColor">#FF001D</color>
+    <color name="defaultChannelColor">#000000</color>
+
+    <color name="nav_header_text_color">#25C0EF</color>
+    <color name="nav_header_text_color_control">#08346A</color>
+
+    <color name="nav_header_drawer_text">#08346A</color>
+    <color name="statusBarColor">#17768E</color>
+
+</resources>
