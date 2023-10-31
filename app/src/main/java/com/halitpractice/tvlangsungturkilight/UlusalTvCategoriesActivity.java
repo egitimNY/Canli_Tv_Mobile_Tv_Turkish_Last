@@ -18,6 +18,7 @@ import com.google.android.gms.ads.AdView;
 import com.halitpractice.tvlangsungturkilight.RestApi.ManagerAll;
 import com.halitpractice.tvlangsungturkilight.adapters.UlusalTvCategoryAdapter;
 import com.halitpractice.tvlangsungturkilight.models.UlusalTvCategoryModel;
+import com.halitpractice.tvlangsungturkilight.services.UlusalTvCategoriesDataCache;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +34,8 @@ public class UlusalTvCategoriesActivity extends AppCompatActivity {
     private UlusalTvCategoryAdapter adapter;
 
     private ProgressBar progressBar;
+
+    private UlusalTvCategoriesDataCache dataCache;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,43 +84,76 @@ public class UlusalTvCategoriesActivity extends AppCompatActivity {
             }
         });
 
-        fetchData();
+//        fetchData();
+
+        // Initialize the DataCache instance
+        dataCache = UlusalTvCategoriesDataCache.getInstance();
+
+        // Check if there is cached data
+        List<UlusalTvCategoryModel> cachedData = dataCache.getCachedData();
+
+        if (cachedData != null && !cachedData.isEmpty()) {
+            // Use cached data to update the UI
+            updateUIWithCachedData(cachedData);
+        } else {
+            // Data is not cached, fetch it from the network
+            fetchData();
+        }
 
     }
 
+    // Checks if data is cached, if so, update UI with cached data; otherwise, fetches data from the network
     private void fetchData() {
         progressBar.setVisibility(View.VISIBLE);
 
-        Call<List<UlusalTvCategoryModel>> req = ManagerAll.getInstance().turkishLiveTvCategoryFetch();
-        req.enqueue(new Callback<List<UlusalTvCategoryModel>>() {
-            @Override
-            public void onResponse(Call<List<UlusalTvCategoryModel>> call, Response<List<UlusalTvCategoryModel>> response) {
-                progressBar.setVisibility(View.GONE); // Always hide the ProgressBar
+        // Check if there's cached data available
+        List<UlusalTvCategoryModel> cachedData = UlusalTvCategoriesDataCache.getInstance().getCachedData();
 
-                if (response.isSuccessful()) {
+        // If cached data exists, use it to update the UI
+        if (cachedData != null && !cachedData.isEmpty()) {
+            updateUIWithCachedData(cachedData);
+            progressBar.setVisibility(View.GONE);
+        } else {
+            // No cached data, fetch from the network
+            Call<List<UlusalTvCategoryModel>> req = ManagerAll.getInstance().turkishLiveTvCategoryFetch();
+            req.enqueue(new Callback<List<UlusalTvCategoryModel>>() {
+                @Override
+                public void onResponse(Call<List<UlusalTvCategoryModel>> call, Response<List<UlusalTvCategoryModel>> response) {
+                    progressBar.setVisibility(View.GONE);
 
-                    main_list = response.body();
-
-                    if (main_list != null && !main_list.isEmpty()) {
-                        adapter = new UlusalTvCategoryAdapter(main_list, UlusalTvCategoriesActivity.this);
-                        recyclerView.setAdapter(adapter);
-
-                        progressBar.setVisibility(View.GONE); // Hide the ProgressBar after data is loaded
-
+                    if (response.isSuccessful()) {
+                        List<UlusalTvCategoryModel> data = response.body();
+                        // If data is fetched, cache it and update the UI
+                        if (data != null && !data.isEmpty()) {
+                            UlusalTvCategoriesDataCache.getInstance().setCachedData(data);
+                            updateUIWithCachedData(data);
+                        } else {
+                            // Handle empty response
+                            handleEmptyResponse();
+                        }
                     } else {
-                        handleEmptyResponse();
+                        // Handle unsuccessful response
+                        handleUnsuccessfulResponse();
                     }
-                } else {
-                    handleUnsuccessfulResponse();
                 }
-            }
 
-            @Override
-            public void onFailure(Call<List<UlusalTvCategoryModel>> call, Throwable t) {
-                progressBar.setVisibility(View.GONE); // Always hide the ProgressBar
-                handleNetworkFailure();
-            }
-        });
+                @Override
+                public void onFailure(Call<List<UlusalTvCategoryModel>> call, Throwable t) {
+                    progressBar.setVisibility(View.GONE);
+                    // Handle network failure
+                    handleNetworkFailure();
+                }
+            });
+        }
+    }
+
+    private void updateUIWithCachedData(List<UlusalTvCategoryModel> cachedData) {
+        if (cachedData != null && !cachedData.isEmpty()) {
+            adapter = new UlusalTvCategoryAdapter(cachedData, UlusalTvCategoriesActivity.this);
+            recyclerView.setAdapter(adapter);
+        } else {
+            handleEmptyResponse();
+        }
     }
 
     private void handleUnsuccessfulResponse() {

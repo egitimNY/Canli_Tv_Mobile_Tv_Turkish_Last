@@ -26,6 +26,7 @@ import com.google.android.gms.ads.AdView;
 import com.halitpractice.tvlangsungturkilight.RestApi.ManagerAll;
 import com.halitpractice.tvlangsungturkilight.adapters.UlusalTvAdapter;
 import com.halitpractice.tvlangsungturkilight.models.UlusalTvModel;
+import com.halitpractice.tvlangsungturkilight.services.UlusalTvDataCache;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +44,8 @@ public class UlusalTvActivity extends AppCompatActivity {
     private List<UlusalTvModel> main_list;
     private UlusalTvAdapter adapter;
     private ProgressBar progressBar;
+
+    private UlusalTvDataCache dataCache; // Instance of DataCache for caching data
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +94,20 @@ public class UlusalTvActivity extends AppCompatActivity {
             }
         });
 
-        fetchData();
+//        fetchData();
+
+        // Initialize the DataCache instance
+        dataCache = UlusalTvDataCache.getInstance();
+        // Check if there is cached data
+        List<UlusalTvModel> cachedData = dataCache.getCachedData();
+
+        if (cachedData != null && !cachedData.isEmpty()) {
+            // Use cached data to update the UI
+            updateUIWithCachedData(cachedData);
+        } else {
+            // Data is not cached, fetch it from the network
+            fetchData();
+        }
 
     }
 
@@ -109,6 +125,8 @@ public class UlusalTvActivity extends AppCompatActivity {
                         adapter = new UlusalTvAdapter(main_list, UlusalTvActivity.this);
                         recyclerView.setAdapter(adapter);
 
+                        // Cache the data
+                        dataCache.setCachedData(main_list);
                         progressBar.setVisibility(View.GONE); // Hide the ProgressBar after data is loaded
 
                     } else {
@@ -126,6 +144,15 @@ public class UlusalTvActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.GONE); // Hide the ProgressBar in case of failure
             }
         });
+    }
+
+    private void updateUIWithCachedData(List<UlusalTvModel> cachedData) {
+        if (cachedData != null && !cachedData.isEmpty()) {
+            adapter = new UlusalTvAdapter(cachedData, UlusalTvActivity.this);
+            recyclerView.setAdapter(adapter);
+        } else {
+            handleNullResponse();
+        }
     }
 
     private void handleUnsuccessfulResponse() {
