@@ -199,7 +199,7 @@ public class UlusalTvActivity extends AppCompatActivity {
         if (searchView != null) {
             searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
 
-            queryTextListener = new SearchView.OnQueryTextListener() {
+            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
                 public boolean onQueryTextSubmit(String query) {
                     return false;
@@ -210,18 +210,23 @@ public class UlusalTvActivity extends AppCompatActivity {
                     newText = newText.toLowerCase();
                     List<UlusalTvModel> myList = new ArrayList<>();
 
-                    for (UlusalTvModel model : main_list) {
-                        String javaSoru = model.getName().toLowerCase();
+                    for (UlusalTvModel model : dataCache.getCachedData()) {
+                        String itemName = model.getName().toLowerCase();
 
-                        if (javaSoru.contains(newText))
+                        if (itemName.contains(newText))
                             myList.add(model);
                     }
 
-                    adapter.setSearchOperation(myList);
+                    if (adapter != null) {
+                        adapter.setSearchOperation(myList);
+                    } else {
+                        adapter = new UlusalTvAdapter(myList, UlusalTvActivity.this);
+                        recyclerView.setAdapter(adapter);
+                    }
+
                     return false;
                 }
-            };
-            searchView.setOnQueryTextListener(queryTextListener);
+            });
 
             // Programmatically set the left margin of the SearchView
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
