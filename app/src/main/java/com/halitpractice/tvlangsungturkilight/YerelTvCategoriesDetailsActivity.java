@@ -18,6 +18,7 @@ import com.google.android.gms.ads.AdView;
 import com.halitpractice.tvlangsungturkilight.RestApi.ManagerAll;
 import com.halitpractice.tvlangsungturkilight.adapters.YerelTvAdapter;
 import com.halitpractice.tvlangsungturkilight.models.YerelTvModel;
+import com.halitpractice.tvlangsungturkilight.services.YerelTvCategoriesDetailsDataCache;
 
 import java.util.List;
 
@@ -31,6 +32,9 @@ public class YerelTvCategoriesDetailsActivity extends AppCompatActivity {
     private List<YerelTvModel> main_list;
     private YerelTvAdapter adapter;
     private ProgressBar progressBar;
+
+    // In your activity class
+    private YerelTvCategoriesDetailsDataCache dataCache;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +52,7 @@ public class YerelTvCategoriesDetailsActivity extends AppCompatActivity {
         }
 
         progressBar = findViewById(R.id.yerelTvCategoryDetailsProgressBar); // Initialize the ProgressBar
-        progressBar.setVisibility(View.VISIBLE); // Initially, set it to VISIBLE
+        progressBar.setVisibility(View.GONE); // Initially, set it to VISIBLE
 
         recyclerView = findViewById(R.id.yerelTvCategoryDetailsRecycler); // Initialize the RecyclerView
         recyclerView.setHasFixedSize(true);
@@ -56,9 +60,32 @@ public class YerelTvCategoriesDetailsActivity extends AppCompatActivity {
 
         String selectedCategory = getIntent().getStringExtra("category");
         ActionBar actionBar = getSupportActionBar();
+
+
+        /*
         if (actionBar != null) {
             if (selectedCategory != null) {
                 actionBar.setTitle("Seçilen Kategori: " + selectedCategory);
+                fetchData(selectedCategory);
+            }
+        }
+        */
+
+
+        // Initialize the DataCacheCategory instance
+        dataCache = YerelTvCategoriesDetailsDataCache.getInstance();
+
+        if (actionBar != null && selectedCategory != null) {
+            actionBar.setTitle("Selected Category: " + selectedCategory); // Set the selected category as the title
+
+            // Check if there is cached data for the selected category
+            List<YerelTvModel> cachedData = dataCache.getCachedData(selectedCategory);
+
+            if (cachedData != null && !cachedData.isEmpty()) {
+                // Use cached data to update the UI
+                updateUIWithCachedData(cachedData);
+            } else {
+                // Data is not cached, fetch it from the network
                 fetchData(selectedCategory);
             }
         }
@@ -86,32 +113,52 @@ public class YerelTvCategoriesDetailsActivity extends AppCompatActivity {
 
     private void fetchData(String selectedCategory) {
         progressBar.setVisibility(View.VISIBLE);
-        Call<List<YerelTvModel>> req = ManagerAll.getInstance().yerelTvCategoryDetailsFetch(selectedCategory);
-        req.enqueue(new Callback<List<YerelTvModel>>() {
-            @Override
-            public void onResponse(Call<List<YerelTvModel>> call, Response<List<YerelTvModel>> response) {
-                progressBar.setVisibility(View.GONE); // Always hide the ProgressBar
 
-                if (response.isSuccessful()) {
-                    main_list = response.body();
-                    if (main_list != null && !main_list.isEmpty()) {
-                        adapter = new YerelTvAdapter(main_list, YerelTvCategoriesDetailsActivity.this);
-                        recyclerView.setAdapter(adapter);
+        List<YerelTvModel> cachedData = dataCache.getCachedData(selectedCategory);
+
+        if (cachedData != null && !cachedData.isEmpty()) {
+            // Use cached data to update the UI
+            updateUIWithCachedData(cachedData);
+            progressBar.setVisibility(View.GONE);
+        } else {
+            Call<List<YerelTvModel>> req = ManagerAll.getInstance().yerelTvCategoryDetailsFetch(selectedCategory);
+            req.enqueue(new Callback<List<YerelTvModel>>() {
+                @Override
+                public void onResponse(Call<List<YerelTvModel>> call, Response<List<YerelTvModel>> response) {
+                    progressBar.setVisibility(View.GONE); // Always hide the ProgressBar
+
+                    if (response.isSuccessful()) {
+                        List<YerelTvModel> data = response.body();
+                        if (data != null && !data.isEmpty()) {
+                            // Cache the data in the specific category cache
+                            dataCache.setCachedData(selectedCategory, data);
+                            // Update the UI with the fetched data
+                            updateUIWithCachedData(data);
+                        } else {
+                            handleNullResponse();
+                        }
                     } else {
-                        handleNullResponse();
+                        handleUnsuccessfulResponse();
                     }
-                } else {
-                    handleUnsuccessfulResponse();
                 }
-            }
 
-            @Override
-            public void onFailure(Call<List<YerelTvModel>> call, Throwable t) {
-                progressBar.setVisibility(View.GONE); // Always hide the ProgressBar
-                handleNetworkFailure();
-                t.printStackTrace(); // Print the error details for debugging
-            }
-        });
+                @Override
+                public void onFailure(Call<List<YerelTvModel>> call, Throwable t) {
+                    progressBar.setVisibility(View.GONE); // Always hide the ProgressBar
+                    handleNetworkFailure();
+                    t.printStackTrace(); // Print the error details for debugging
+                }
+            });
+        }
+    }
+
+    private void updateUIWithCachedData(List<YerelTvModel> cachedData) {
+        if (cachedData != null && !cachedData.isEmpty()) {
+            adapter = new YerelTvAdapter(cachedData, YerelTvCategoriesDetailsActivity.this);
+            recyclerView.setAdapter(adapter);
+        } else {
+            handleNullResponse();
+        }
     }
 
     private void handleUnsuccessfulResponse() {

@@ -25,6 +25,7 @@ import com.google.android.gms.ads.AdView;
 import com.halitpractice.tvlangsungturkilight.RestApi.ManagerAll;
 import com.halitpractice.tvlangsungturkilight.adapters.YerelTvAdapter;
 import com.halitpractice.tvlangsungturkilight.models.YerelTvModel;
+import com.halitpractice.tvlangsungturkilight.services.YerelTvDataCache;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +43,8 @@ public class YerelTvActivity extends AppCompatActivity {
     private List<YerelTvModel> main_list;
     private YerelTvAdapter adapter;
     private ProgressBar progressBar;
+
+    private YerelTvDataCache dataCache; // Instance of DataCache for caching data
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,7 +93,20 @@ public class YerelTvActivity extends AppCompatActivity {
             }
         });
 
-        fetchData();
+//        fetchData();
+
+        // Initialize the DataCache instance
+        dataCache = YerelTvDataCache.getInstance();
+
+        // Check for cached data and update UI
+        List<YerelTvModel> cachedData = dataCache.getCachedData();
+
+        if (cachedData != null && !cachedData.isEmpty()) {
+            updateUIWithCachedData(cachedData);
+        } else {
+            // Data is not cached, fetch it from the network
+            fetchData();
+        }
 
     }
 
@@ -108,6 +124,8 @@ public class YerelTvActivity extends AppCompatActivity {
                         adapter = new YerelTvAdapter(main_list, YerelTvActivity.this);
                         recyclerView.setAdapter(adapter);
 
+                        // Cache the data
+                        dataCache.setCachedData(main_list);
                         progressBar.setVisibility(View.GONE); // Hide the ProgressBar after data is loaded
 
                     } else {
@@ -125,6 +143,15 @@ public class YerelTvActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.GONE); // Hide the ProgressBar in case of failure
             }
         });
+    }
+
+    private void updateUIWithCachedData(List<YerelTvModel> cachedData) {
+        if (cachedData != null && !cachedData.isEmpty()) {
+            adapter = new YerelTvAdapter(cachedData, YerelTvActivity.this);
+            recyclerView.setAdapter(adapter);
+        } else {
+            handleNullResponse();
+        }
     }
 
     private void handleUnsuccessfulResponse() {
@@ -171,7 +198,7 @@ public class YerelTvActivity extends AppCompatActivity {
         if (searchView != null) {
             searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
 
-            queryTextListener = new SearchView.OnQueryTextListener() {
+            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
                 public boolean onQueryTextSubmit(String query) {
                     return false;
@@ -182,10 +209,10 @@ public class YerelTvActivity extends AppCompatActivity {
                     newText = newText.toLowerCase();
                     List<YerelTvModel> myList = new ArrayList<>();
 
-                    for (YerelTvModel model : main_list) {
-                        String javaSoru = model.getName().toLowerCase();
+                    for (YerelTvModel model : dataCache.getCachedData()) {
+                        String itemName = model.getName().toLowerCase();
 
-                        if (javaSoru.contains(newText))
+                        if (itemName.contains(newText))
                             myList.add(model);
                     }
 
@@ -198,8 +225,7 @@ public class YerelTvActivity extends AppCompatActivity {
 
                     return false;
                 }
-            };
-            searchView.setOnQueryTextListener(queryTextListener);
+            });
 
             // Programmatically set the left margin of the SearchView
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(

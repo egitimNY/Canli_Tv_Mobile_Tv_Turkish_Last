@@ -18,6 +18,7 @@ import com.google.android.gms.ads.AdView;
 import com.halitpractice.tvlangsungturkilight.RestApi.ManagerAll;
 import com.halitpractice.tvlangsungturkilight.adapters.YerelTvCategoryAdapter;
 import com.halitpractice.tvlangsungturkilight.models.YerelTvCategoryModel;
+import com.halitpractice.tvlangsungturkilight.services.YerelTvCategoriesDataCache;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +33,8 @@ public class YerelTvCategoriesActivity extends AppCompatActivity {
     private List<YerelTvCategoryModel> main_list;
     private YerelTvCategoryAdapter adapter;
     private ProgressBar progressBar;
+
+    private YerelTvCategoriesDataCache dataCache;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,43 +83,74 @@ public class YerelTvCategoriesActivity extends AppCompatActivity {
             }
         });
 
-        fetchData();
+//        fetchData();
+
+        // Initialize the DataCache instance
+        dataCache = YerelTvCategoriesDataCache.getInstance();
+
+        // Check if there is cached data
+        List<YerelTvCategoryModel> cachedData = dataCache.getCachedData();
+
+        if (cachedData != null && !cachedData.isEmpty()) {
+            // Use cached data to update the UI
+            updateUIWithCachedData(cachedData);
+        } else {
+            // Data is not cached, fetch it from the network
+            fetchData();
+        }
 
     }
 
     private void fetchData() {
         progressBar.setVisibility(View.VISIBLE);
 
-        Call<List<YerelTvCategoryModel>> req = ManagerAll.getInstance().yerelTvCategoryFetch();
-        req.enqueue(new Callback<List<YerelTvCategoryModel>>() {
-            @Override
-            public void onResponse(Call<List<YerelTvCategoryModel>> call, Response<List<YerelTvCategoryModel>> response) {
-                progressBar.setVisibility(View.GONE); // Always hide the ProgressBar
+        // Check if there's cached data available
+        List<YerelTvCategoryModel> cachedData = YerelTvCategoriesDataCache.getInstance().getCachedData();
 
-                if (response.isSuccessful()) {
+        // If cached data exists, use it to update the UI
+        if (cachedData != null && !cachedData.isEmpty()) {
+            updateUIWithCachedData(cachedData);
+            progressBar.setVisibility(View.GONE);
+        } else {
+            // No cached data, fetch from the network
+            Call<List<YerelTvCategoryModel>> req = ManagerAll.getInstance().yerelTvCategoryFetch();
+            req.enqueue(new Callback<List<YerelTvCategoryModel>>() {
+                @Override
+                public void onResponse(Call<List<YerelTvCategoryModel>> call, Response<List<YerelTvCategoryModel>> response) {
+                    progressBar.setVisibility(View.GONE); // Always hide the ProgressBar
 
-                    main_list = response.body();
-
-                    if (main_list != null && !main_list.isEmpty()) {
-                        adapter = new YerelTvCategoryAdapter(main_list, YerelTvCategoriesActivity.this);
-                        recyclerView.setAdapter(adapter);
-
-                        progressBar.setVisibility(View.GONE); // Hide the ProgressBar after data is loaded
-
+                    if (response.isSuccessful()) {
+                        List<YerelTvCategoryModel> data = response.body();
+                        // If data is fetched, cache it and update the UI
+                        if (data != null && !data.isEmpty()) {
+                            YerelTvCategoriesDataCache.getInstance().setCachedData(data);
+                            updateUIWithCachedData(data);
+                        } else {
+                            // Handle empty response
+                            handleNullResponse();
+                        }
                     } else {
-                        handleNullResponse();
+                        // Handle unsuccessful response
+                        handleUnsuccessfulResponse();
                     }
-                } else {
-                    handleUnsuccessfulResponse();
                 }
-            }
 
-            @Override
-            public void onFailure(Call<List<YerelTvCategoryModel>> call, Throwable t) {
-                progressBar.setVisibility(View.GONE); // Always hide the ProgressBar
-                handleNetworkFailure();
-            }
-        });
+                @Override
+                public void onFailure(Call<List<YerelTvCategoryModel>> call, Throwable t) {
+                    progressBar.setVisibility(View.GONE); // Always hide the ProgressBar
+                    handleNetworkFailure();
+                }
+            });
+        }
+    }
+
+    private void updateUIWithCachedData(List<YerelTvCategoryModel> cachedData) {
+        if (cachedData != null && !cachedData.isEmpty()) {
+            adapter = new YerelTvCategoryAdapter(cachedData, YerelTvCategoriesActivity.this);
+            recyclerView.setAdapter(adapter);
+        } else {
+            handleNullResponse();
+        }
     }
 
     private void handleUnsuccessfulResponse() {
