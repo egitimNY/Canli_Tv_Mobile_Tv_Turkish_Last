@@ -4,6 +4,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -46,6 +47,23 @@ public class UlusalTvActivity extends AppCompatActivity {
     private ProgressBar progressBar;
 
     private UlusalTvDataCache dataCache; // Instance of DataCache for caching data
+
+    // Define a constant for the refresh interval (e.g., every 30 minutes)
+//    private static final long REFRESH_INTERVAL = 30 * 60 * 1000; // 30 minutes in milliseconds
+//    private static final long REFRESH_INTERVAL = 15 * 1000; // 15 seconds in milliseconds
+//    private static final long REFRESH_INTERVAL = 10 * 1000; // 30 seconds in milliseconds
+    private static final long REFRESH_INTERVAL = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+
+
+    // Create a Handler to manage the periodic refresh
+    private final Handler refreshHandler = new Handler();
+    private final Runnable refreshRunnable = new Runnable() {
+        @Override
+        public void run() {
+            fetchData();
+            refreshHandler.postDelayed(this, REFRESH_INTERVAL);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,17 +116,42 @@ public class UlusalTvActivity extends AppCompatActivity {
 
         // Initialize the DataCache instance
         dataCache = UlusalTvDataCache.getInstance();
-        // Check if there is cached data
+
+        // Start periodic data refresh
+        startPeriodicRefresh();
+
+        // Check for cached data and update UI
         List<UlusalTvModel> cachedData = dataCache.getCachedData();
 
         if (cachedData != null && !cachedData.isEmpty()) {
-            // Use cached data to update the UI
             updateUIWithCachedData(cachedData);
         } else {
             // Data is not cached, fetch it from the network
             fetchData();
         }
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        startPeriodicRefresh(); // Start periodic refresh when the activity becomes visible
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        stopPeriodicRefresh(); // Stop periodic refresh when the activity is not visible
+    }
+
+    // Method to start the periodic refresh
+    private void startPeriodicRefresh() {
+        refreshHandler.postDelayed(refreshRunnable, 0); // Start the refresh immediately
+    }
+
+    // Method to stop the periodic refresh (call when the activity is paused or stopped)
+    private void stopPeriodicRefresh() {
+        refreshHandler.removeCallbacks(refreshRunnable);
     }
 
     private void fetchData() {
