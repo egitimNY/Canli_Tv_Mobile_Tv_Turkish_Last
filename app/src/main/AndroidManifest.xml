@@ -13,20 +13,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CanliTvMobileTvTurkishLast">
-        <activity android:name=".DisclaimerWebViewFetchRetrofitActivity"
+        <activity android:name=".UlusalTvCategoriesDetailsActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".DisclaimerWebViewFetchRetrofitActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".TurkishCartoonYtbActivity" />
         <activity android:name=".TurkYabanciMovieActivity" />
         <activity android:name=".RadyoDinleActivity" />
         <activity android:name=".YerelTvCategoriesActivity" />
         <activity android:name=".YerelTvActivity" />
-        <activity android:name=".TurkishLiveTvCategoriesActivity" />
-        <activity android:name=".TurkishLiveTvActivity" />
+        <activity android:name=".UlusalTvCategoriesActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".UlusalTvActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MainActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

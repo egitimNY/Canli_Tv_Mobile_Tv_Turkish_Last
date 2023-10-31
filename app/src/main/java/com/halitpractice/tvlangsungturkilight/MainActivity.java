@@ -15,7 +15,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
@@ -42,8 +41,6 @@ public class MainActivity extends AppCompatActivity {
     private NavigationView navigationView;
     private ActionBarDrawerToggle toggle;  // Declare the ActionBarDrawerToggle
 
-    private TextView marqueeTextView;
-
     private AdView mAdView;
     ImageView closedBtn;
 
@@ -58,15 +55,25 @@ public class MainActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setTitle("Canli Tv Mobile Tv Turkish");
+            actionBar.setTitle("Canlı Tv Mobile Tv Turkish");
         }
 
+        // Enable the back button in the action bar
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back); // Replace with your custom button icon
+        }
 
-        findViewById(R.id.indianTvLinearLayout).setOnClickListener(view ->
-                startActivity(new Intent(MainActivity.this, TurkishLiveTvActivity.class))
+        // Add the following lines to clear the back stack when the app starts from MainActivity
+        if ((getIntent().getFlags() & Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY) != 0) {
+            finish();
+        }
+
+        findViewById(R.id.ulusalTvler).setOnClickListener(view ->
+                startActivity(new Intent(MainActivity.this, UlusalTvActivity.class))
         );
-        findViewById(R.id.indianTvCategory).setOnClickListener(view ->
-                startActivity(new Intent(MainActivity.this, TurkishLiveTvCategoriesActivity.class))
+        findViewById(R.id.ulusalTvlerCategory).setOnClickListener(view ->
+                startActivity(new Intent(MainActivity.this, UlusalTvCategoriesActivity.class))
         );
         findViewById(R.id.indiaExtraTv).setOnClickListener(view ->
                 startActivity(new Intent(MainActivity.this, YerelTvActivity.class))
@@ -85,12 +92,8 @@ public class MainActivity extends AppCompatActivity {
         );
 
 
-//        marqueeTextView = findViewById(R.id.custom_title);
-//        MarqueeTextHelper.fetchAndDisplayMarqueeText(marqueeTextView);
-
         // Initialize your TextView where you'll display marquee text
         TextView marqueeTextView = findViewById(R.id.marqueeTextViewMainActivity);
-
         // Fetch and display marquee text using the helper method
         MarqueeTextHelper.fetchAndDisplayMarqueeText(marqueeTextView);
 
@@ -109,9 +112,6 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-
         View headerView = navigationView.getHeaderView(0);
         TextView disclaimerButton = headerView.findViewById(R.id.disclaimer);
         disclaimerButton.setOnClickListener(v -> {
@@ -119,8 +119,6 @@ public class MainActivity extends AppCompatActivity {
 //            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         });
-
-
 
         TextView checkUpdateText = headerView.findViewById(R.id.checkForUpdate);
         checkUpdateText.setOnClickListener(v -> {
@@ -131,22 +129,20 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-
         // directly change the color of the DrawerArrowDrawable, which is responsible for drawing the hamburger icon.
         toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.white)); //
 
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                int id = item.getItemId();
+        navigationView.setNavigationItemSelectedListener(item -> {
+            int id = item.getItemId();
                 if (id == R.id.turkishLiveTv) {
                     // Handle item 1 click
-                    Intent intent = new Intent(MainActivity.this, TurkishLiveTvActivity.class);
+                    Intent intent = new Intent(MainActivity.this, UlusalTvActivity.class);
                     startActivity(intent);
                 } else if (id == R.id.turkishLiveTvCategories) {
                     // Handle item 2 click
-                    Intent intent = new Intent(MainActivity.this, TurkishLiveTvCategoriesActivity.class);
+                    Intent intent = new Intent(MainActivity.this, UlusalTvCategoriesActivity.class);
                     startActivity(intent);
+                    finish();
                 } else if (id == R.id.yerel_tv) {
                     // Handle item 2 click
                     Intent intent = new Intent(MainActivity.this, YerelTvActivity.class);
@@ -170,16 +166,13 @@ public class MainActivity extends AppCompatActivity {
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
-            }
         });
-
 
         // Check if the Terms and Conditions have not been accepted
         SharedPreferences sharedPreferences = getSharedPreferences(PLANT_PLACES_PREFS, Context.MODE_PRIVATE);
         if (!sharedPreferences.getBoolean(TERMS_AND_CONDITIONS, false)) {
             showTermsAndConditionsDialog();
         }
-
 
         mAdView = findViewById(R.id.adViewMainActivity);
         AdRequest adRequest = new AdRequest.Builder().build();
@@ -202,7 +195,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
 
     private void showTermsAndConditionsDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -240,7 +232,6 @@ public class MainActivity extends AppCompatActivity {
 
     // Handle the ActionBarDrawerToggle when the user taps the app bar's home button
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (toggle.onOptionsItemSelected(item)) {
@@ -249,19 +240,18 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
-
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (backPressedTime + DOUBLE_PRESS_THRESHOLD > System.currentTimeMillis()) {
                 // If the second press is within the threshold, show a confirmation dialog
-                showExitConfirmationDialog();
+//                showExitConfirmationDialog();
+                showFirstConfirmationDialog();
             } else {
                 // Record the timestamp of the first press
                 backPressedTime = System.currentTimeMillis();
-//                Toast.makeText(this, "Çıkmak için tekrar basın", Toast.LENGTH_SHORT).show();
-                Toast.makeText(this, "Press again to exit", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Çıkmak için tekrar basın", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, "Press again to exit", Toast.LENGTH_SHORT).show();
 
             }
             return true; // Consume the event, preventing default back button behavior
@@ -269,6 +259,45 @@ public class MainActivity extends AppCompatActivity {
         return super.onKeyDown(keyCode, event);
     }
 
+    private void showFirstConfirmationDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle("Önemli Duyuru:")
+//                .setMessage("Please launch the app using the app icon from your home screen.")
+//                .setMessage("You are about to close the app. Before closing, please read this notice. Please relaunch the app by tapping its icon on your device's home screen. Avoid reopening the app from the recent apps if you have already closed it. Always start the app from your home screen for proper functionality.")
+                .setMessage("Uygulamayı kapatmaya hazırsınız. Kapatmadan önce bu duyuruyu dikkatlice okumanız önemlidir. Uygulamayı yeniden başlatmak için, lütfen cihazınızın ana ekranındaki uygulama simgesine dokunun. Eğer uygulamayı tamamen kapatmışsanız, lütfen yeniden açmak için son kullanılanlar listesini değil, her zaman ana ekrandaki simgeyi kullanın. En iyi performans ve işlevsellik için bu yöntemi tercih edin.")
+                .setPositiveButton("TAMAM", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // User acknowledged the information, now show the exit confirmation
+                        showExitConfirmationDialog();
+                    }
+                })
+                .show();
+    }
+
+    private void showExitConfirmationDialog() {
+        new AlertDialog.Builder(this)
+//                .setMessage("Are you sure you want to close the app?")
+                .setTitle("Uygulamadan Çıkmak Üzeresiniz!")
+                .setMessage("Uygulamayı kapatmak istediğinizden emin misiniz?")
+                .setPositiveButton("Evet", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finishAffinity(); // Finish all activities in the task
+                        // Additional option to close the app completely
+                        finishAndRemoveTask(); // This can be used for API 21 and above
+                    }
+                })
+                .setNegativeButton("Hayır", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // The user prefers not to close the app; do nothing
+                    }
+                })
+                .show();
+    }
+
+    /*
     private void showExitConfirmationDialog() {
         new AlertDialog.Builder(this)
                 .setTitle("Exit the App?")
@@ -288,5 +317,7 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .show();
     }
+    */
+
 
 }

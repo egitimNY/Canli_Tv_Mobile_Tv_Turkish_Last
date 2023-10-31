@@ -2,9 +2,14 @@ package com.halitpractice.tvlangsungturkilight.RestApi;
 
 import com.halitpractice.tvlangsungturkilight.models.FormattedTextModel;
 import com.halitpractice.tvlangsungturkilight.models.MarqueeTextModel;
+import com.halitpractice.tvlangsungturkilight.models.UlusalTvCategoryModel;
+import com.halitpractice.tvlangsungturkilight.models.UlusalTvModel;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 public interface RestApi {
 
@@ -21,5 +26,14 @@ public interface RestApi {
     @GET("/canliTVTurkishChromeTab/retrofitCanliTV/underConstructionTR.php")
     Call<FormattedTextModel> underConstructionFormatedText();
 
+
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/TurkishLiveTv.php")
+    Call<List<UlusalTvModel>> chromeTab();
+
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/TurkishLiveTvCategories.php")
+    Call<List<UlusalTvCategoryModel>> turkishLiveTvCategory();
+
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/TurkishLiveTvCategoriesDetails.php")
+    Call<List<UlusalTvModel>> turkishLiveTvCategoryDetails(@Query("cat") String category);
 
 }
