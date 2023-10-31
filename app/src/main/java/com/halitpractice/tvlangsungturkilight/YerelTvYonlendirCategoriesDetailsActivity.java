@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,29 +16,26 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.halitpractice.tvlangsungturkilight.RestApi.ManagerAll;
-import com.halitpractice.tvlangsungturkilight.adapters.YerelTvCategoryAdapter;
-import com.halitpractice.tvlangsungturkilight.models.YerelTvCategoryModel;
+import com.halitpractice.tvlangsungturkilight.adapters.YerelTvYonlendirAdapter;
+import com.halitpractice.tvlangsungturkilight.models.YerelTvYonlendirModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class YerelTvCategoriesActivity extends AppCompatActivity {
+public class YerelTvYonlendirCategoriesDetailsActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private List<YerelTvCategoryModel> main_list;
-    private YerelTvCategoryAdapter adapter;
-    private ProgressBar progressBar;
+    private List<YerelTvYonlendirModel> main_list;
+    private YerelTvYonlendirAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_yerel_tv_categories);
+        setContentView(R.layout.activity_yerel_tv_yonlendir_categories_details);
 
-        // Find and set the Toolbar as the action bar
         Toolbar toolbar = findViewById(R.id.custom_toolbar);
         setSupportActionBar(toolbar);
 
@@ -48,24 +45,27 @@ public class YerelTvCategoriesActivity extends AppCompatActivity {
             getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back);
         }
 
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setTitle("Yerel TV'ler Kategori");
-        }
-
-        progressBar = findViewById(R.id.yerelTvCategoryProgressBar); // Initialize the ProgressBar
-        progressBar.setVisibility(View.GONE); // Initially, set it to GONE
-
-        main_list = new ArrayList<>();
-        recyclerView = findViewById(R.id.yerelTvCategoryRecycler);
+        recyclerView = findViewById(R.id.yonlendir_details_slider_list); // Initialize the RecyclerView
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        AdView mAdView = findViewById(R.id.adViewIndiaWorldTvCategories);
+        String selectedCategory = getIntent().getStringExtra("category");
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            if (selectedCategory != null) {
+                actionBar.setTitle("Seçilen Kategori: " + selectedCategory);
+                fetchData(selectedCategory);
+            } else {
+                actionBar.setTitle("Seçilen Kategori: ");
+            }
+        }
+
+
+        AdView mAdView = findViewById(R.id.adViewYerelTvYonlendirCategoriesDetails);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
-        ImageView closedBtn = findViewById(R.id.closeBtnIndiaWorldTvCategories);
+        ImageView closedBtn = findViewById(R.id.closeBtnYerelTvYonlendirCategoriesDetails);
         closedBtn.setOnClickListener(v -> {
             if (mAdView.getVisibility() == View.VISIBLE) {
                 mAdView.setVisibility(View.GONE);
@@ -80,29 +80,19 @@ public class YerelTvCategoriesActivity extends AppCompatActivity {
             }
         });
 
-        fetchData();
-
     }
 
-    private void fetchData() {
-        progressBar.setVisibility(View.VISIBLE);
-
-        Call<List<YerelTvCategoryModel>> req = ManagerAll.getInstance().yerelTvCategoryFetch();
-        req.enqueue(new Callback<List<YerelTvCategoryModel>>() {
+    private void fetchData(String selectedCategory) {
+        Call<List<YerelTvYonlendirModel>> req = ManagerAll.getInstance().getYerelTvByCategoryYonlendirFetch(selectedCategory);
+        req.enqueue(new Callback<List<YerelTvYonlendirModel>>() {
             @Override
-            public void onResponse(Call<List<YerelTvCategoryModel>> call, Response<List<YerelTvCategoryModel>> response) {
-                progressBar.setVisibility(View.GONE); // Always hide the ProgressBar
+            public void onResponse(Call<List<YerelTvYonlendirModel>> call, Response<List<YerelTvYonlendirModel>> response) {
 
                 if (response.isSuccessful()) {
-
                     main_list = response.body();
-
                     if (main_list != null && !main_list.isEmpty()) {
-                        adapter = new YerelTvCategoryAdapter(main_list, YerelTvCategoriesActivity.this);
+                        adapter = new YerelTvYonlendirAdapter(main_list, YerelTvYonlendirCategoriesDetailsActivity.this);
                         recyclerView.setAdapter(adapter);
-
-                        progressBar.setVisibility(View.GONE); // Hide the ProgressBar after data is loaded
-
                     } else {
                         handleNullResponse();
                     }
@@ -112,9 +102,9 @@ public class YerelTvCategoriesActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<YerelTvCategoryModel>> call, Throwable t) {
-                progressBar.setVisibility(View.GONE); // Always hide the ProgressBar
+            public void onFailure(Call<List<YerelTvYonlendirModel>> call, Throwable t) {
                 handleNetworkFailure();
+                t.printStackTrace(); // Print the error details for debugging
             }
         });
     }
@@ -123,7 +113,8 @@ public class YerelTvCategoriesActivity extends AppCompatActivity {
         // Handle an unsuccessful response from the server
         // For example, show an error message to the user
 //        Toast.makeText(this, "An error occurred while loading data. Please try again later.", Toast.LENGTH_LONG).show();
-//        Toast.makeText(this, "Veri yüklenirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Veri yüklenirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.", Toast.LENGTH_LONG).show();
+        // You can also navigate to a different activity or take other appropriate actions here.
         redirectYonlendir();
     }
 
@@ -131,20 +122,20 @@ public class YerelTvCategoriesActivity extends AppCompatActivity {
         // Handle null response from the server
         // For example, show an error message to the user
 //        Toast.makeText(this, "No data available. Please try again later.", Toast.LENGTH_LONG).show();
-//        Toast.makeText(this, "Veri bulunamadı. Lütfen daha sonra tekrar deneyin.", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Veri bulunamadı. Lütfen daha sonra tekrar deneyin.", Toast.LENGTH_LONG).show();
 
     }
 
     private void handleNetworkFailure() {
         // Show a message to the user indicating a network failure
 //        Toast.makeText(this, "No internet connection. Please check your network settings.", Toast.LENGTH_LONG).show();
-//        Toast.makeText(this, "İnternet bağlantısı yok. Lütfen ağ ayarlarınızı kontrol edin.", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "İnternet bağlantısı yok. Lütfen ağ ayarlarınızı kontrol edin.", Toast.LENGTH_LONG).show();
     }
 
 
     private void redirectYonlendir() {
         // Redirect to FeatureUnderConstructionActivity
-        Intent intent = new Intent(YerelTvCategoriesActivity.this, YerelTvYonlendirCategoriesActivity.class);
+        Intent intent = new Intent(YerelTvYonlendirCategoriesDetailsActivity.this, MainActivity.class);
         startActivity(intent);
     }
 
@@ -152,7 +143,7 @@ public class YerelTvCategoriesActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, YerelTvYonlendirCategoriesActivity.class);
         startActivity(intent);
         finish(); // Close the current activity
 
@@ -164,7 +155,7 @@ public class YerelTvCategoriesActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             // Handle the back button click here, navigate to ThirdActivity
-            Intent intent = new Intent(this, MainActivity.class);
+            Intent intent = new Intent(this, YerelTvYonlendirCategoriesActivity.class);
             startActivity(intent);
             finish(); // Finish the current activity if you don't want to return to it
             return true;

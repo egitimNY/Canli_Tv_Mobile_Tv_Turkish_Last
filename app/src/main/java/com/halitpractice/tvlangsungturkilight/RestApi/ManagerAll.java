@@ -4,6 +4,10 @@ import com.halitpractice.tvlangsungturkilight.models.FormattedTextModel;
 import com.halitpractice.tvlangsungturkilight.models.MarqueeTextModel;
 import com.halitpractice.tvlangsungturkilight.models.UlusalTvCategoryModel;
 import com.halitpractice.tvlangsungturkilight.models.UlusalTvModel;
+import com.halitpractice.tvlangsungturkilight.models.YerelTvCategoryModel;
+import com.halitpractice.tvlangsungturkilight.models.YerelTvModel;
+import com.halitpractice.tvlangsungturkilight.models.YerelTvYonlendirCategoryModel;
+import com.halitpractice.tvlangsungturkilight.models.YerelTvYonlendirModel;
 
 import java.util.List;
 
@@ -34,16 +38,49 @@ public class ManagerAll extends BaseManager {
         return getRestApi().underConstructionFormatedText();
     }
 
-    public Call<List<UlusalTvModel>> chromeTabFetch() {
-        return getRestApi().chromeTab();
+
+
+    public Call<List<UlusalTvModel>> ulusalTvFetch() {
+        return getRestApi().ulusalTV();
     }
 
-    public Call<List<UlusalTvCategoryModel>> turkishLiveTvCategoryFetch() {
-        return getRestApi().turkishLiveTvCategory();
+    public Call<List<UlusalTvCategoryModel>> ulusalTvCategoryFetch() {
+        return getRestApi().ulusalTvCategory();
     }
 
-    public Call<List<UlusalTvModel>> turkishLoveTvCategoryDetailsFetch(String category) {
-        return getRestApi().turkishLiveTvCategoryDetails(category);
+    public Call<List<UlusalTvModel>> ulusalTvCategoryDetailsFetch(String category) {
+        return getRestApi().ulusalTvCategoryDetails(category);
     }
+
+
+
+
+    public Call<List<YerelTvModel>> yerelTvFetch() {
+        return getRestApi().yerelTv();
+    }
+
+    public Call<List<YerelTvCategoryModel>> yerelTvCategoryFetch() {
+        return getRestApi().yerelTvCategory();
+    }
+
+    public Call<List<YerelTvModel>> yerelTvCategoryDetailsFetch(String category) {
+        return getRestApi().getYerelTvByCategory(category);
+    }
+
+
+
+    public Call<List<YerelTvYonlendirModel>> yerelTvYonlendirFetch() {
+        return getRestApi().yerelTvYonlendir();
+    }
+
+
+    public Call<List<YerelTvYonlendirCategoryModel>> yerelTvCategoryYonlendirFetch() {
+        return getRestApi().yerelTvCategoryYonlendir();
+    }
+
+    public Call<List<YerelTvYonlendirModel>> getYerelTvByCategoryYonlendirFetch(String category) {
+        return getRestApi().getYerelTvByCategoryYonlendir(category);
+    }
+
 
 }

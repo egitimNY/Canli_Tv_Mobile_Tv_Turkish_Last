@@ -113,7 +113,7 @@ public class UlusalTvActivity extends AppCompatActivity {
 
     private void fetchData() {
         progressBar.setVisibility(View.VISIBLE); // Show the ProgressBar
-        Call<List<UlusalTvModel>> req = ManagerAll.getInstance().chromeTabFetch();
+        Call<List<UlusalTvModel>> req = ManagerAll.getInstance().ulusalTvFetch();
         req.enqueue(new Callback<List<UlusalTvModel>>() {
             @Override
             public void onResponse(Call<List<UlusalTvModel>> call, Response<List<UlusalTvModel>> response) {

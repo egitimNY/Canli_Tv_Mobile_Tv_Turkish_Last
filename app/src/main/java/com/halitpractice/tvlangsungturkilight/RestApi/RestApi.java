@@ -4,6 +4,10 @@ import com.halitpractice.tvlangsungturkilight.models.FormattedTextModel;
 import com.halitpractice.tvlangsungturkilight.models.MarqueeTextModel;
 import com.halitpractice.tvlangsungturkilight.models.UlusalTvCategoryModel;
 import com.halitpractice.tvlangsungturkilight.models.UlusalTvModel;
+import com.halitpractice.tvlangsungturkilight.models.YerelTvCategoryModel;
+import com.halitpractice.tvlangsungturkilight.models.YerelTvModel;
+import com.halitpractice.tvlangsungturkilight.models.YerelTvYonlendirCategoryModel;
+import com.halitpractice.tvlangsungturkilight.models.YerelTvYonlendirModel;
 
 import java.util.List;
 
@@ -28,12 +32,34 @@ public interface RestApi {
 
 
     @GET("/canliTVTurkishChromeTab/retrofitCanliTV/TurkishLiveTv.php")
-    Call<List<UlusalTvModel>> chromeTab();
+    Call<List<UlusalTvModel>> ulusalTV();
 
     @GET("/canliTVTurkishChromeTab/retrofitCanliTV/TurkishLiveTvCategories.php")
-    Call<List<UlusalTvCategoryModel>> turkishLiveTvCategory();
+    Call<List<UlusalTvCategoryModel>> ulusalTvCategory();
 
     @GET("/canliTVTurkishChromeTab/retrofitCanliTV/TurkishLiveTvCategoriesDetails.php")
-    Call<List<UlusalTvModel>> turkishLiveTvCategoryDetails(@Query("cat") String category);
+    Call<List<UlusalTvModel>> ulusalTvCategoryDetails(@Query("cat") String category);
+
+
+
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/yerelTvlerExo.php")
+    Call<List<YerelTvModel>> yerelTv();
+
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/yerelTvlerCategoriesExo.php")
+    Call<List<YerelTvCategoryModel>> yerelTvCategory();
+
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/yerelTvlerCategoriesDetailsExo.php")
+    Call<List<YerelTvModel>> getYerelTvByCategory(@Query("cat") String category);
+
+
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/zYerelTvYonlendir.php")
+    Call<List<YerelTvYonlendirModel>> yerelTvYonlendir();
+
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/zYerelTvCategoriesYonlendir.php")
+    Call<List<YerelTvYonlendirCategoryModel>> yerelTvCategoryYonlendir();
+
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/zYerelTvCategoriesDetailsYonlendir.php")
+    Call<List<YerelTvYonlendirModel>> getYerelTvByCategoryYonlendir(@Query("cat") String category);
+
 
 }

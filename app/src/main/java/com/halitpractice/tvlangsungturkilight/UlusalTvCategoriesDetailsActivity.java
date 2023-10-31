@@ -117,7 +117,7 @@ public class UlusalTvCategoriesDetailsActivity extends AppCompatActivity {
             progressBar.setVisibility(View.GONE);
         } else {
             // Data is not cached, fetch it from the network
-            Call<List<UlusalTvModel>> req = ManagerAll.getInstance().turkishLoveTvCategoryDetailsFetch(selectedCategory);
+            Call<List<UlusalTvModel>> req = ManagerAll.getInstance().ulusalTvCategoryDetailsFetch(selectedCategory);
             req.enqueue(new Callback<List<UlusalTvModel>>() {
                 @Override
                 public void onResponse(Call<List<UlusalTvModel>> call, Response<List<UlusalTvModel>> response) {

@@ -1,21 +1,14 @@
 package com.halitpractice.tvlangsungturkilight;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.TypedValue;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,17 +19,13 @@ import com.halitpractice.tvlangsungturkilight.RestApi.ManagerAll;
 import com.halitpractice.tvlangsungturkilight.adapters.YerelTvAdapter;
 import com.halitpractice.tvlangsungturkilight.models.YerelTvModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class YerelTvActivity extends AppCompatActivity {
-
-    private SearchView searchView = null;  /////// SearchView codes parts
-    private SearchView.OnQueryTextListener queryTextListener;  /////// SearchView codes parts
+public class YerelTvCategoriesDetailsActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private List<YerelTvModel> main_list;
@@ -46,8 +35,9 @@ public class YerelTvActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_yerel_tv);
+        setContentView(R.layout.activity_yerel_tv_categories_details);
 
+        // Find and set the Toolbar as the action bar
         Toolbar toolbar = findViewById(R.id.custom_toolbar);
         setSupportActionBar(toolbar);
 
@@ -57,25 +47,27 @@ public class YerelTvActivity extends AppCompatActivity {
             getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back);
         }
 
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setTitle("Yerel TV'ler");
-        }
+        progressBar = findViewById(R.id.yerelTvCategoryDetailsProgressBar); // Initialize the ProgressBar
+        progressBar.setVisibility(View.VISIBLE); // Initially, set it to VISIBLE
 
-        progressBar = findViewById(R.id.yerelTvProgressBar); // Initialize the ProgressBar
-        progressBar.setVisibility(View.GONE); // Initially, set it to GONE
-
-        main_list = new ArrayList<>();
-        recyclerView = findViewById(R.id.yerelTvRecycler);
+        recyclerView = findViewById(R.id.yerelTvCategoryDetailsRecycler); // Initialize the RecyclerView
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        String selectedCategory = getIntent().getStringExtra("category");
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            if (selectedCategory != null) {
+                actionBar.setTitle("Seçilen Kategori: " + selectedCategory);
+                fetchData(selectedCategory);
+            }
+        }
 
-        AdView mAdView = findViewById(R.id.adViewIndiaWorldTv);
+        AdView mAdView = findViewById(R.id.adViewIndiaWorldTvCategoriesDetails);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
-        ImageView closedBtn = findViewById(R.id.closeBtnIndiaWorldTv);
+        ImageView closedBtn = findViewById(R.id.closeBtnIndiaWorldTvCategoriesDetails);
         closedBtn.setOnClickListener(v -> {
             if (mAdView.getVisibility() == View.VISIBLE) {
                 mAdView.setVisibility(View.GONE);
@@ -90,26 +82,21 @@ public class YerelTvActivity extends AppCompatActivity {
             }
         });
 
-        fetchData();
-
     }
 
-    private void fetchData() {
-        progressBar.setVisibility(View.VISIBLE); // Show the ProgressBar
-        Call<List<YerelTvModel>> req = ManagerAll.getInstance().yerelTvFetch();
+    private void fetchData(String selectedCategory) {
+        progressBar.setVisibility(View.VISIBLE);
+        Call<List<YerelTvModel>> req = ManagerAll.getInstance().yerelTvCategoryDetailsFetch(selectedCategory);
         req.enqueue(new Callback<List<YerelTvModel>>() {
             @Override
             public void onResponse(Call<List<YerelTvModel>> call, Response<List<YerelTvModel>> response) {
+                progressBar.setVisibility(View.GONE); // Always hide the ProgressBar
+
                 if (response.isSuccessful()) {
-
                     main_list = response.body();
-
                     if (main_list != null && !main_list.isEmpty()) {
-                        adapter = new YerelTvAdapter(main_list, YerelTvActivity.this);
+                        adapter = new YerelTvAdapter(main_list, YerelTvCategoriesDetailsActivity.this);
                         recyclerView.setAdapter(adapter);
-
-                        progressBar.setVisibility(View.GONE); // Hide the ProgressBar after data is loaded
-
                     } else {
                         handleNullResponse();
                     }
@@ -120,9 +107,9 @@ public class YerelTvActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<YerelTvModel>> call, Throwable t) {
+                progressBar.setVisibility(View.GONE); // Always hide the ProgressBar
                 handleNetworkFailure();
-                t.printStackTrace();
-                progressBar.setVisibility(View.GONE); // Hide the ProgressBar in case of failure
+                t.printStackTrace(); // Print the error details for debugging
             }
         });
     }
@@ -152,72 +139,15 @@ public class YerelTvActivity extends AppCompatActivity {
 
     private void redirectYonlendir() {
         // Redirect to FeatureUnderConstructionActivity
-        Intent intent = new Intent(YerelTvActivity.this, YerelTvYonlendirActivity.class);
+        Intent intent = new Intent(YerelTvCategoriesDetailsActivity.this, YerelTvYonlendirCategoriesDetailsActivity.class);
         startActivity(intent);
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
-
-        MenuItem searchItem = menu.findItem(R.id.action_search);
-        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-
-        if (searchItem != null) {
-            searchView = (SearchView) searchItem.getActionView();
-        }
-        if (searchView != null) {
-            searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-
-            queryTextListener = new SearchView.OnQueryTextListener() {
-                @Override
-                public boolean onQueryTextSubmit(String query) {
-                    return false;
-                }
-
-                @Override
-                public boolean onQueryTextChange(String newText) {
-                    newText = newText.toLowerCase();
-                    List<YerelTvModel> myList = new ArrayList<>();
-
-                    for (YerelTvModel model : main_list) {
-                        String javaSoru = model.getName().toLowerCase();
-
-                        if (javaSoru.contains(newText))
-                            myList.add(model);
-                    }
-
-                    if (adapter != null) {
-                        adapter.setSearchOperation(myList);
-                    } else {
-                        adapter = new YerelTvAdapter(myList, YerelTvActivity.this);
-                        recyclerView.setAdapter(adapter);
-                    }
-
-                    return false;
-                }
-            };
-            searchView.setOnQueryTextListener(queryTextListener);
-
-            // Programmatically set the left margin of the SearchView
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT
-            );
-            int marginInDp = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, getResources().getDisplayMetrics());
-            params.setMargins(marginInDp, 0, 0, 0);
-            searchView.setLayoutParams(params);
-        }
-
-        return true;
-    }
-
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, YerelTvCategoriesActivity.class);
         startActivity(intent);
         finish(); // Close the current activity
 
@@ -229,13 +159,11 @@ public class YerelTvActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             // Handle the back button click here, navigate to ThirdActivity
-            Intent intent = new Intent(this, MainActivity.class);
+            Intent intent = new Intent(this, YerelTvCategoriesActivity.class);
             startActivity(intent);
             finish(); // Finish the current activity if you don't want to return to it
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
-
-
 }

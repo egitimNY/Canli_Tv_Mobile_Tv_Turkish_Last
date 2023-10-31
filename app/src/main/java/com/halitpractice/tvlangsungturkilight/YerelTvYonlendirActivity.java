@@ -11,7 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,8 +23,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.halitpractice.tvlangsungturkilight.RestApi.ManagerAll;
-import com.halitpractice.tvlangsungturkilight.adapters.YerelTvAdapter;
-import com.halitpractice.tvlangsungturkilight.models.YerelTvModel;
+import com.halitpractice.tvlangsungturkilight.adapters.YerelTvYonlendirAdapter;
+import com.halitpractice.tvlangsungturkilight.models.YerelTvYonlendirModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,20 +33,19 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class YerelTvActivity extends AppCompatActivity {
+public class YerelTvYonlendirActivity extends AppCompatActivity {
 
     private SearchView searchView = null;  /////// SearchView codes parts
     private SearchView.OnQueryTextListener queryTextListener;  /////// SearchView codes parts
 
     private RecyclerView recyclerView;
-    private List<YerelTvModel> main_list;
-    private YerelTvAdapter adapter;
-    private ProgressBar progressBar;
+    private List<YerelTvYonlendirModel> main_list;
+    private YerelTvYonlendirAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_yerel_tv);
+        setContentView(R.layout.activity_yerel_tv_yonlendir);
 
         Toolbar toolbar = findViewById(R.id.custom_toolbar);
         setSupportActionBar(toolbar);
@@ -62,20 +61,18 @@ public class YerelTvActivity extends AppCompatActivity {
             actionBar.setTitle("Yerel TV'ler");
         }
 
-        progressBar = findViewById(R.id.yerelTvProgressBar); // Initialize the ProgressBar
-        progressBar.setVisibility(View.GONE); // Initially, set it to GONE
-
         main_list = new ArrayList<>();
-        recyclerView = findViewById(R.id.yerelTvRecycler);
+        recyclerView = findViewById(R.id.yereltv_big_slider_list);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        fetchData();
 
-        AdView mAdView = findViewById(R.id.adViewIndiaWorldTv);
+        AdView mAdView = findViewById(R.id.adViewYerelTvYonlendir);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
-        ImageView closedBtn = findViewById(R.id.closeBtnIndiaWorldTv);
+        ImageView closedBtn = findViewById(R.id.closeBtnYerelTvYonlendir);
         closedBtn.setOnClickListener(v -> {
             if (mAdView.getVisibility() == View.VISIBLE) {
                 mAdView.setVisibility(View.GONE);
@@ -90,25 +87,20 @@ public class YerelTvActivity extends AppCompatActivity {
             }
         });
 
-        fetchData();
-
     }
 
     private void fetchData() {
-        progressBar.setVisibility(View.VISIBLE); // Show the ProgressBar
-        Call<List<YerelTvModel>> req = ManagerAll.getInstance().yerelTvFetch();
-        req.enqueue(new Callback<List<YerelTvModel>>() {
+        Call<List<YerelTvYonlendirModel>> req = ManagerAll.getInstance().yerelTvYonlendirFetch();
+        req.enqueue(new Callback<List<YerelTvYonlendirModel>>() {
             @Override
-            public void onResponse(Call<List<YerelTvModel>> call, Response<List<YerelTvModel>> response) {
+            public void onResponse(Call<List<YerelTvYonlendirModel>> call, Response<List<YerelTvYonlendirModel>> response) {
                 if (response.isSuccessful()) {
 
                     main_list = response.body();
 
                     if (main_list != null && !main_list.isEmpty()) {
-                        adapter = new YerelTvAdapter(main_list, YerelTvActivity.this);
+                        adapter = new YerelTvYonlendirAdapter(main_list, YerelTvYonlendirActivity.this);
                         recyclerView.setAdapter(adapter);
-
-                        progressBar.setVisibility(View.GONE); // Hide the ProgressBar after data is loaded
 
                     } else {
                         handleNullResponse();
@@ -119,10 +111,9 @@ public class YerelTvActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<YerelTvModel>> call, Throwable t) {
+            public void onFailure(Call<List<YerelTvYonlendirModel>> call, Throwable t) {
                 handleNetworkFailure();
                 t.printStackTrace();
-                progressBar.setVisibility(View.GONE); // Hide the ProgressBar in case of failure
             }
         });
     }
@@ -131,7 +122,8 @@ public class YerelTvActivity extends AppCompatActivity {
         // Handle an unsuccessful response from the server
         // For example, show an error message to the user
 //        Toast.makeText(this, "An error occurred while loading data. Please try again later.", Toast.LENGTH_LONG).show();
-//        Toast.makeText(this, "Veri yüklenirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Veri yüklenirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.", Toast.LENGTH_LONG).show();
+        // You can also navigate to a different activity or take other appropriate actions here.
         redirectYonlendir();
     }
 
@@ -139,23 +131,22 @@ public class YerelTvActivity extends AppCompatActivity {
         // Handle null response from the server
         // For example, show an error message to the user
 //        Toast.makeText(this, "No data available. Please try again later.", Toast.LENGTH_LONG).show();
-//        Toast.makeText(this, "Veri bulunamadı. Lütfen daha sonra tekrar deneyin.", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Veri bulunamadı. Lütfen daha sonra tekrar deneyin.", Toast.LENGTH_LONG).show();
 
     }
 
     private void handleNetworkFailure() {
         // Show a message to the user indicating a network failure
 //        Toast.makeText(this, "No internet connection. Please check your network settings.", Toast.LENGTH_LONG).show();
-//        Toast.makeText(this, "İnternet bağlantısı yok. Lütfen ağ ayarlarınızı kontrol edin.", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "İnternet bağlantısı yok. Lütfen ağ ayarlarınızı kontrol edin.", Toast.LENGTH_LONG).show();
     }
 
 
     private void redirectYonlendir() {
         // Redirect to FeatureUnderConstructionActivity
-        Intent intent = new Intent(YerelTvActivity.this, YerelTvYonlendirActivity.class);
+        Intent intent = new Intent(YerelTvYonlendirActivity.this, MainActivity.class);
         startActivity(intent);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -180,22 +171,16 @@ public class YerelTvActivity extends AppCompatActivity {
                 @Override
                 public boolean onQueryTextChange(String newText) {
                     newText = newText.toLowerCase();
-                    List<YerelTvModel> myList = new ArrayList<>();
+                    List<YerelTvYonlendirModel> myList = new ArrayList<>();
 
-                    for (YerelTvModel model : main_list) {
+                    for (YerelTvYonlendirModel model : main_list) {
                         String javaSoru = model.getName().toLowerCase();
 
                         if (javaSoru.contains(newText))
                             myList.add(model);
                     }
 
-                    if (adapter != null) {
-                        adapter.setSearchOperation(myList);
-                    } else {
-                        adapter = new YerelTvAdapter(myList, YerelTvActivity.this);
-                        recyclerView.setAdapter(adapter);
-                    }
-
+                    adapter.setSearchOperation(myList);
                     return false;
                 }
             };
@@ -236,6 +221,5 @@ public class YerelTvActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
 
 }
