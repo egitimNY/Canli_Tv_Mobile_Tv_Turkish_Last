@@ -199,36 +199,28 @@ public class MainActivity extends AppCompatActivity {
     private void showTermsAndConditionsDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(false);
-        builder.setMessage(Html.fromHtml("By using this app, you are agreeing to our " +
-                "<a href=\"" + BaseUrl.getTermsAndConditionsUrl() + "\">Terms and Conditions</a> and " +
-                "<a href=\"" + BaseUrl.getPrivacyPolicyUrl() + "\">Privacy Policy</a>"))
-                .setPositiveButton("I Agree", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // Handle acceptance logic here
-                        SharedPreferences prefs = getSharedPreferences(PLANT_PLACES_PREFS, Context.MODE_PRIVATE);
-                        SharedPreferences.Editor edit = prefs.edit();
-                        edit.putBoolean(TERMS_AND_CONDITIONS, true);
-                        edit.apply();
-                    }
-                });
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                finish();
-            }
-        });
+        builder.setMessage(Html.fromHtml("Bu uygulamayı kullanarak, <a href=\"" + BaseUrl.getTermsAndConditionsUrl() + "\">Kullanım Koşulları</a> ve " +
+                "<a href=\"" + BaseUrl.getPrivacyPolicyUrl() + "\">Gizlilik Politikası</a> maddelerini kabul etmiş olursunuz"))
+                .setPositiveButton("Kabul Ediyorum", (dialog, which) -> {
+                    // Kabul işlemini burada ele al
+                    SharedPreferences prefs = getSharedPreferences(PLANT_PLACES_PREFS, Context.MODE_PRIVATE);
+                    SharedPreferences.Editor edit = prefs.edit();
+                    edit.putBoolean(TERMS_AND_CONDITIONS, true);
+                    edit.apply();
+                })
+                .setNegativeButton("İptal", (dialog, which) -> finish());
 
-        // Show the dialog
+        // Dialog gösterimi
         AlertDialog dialog = builder.create();
         dialog.show();
 
-        // Make the links clickable
+        // Linkleri tıklanabilir yap
         TextView messageText = dialog.findViewById(android.R.id.message);
         if (messageText != null) {
             messageText.setMovementMethod(LinkMovementMethod.getInstance());
         }
     }
+
 
     // Handle the ActionBarDrawerToggle when the user taps the app bar's home button
 

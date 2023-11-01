@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
@@ -26,6 +27,7 @@ import com.google.android.gms.ads.AdView;
 import com.halitpractice.tvlangsungturkilight.RestApi.ManagerAll;
 import com.halitpractice.tvlangsungturkilight.adapters.UlusalTvAdapter;
 import com.halitpractice.tvlangsungturkilight.models.UlusalTvModel;
+import com.halitpractice.tvlangsungturkilight.services.MarqueeTextAdsHelper;
 import com.halitpractice.tvlangsungturkilight.services.UlusalTvDataCache;
 
 import java.util.ArrayList;
@@ -69,6 +71,9 @@ public class UlusalTvActivity extends AppCompatActivity {
 
         progressBar = findViewById(R.id.turkishTvProgressBar); // Initialize the ProgressBar
         progressBar.setVisibility(View.GONE); // Initially, set it to GONE
+
+        TextView marqueeTextView = findViewById(R.id.marqueeTextView);
+        MarqueeTextAdsHelper.fetchAndDisplayMarqueeTextAds(marqueeTextView);
 
         main_list = new ArrayList<>();
         recyclerView = findViewById(R.id.turkishTvRecycler);

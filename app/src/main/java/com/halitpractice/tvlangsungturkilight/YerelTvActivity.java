@@ -26,7 +26,7 @@ import com.google.android.gms.ads.AdView;
 import com.halitpractice.tvlangsungturkilight.RestApi.ManagerAll;
 import com.halitpractice.tvlangsungturkilight.adapters.YerelTvAdapter;
 import com.halitpractice.tvlangsungturkilight.models.YerelTvModel;
-import com.halitpractice.tvlangsungturkilight.services.MarqueeTextHelper;
+import com.halitpractice.tvlangsungturkilight.services.MarqueeTextAdsHelper;
 import com.halitpractice.tvlangsungturkilight.services.YerelTvDataCache;
 
 import java.util.ArrayList;
@@ -68,7 +68,7 @@ public class YerelTvActivity extends AppCompatActivity {
         }
 
         TextView marqueeTextView = findViewById(R.id.marqueeTextView);
-        MarqueeTextHelper.fetchAndDisplayMarqueeText(marqueeTextView);
+        MarqueeTextAdsHelper.fetchAndDisplayMarqueeTextAds(marqueeTextView);
 
         progressBar = findViewById(R.id.yerelTvProgressBar); // Initialize the ProgressBar
         progressBar.setVisibility(View.GONE); // Initially, set it to GONE

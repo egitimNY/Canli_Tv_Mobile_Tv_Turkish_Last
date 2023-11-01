@@ -11,8 +11,8 @@ import retrofit2.Response;
 
 public class MarqueeTextAdsHelper {
 
-    public static void fetchAndDisplayMarqueeText(TextView marqueeTextView) {
-        Call<MarqueeTextModel> req = ManagerAll.getInstance().getMarqueTextAds();
+    public static void fetchAndDisplayMarqueeTextAds(TextView marqueeTextView) {
+        Call<MarqueeTextModel> req = ManagerAll.getInstance().getMarqueTextTolbarAds();
         req.enqueue(new Callback<MarqueeTextModel>() {
             @Override
             public void onResponse(Call<MarqueeTextModel> call, Response<MarqueeTextModel> response) {

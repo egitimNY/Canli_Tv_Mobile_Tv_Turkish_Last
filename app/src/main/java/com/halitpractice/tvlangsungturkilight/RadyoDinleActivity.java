@@ -19,6 +19,7 @@ import com.google.android.gms.ads.AdView;
 import com.halitpractice.tvlangsungturkilight.RestApi.ManagerAll;
 import com.halitpractice.tvlangsungturkilight.adapters.RadyoDinleAdapter;
 import com.halitpractice.tvlangsungturkilight.models.RadyoDinleModel;
+import com.halitpractice.tvlangsungturkilight.services.RadyoDinleDataCache;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,8 +33,9 @@ public class RadyoDinleActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private List<RadyoDinleModel> main_list;
     private RadyoDinleAdapter adapter;
-
     private ProgressBar progressBar;
+
+    private RadyoDinleDataCache dataCache; // Instance of DataCache for caching data
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +62,7 @@ public class RadyoDinleActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         progressBar = findViewById(R.id.progressBarRadyoDinle);
+        progressBar.setVisibility(View.GONE); // Initially, set it to GONE
 
         AdView mAdView = findViewById(R.id.adViewRadyoDinleYoutube);
         AdRequest adRequest = new AdRequest.Builder().build();
@@ -80,7 +83,21 @@ public class RadyoDinleActivity extends AppCompatActivity {
             }
         });
 
-        fetchData();
+//        fetchData();
+
+        // Initialize the DataCache instance
+        dataCache = RadyoDinleDataCache.getInstance();
+
+        // Check if there is cached data
+        List<RadyoDinleModel> cachedData = dataCache.getCachedData();
+
+        if (cachedData != null && !cachedData.isEmpty()) {
+            // Use cached data to update the UI
+            updateUIWithCachedData(cachedData);
+        } else {
+            // Data is not cached, fetch it from the network
+            fetchData();
+        }
 
     }
 
@@ -96,6 +113,9 @@ public class RadyoDinleActivity extends AppCompatActivity {
                     if (main_list != null && !main_list.isEmpty()) {
                         adapter = new RadyoDinleAdapter(main_list, RadyoDinleActivity.this);
                         recyclerView.setAdapter(adapter);
+
+                        // Cache the data
+                        dataCache.setCachedData(main_list);
                     } else {
                         handleNullResponse();
                     }
@@ -111,6 +131,15 @@ public class RadyoDinleActivity extends AppCompatActivity {
                 handleNetworkFailure();
             }
         });
+    }
+
+    private void updateUIWithCachedData(List<RadyoDinleModel> cachedData) {
+        if (cachedData != null && !cachedData.isEmpty()) {
+            adapter = new RadyoDinleAdapter(cachedData, RadyoDinleActivity.this);
+            recyclerView.setAdapter(adapter);
+        } else {
+            // Handle the case where cached data is empty
+        }
     }
 
     private void handleUnsuccessfulResponse() {

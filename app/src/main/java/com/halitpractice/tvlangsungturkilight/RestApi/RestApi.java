@@ -23,10 +23,10 @@ import retrofit2.http.Query;
 public interface RestApi {
 
 
-    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/marqueeToolBarRetrofit.php")
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/marqueeTextAds.php")
     Call<MarqueeTextModel> getMarqueText();
 
-    @GET("/indiaLiveTv/retrofitIndiaTV/marqueeToolBarAds.php")
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/marqueeToolBarAds-.php")
     Call<MarqueeTextModel> getMarqueTextAds();
 
     @GET("/canliTVTurkishChromeTab/retrofitCanliTV/fetchDiclaimerYeni.php")

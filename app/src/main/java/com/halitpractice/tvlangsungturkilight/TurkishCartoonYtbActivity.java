@@ -19,8 +19,8 @@ import com.google.android.gms.ads.AdView;
 import com.halitpractice.tvlangsungturkilight.RestApi.ManagerAll;
 import com.halitpractice.tvlangsungturkilight.adapters.TurkishCartoonYtbAdapter;
 import com.halitpractice.tvlangsungturkilight.models.TurkishCartoonYtbModel;
+import com.halitpractice.tvlangsungturkilight.services.MarqueeTextAdsHelper;
 import com.halitpractice.tvlangsungturkilight.services.TurkishCartoonYoutubeDataCache;
-import com.halitpractice.tvlangsungturkilight.services.MarqueeTextHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,9 +36,6 @@ public class TurkishCartoonYtbActivity extends AppCompatActivity {
     private TurkishCartoonYtbAdapter adapter;
 
     private ProgressBar progressBar;
-
-    private AdView mAdView;
-    ImageView closedBtn;
 
     private TurkishCartoonYoutubeDataCache dataCache; // Instance of DataCache for caching data
 
@@ -60,37 +57,33 @@ public class TurkishCartoonYtbActivity extends AppCompatActivity {
         progressBar.setVisibility(View.GONE); // Initially, set it to GONE
 
         TextView marqueeTextView = findViewById(R.id.marqueeTextView);
-        MarqueeTextHelper.fetchAndDisplayMarqueeText(marqueeTextView);
+        MarqueeTextAdsHelper.fetchAndDisplayMarqueeTextAds(marqueeTextView);
 
         // Enable the back button in the action bar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back); // Replace with your custom button icon
-
 
         main_list = new ArrayList<>();
         recyclerView = findViewById(R.id.cizgiFilmRecycler);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        mAdView = findViewById(R.id.adViewIndiaLiveTvCartoonYoutube);
+        AdView mAdView = findViewById(R.id.adViewIndiaLiveTvCartoonYoutube);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
-        closedBtn = findViewById(R.id.closeBtnIndiaLiveTvCartoonYoutube);
-        closedBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mAdView.getVisibility() == View.VISIBLE) {
-                    mAdView.setVisibility(View.GONE);
-                } else {
-                    mAdView.setVisibility(View.VISIBLE);
-                }
+        ImageView closedBtn = findViewById(R.id.closeBtnIndiaLiveTvCartoonYoutube);
+        closedBtn.setOnClickListener(v -> {
+            if (mAdView.getVisibility() == View.VISIBLE) {
+                mAdView.setVisibility(View.GONE);
+            } else {
+                mAdView.setVisibility(View.VISIBLE);
+            }
 
-                if (closedBtn.getVisibility() == View.VISIBLE) {
-                    closedBtn.setVisibility(View.GONE);
-                } else {
-                    closedBtn.setVisibility(View.VISIBLE);
-                }
+            if (closedBtn.getVisibility() == View.VISIBLE) {
+                closedBtn.setVisibility(View.GONE);
+            } else {
+                closedBtn.setVisibility(View.VISIBLE);
             }
         });
 
@@ -109,11 +102,6 @@ public class TurkishCartoonYtbActivity extends AppCompatActivity {
             // Data is not cached, fetch it from the network
             fetchData();
         }
-
-        // Initialize marqueeTextView
-        marqueeTextView = findViewById(R.id.marqueeTextView);
-        // Fetch and display marquee text
-        MarqueeTextHelper.fetchAndDisplayMarqueeText(marqueeTextView);
 
     }
 

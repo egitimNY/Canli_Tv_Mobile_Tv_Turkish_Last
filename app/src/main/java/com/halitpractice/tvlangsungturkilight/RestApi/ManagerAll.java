@@ -31,7 +31,7 @@ public class ManagerAll extends BaseManager {
         return getRestApi().getMarqueText();
     }
 
-    public Call<MarqueeTextModel> getMarqueTextAds() {
+    public Call<MarqueeTextModel> getMarqueTextTolbarAds() {
         return getRestApi().getMarqueTextAds();
     }
 
