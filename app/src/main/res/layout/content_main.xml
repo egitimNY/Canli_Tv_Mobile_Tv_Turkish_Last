@@ -298,7 +298,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/radyoDinle"
+                        android:id="@+id/radyoDinlee"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="5"
@@ -309,7 +309,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/yabanciMovie"
+                        android:id="@+id/yabanciMovies"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="5"
@@ -323,6 +323,31 @@
 
         </LinearLayout>
 
+    <TextView
+        android:id="@+id/yabanciMovie"
+        android:layout_width="190dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="57dp"
+        android:layout_weight="5"
+        android:textColor="@color/button"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/radyoDinle"
+        android:layout_width="120dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="57dp"
+        android:layout_weight="5"
+        android:textColor="@color/button"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="wrap_content"

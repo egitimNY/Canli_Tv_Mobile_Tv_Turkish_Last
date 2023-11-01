@@ -2,6 +2,8 @@ package com.halitpractice.tvlangsungturkilight.RestApi;
 
 import com.halitpractice.tvlangsungturkilight.models.FormattedTextModel;
 import com.halitpractice.tvlangsungturkilight.models.MarqueeTextModel;
+import com.halitpractice.tvlangsungturkilight.models.TurkYabanciMovieModel;
+import com.halitpractice.tvlangsungturkilight.models.TurkYabanciMovieYonlendirModel;
 import com.halitpractice.tvlangsungturkilight.models.UlusalTvCategoryModel;
 import com.halitpractice.tvlangsungturkilight.models.UlusalTvModel;
 import com.halitpractice.tvlangsungturkilight.models.YerelTvCategoryModel;
@@ -61,5 +63,11 @@ public interface RestApi {
     @GET("/canliTVTurkishChromeTab/retrofitCanliTV/zYerelTvCategoriesDetailsYonlendir.php")
     Call<List<YerelTvYonlendirModel>> getYerelTvByCategoryYonlendir(@Query("cat") String category);
 
+
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/turkYabanciMovieNeww.php")
+    Call<List<TurkYabanciMovieModel>> urlGetir();
+
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/ZReleaseTvOne.php")
+    Call<List<TurkYabanciMovieYonlendirModel>> urlRelease();
 
 }

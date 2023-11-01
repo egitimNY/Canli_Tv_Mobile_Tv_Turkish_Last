@@ -2,6 +2,8 @@ package com.halitpractice.tvlangsungturkilight.RestApi;
 
 import com.halitpractice.tvlangsungturkilight.models.FormattedTextModel;
 import com.halitpractice.tvlangsungturkilight.models.MarqueeTextModel;
+import com.halitpractice.tvlangsungturkilight.models.TurkYabanciMovieModel;
+import com.halitpractice.tvlangsungturkilight.models.TurkYabanciMovieYonlendirModel;
 import com.halitpractice.tvlangsungturkilight.models.UlusalTvCategoryModel;
 import com.halitpractice.tvlangsungturkilight.models.UlusalTvModel;
 import com.halitpractice.tvlangsungturkilight.models.YerelTvCategoryModel;
@@ -80,6 +82,15 @@ public class ManagerAll extends BaseManager {
 
     public Call<List<YerelTvYonlendirModel>> getYerelTvByCategoryYonlendirFetch(String category) {
         return getRestApi().getYerelTvByCategoryYonlendir(category);
+    }
+
+
+    public Call<List<TurkYabanciMovieModel>> getTurkYabanciMovie() {
+        return getRestApi().urlGetir();
+    }
+
+    public Call<List<TurkYabanciMovieYonlendirModel>> ZReleaseTvOne() {
+        return getRestApi().urlRelease();
     }
 
 

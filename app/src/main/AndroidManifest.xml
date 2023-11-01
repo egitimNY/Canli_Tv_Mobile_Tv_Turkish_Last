@@ -13,63 +13,58 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CanliTvMobileTvTurkishLast">
-        <activity android:name=".YerelTvYonlendirCategoriesDetailsActivity"
+        <activity android:name=".TurkYabanciMovieYonlendirActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/AppTheme.NoActionBar"/>
-
-        <activity android:name=".YerelTvCategoriesDetailsActivity"
+        <activity
+            android:name=".YerelTvYonlendirCategoriesDetailsActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:theme="@style/AppTheme.NoActionBar"/>
-
-        <activity android:name=".YerelTvYonlendirCategoriesActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".YerelTvCategoriesDetailsActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:theme="@style/AppTheme.NoActionBar"/>
-
-        <activity android:name=".YerelTvYonlendirActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".YerelTvYonlendirCategoriesActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:theme="@style/AppTheme.NoActionBar"/>
-
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".YerelTvYonlendirActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".YerelTvDetailsActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:keepScreenOn="true"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".UlusalTvCategoriesDetailsActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".DisclaimerWebViewFetchRetrofitActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity android:name=".TurkishCartoonYtbActivity" />
-
-        <activity android:name=".TurkYabanciMovieActivity" />
-
+        <activity android:name=".TurkYabanciMovieActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".RadyoDinleActivity" />
-
         <activity
             android:name=".YerelTvCategoriesActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".YerelTvActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".UlusalTvCategoriesActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".UlusalTvActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".MainActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"

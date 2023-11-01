@@ -1,9 +1,116 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- res/layout/activity_watch_movie.xml -->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".TurkYabanciMovieActivity">
+
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <WebView
+            android:id="@+id/webView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <FrameLayout
+            android:id="@+id/fullScreenContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+        <!--
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:indeterminate="true"/>
+        -->
+
+        <!-- ProgressBar -->
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_centerInParent="true"
+            android:visibility="gone"
+            />
+
+        <TextView
+            android:id="@+id/loadingMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/progressBar"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="18dp"
+            android:text="@string/loading_message"
+            android:textColor="@color/toastColorBackground2"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+    <!--
+    &lt;!&ndash; Back to Main button &ndash;&gt;
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onBackButtonClicked"
+        android:text="Back to Main"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    -->
+
+    <ImageView
+        android:id="@+id/backButton"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        android:contentDescription="@string/back_button_description"
+        android:onClick="onBackButtonClicked"
+        android:src="@drawable/ic_arrow_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/closeBtnWatchMovie"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/ic_exit"
+            android:contentDescription="@string/close_button_label" />
+
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adViewWatchMovie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:adSize="SMART_BANNER"
+            app:adUnitId="@string/admob_ad_unit_id">
+        </com.google.android.gms.ads.AdView>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
