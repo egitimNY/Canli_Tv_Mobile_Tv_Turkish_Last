@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +26,7 @@ import com.google.android.gms.ads.AdView;
 import com.halitpractice.tvlangsungturkilight.RestApi.ManagerAll;
 import com.halitpractice.tvlangsungturkilight.adapters.YerelTvAdapter;
 import com.halitpractice.tvlangsungturkilight.models.YerelTvModel;
+import com.halitpractice.tvlangsungturkilight.services.MarqueeTextHelper;
 import com.halitpractice.tvlangsungturkilight.services.YerelTvDataCache;
 
 import java.util.ArrayList;
@@ -64,6 +66,9 @@ public class YerelTvActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setTitle("Yerel TV'ler");
         }
+
+        TextView marqueeTextView = findViewById(R.id.marqueeTextView);
+        MarqueeTextHelper.fetchAndDisplayMarqueeText(marqueeTextView);
 
         progressBar = findViewById(R.id.yerelTvProgressBar); // Initialize the ProgressBar
         progressBar.setVisibility(View.GONE); // Initially, set it to GONE

@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         // Initialize your TextView where you'll display marquee text
-        TextView marqueeTextView = findViewById(R.id.marqueeTextViewMainActivity);
+        TextView marqueeTextView = findViewById(R.id.marqueeTextViewToolBarUnder);
         // Fetch and display marquee text using the helper method
         MarqueeTextHelper.fetchAndDisplayMarqueeText(marqueeTextView);
 

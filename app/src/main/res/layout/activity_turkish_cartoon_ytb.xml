@@ -6,4 +6,48 @@
     android:layout_height="match_parent"
     tools:context=".TurkishCartoonYtbActivity">
 
+    <include layout="@layout/app_bar_main" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cizgiFilmRecycler"
+        android:layout_width="match_parent"
+        android:layout_marginTop="55dp"
+        android:layout_height="match_parent">
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <ProgressBar
+        android:id="@+id/indiaCartoonYtbProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+        <ImageView
+            android:id="@+id/closeBtnIndiaLiveTvCartoonYoutube"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/ic_exit"/>
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adViewIndiaLiveTvCartoonYoutube"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:adSize="SMART_BANNER"
+            app:adUnitId="@string/admob_ad_unit_id">
+        </com.google.android.gms.ads.AdView>
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

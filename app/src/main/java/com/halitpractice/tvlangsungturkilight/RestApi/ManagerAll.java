@@ -1,9 +1,12 @@
 package com.halitpractice.tvlangsungturkilight.RestApi;
 
 import com.halitpractice.tvlangsungturkilight.models.FormattedTextModel;
+import com.halitpractice.tvlangsungturkilight.models.TurkishCartoonYtbRedirectModel;
 import com.halitpractice.tvlangsungturkilight.models.MarqueeTextModel;
+import com.halitpractice.tvlangsungturkilight.models.RadyoDinleModel;
 import com.halitpractice.tvlangsungturkilight.models.TurkYabanciMovieModel;
 import com.halitpractice.tvlangsungturkilight.models.TurkYabanciMovieYonlendirModel;
+import com.halitpractice.tvlangsungturkilight.models.TurkishCartoonYtbModel;
 import com.halitpractice.tvlangsungturkilight.models.UlusalTvCategoryModel;
 import com.halitpractice.tvlangsungturkilight.models.UlusalTvModel;
 import com.halitpractice.tvlangsungturkilight.models.YerelTvCategoryModel;
@@ -91,6 +94,21 @@ public class ManagerAll extends BaseManager {
 
     public Call<List<TurkYabanciMovieYonlendirModel>> ZReleaseTvOne() {
         return getRestApi().urlRelease();
+    }
+
+
+
+    public Call<List<RadyoDinleModel>> getRadyoDinleFetch() {
+        return getRestApi().radyoDinleBakim();
+    }
+
+
+    public Call<List<TurkishCartoonYtbModel>> getIndoCartoonTv() {
+        return getRestApi().indoCartoonTv();
+    }
+
+    public Call<List<TurkishCartoonYtbRedirectModel>> indiaCartoonRedirectFetch() {
+        return getRestApi().urlReleaseRedirect();
     }
 
 

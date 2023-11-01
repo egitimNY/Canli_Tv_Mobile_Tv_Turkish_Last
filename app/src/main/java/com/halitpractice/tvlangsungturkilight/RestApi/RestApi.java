@@ -1,9 +1,12 @@
 package com.halitpractice.tvlangsungturkilight.RestApi;
 
 import com.halitpractice.tvlangsungturkilight.models.FormattedTextModel;
+import com.halitpractice.tvlangsungturkilight.models.TurkishCartoonYtbRedirectModel;
 import com.halitpractice.tvlangsungturkilight.models.MarqueeTextModel;
+import com.halitpractice.tvlangsungturkilight.models.RadyoDinleModel;
 import com.halitpractice.tvlangsungturkilight.models.TurkYabanciMovieModel;
 import com.halitpractice.tvlangsungturkilight.models.TurkYabanciMovieYonlendirModel;
+import com.halitpractice.tvlangsungturkilight.models.TurkishCartoonYtbModel;
 import com.halitpractice.tvlangsungturkilight.models.UlusalTvCategoryModel;
 import com.halitpractice.tvlangsungturkilight.models.UlusalTvModel;
 import com.halitpractice.tvlangsungturkilight.models.YerelTvCategoryModel;
@@ -70,4 +73,14 @@ public interface RestApi {
     @GET("/canliTVTurkishChromeTab/retrofitCanliTV/ZReleaseTvOne.php")
     Call<List<TurkYabanciMovieYonlendirModel>> urlRelease();
 
+
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/turkRadyolariYeni.php")
+    Call<List<RadyoDinleModel>> radyoDinleBakim();
+
+
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/youtubeCizgiFilmNew.php")
+    Call<List<TurkishCartoonYtbModel>> indoCartoonTv();
+
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/youtubeCizgiFilmYonlendir.php")
+    Call<List<TurkishCartoonYtbRedirectModel>> urlReleaseRedirect();
 }

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".YerelTvActivity">
 
-    <include layout="@layout/app_bar_main" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/yerelTvRecycler"
@@ -14,6 +14,8 @@
         android:layout_height="match_parent"
         android:layout_marginTop="55dp">
     </androidx.recyclerview.widget.RecyclerView>
+
+    <include layout="@layout/app_bar_main" />
 
     <ProgressBar
         android:id="@+id/yerelTvProgressBar"
@@ -49,7 +51,5 @@
         </com.google.android.gms.ads.AdView>
 
     </LinearLayout>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

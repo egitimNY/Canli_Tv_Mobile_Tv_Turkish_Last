@@ -108,7 +108,7 @@ public class UlusalTvAdapter extends RecyclerView.Adapter<UlusalTvAdapter.MyView
             openChannelInChromeCustomTab(my_list.get(holder.getAdapterPosition()).getLive_url());
             clickCount++;
 
-            if (clickCount >= 5) {
+            if (clickCount >= 4) {
                 showInterstitialAd();
                 resetClickCount(); // Reset the click count
             }

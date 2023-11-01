@@ -1,17 +1,14 @@
 package com.halitpractice.tvlangsungturkilight.adapters;
 
 import android.app.Activity;
-import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,21 +19,20 @@ import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
+import com.halitpractice.tvlangsungturkilight.TurkishCartoonYtbDetailsActivity;
 import com.halitpractice.tvlangsungturkilight.R;
-import com.halitpractice.tvlangsungturkilight.YerelTvDetailsActivity;
-import com.halitpractice.tvlangsungturkilight.models.YerelTvModel;
+import com.halitpractice.tvlangsungturkilight.models.TurkishCartoonYtbModel;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class YerelTvAdapter extends RecyclerView.Adapter<YerelTvAdapter.MyViewHolder> {
-    List<YerelTvModel> my_list;
-    Context context;
+public class TurkishCartoonYtbAdapter extends RecyclerView.Adapter<TurkishCartoonYtbAdapter.MyViewHolder> {
+    private List<TurkishCartoonYtbModel> my_list;
+    private Context context;
     private int clickCount = 0; // Track the number of item clicks
     private InterstitialAd mInterstitialAd;
 
-    public YerelTvAdapter(List<YerelTvModel> my_list, Context context) {
+    public TurkishCartoonYtbAdapter(List<TurkishCartoonYtbModel> my_list, Context context) {
         this.my_list = my_list;
         this.context = context;
         loadAds(); // Initialize and load the interstitial ad
@@ -45,18 +41,18 @@ public class YerelTvAdapter extends RecyclerView.Adapter<YerelTvAdapter.MyViewHo
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.yerel_tv_list_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.turkish_cartoon_list_item, parent, false);
         return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        final YerelTvModel yerelTvModel = my_list.get(holder.getAdapterPosition()); // Use getAdapterPosition
-        holder.name.setText(yerelTvModel.getName());
+        final TurkishCartoonYtbModel turkishCartoonYtbModel = my_list.get(position);
+        holder.name.setText(turkishCartoonYtbModel.getChannelname());
 
         // Load the image with Picasso or any other image loading library
-        if (yerelTvModel.getThumbnail() != null && !yerelTvModel.getThumbnail().isEmpty()) {
-            Picasso.get().load(yerelTvModel.getThumbnail())
+        if (turkishCartoonYtbModel.getImage() != null && !turkishCartoonYtbModel.getImage().isEmpty()) {
+            Picasso.get().load(turkishCartoonYtbModel.getImage())
                     .error(R.drawable.default_there_is_no_logo) // Set the default image here
                     .into(holder.image);
         } else {
@@ -67,50 +63,41 @@ public class YerelTvAdapter extends RecyclerView.Adapter<YerelTvAdapter.MyViewHo
         // Start marquee scrolling for the name TextView
         holder.name.setSelected(true);
 
-        holder.itemView.setOnClickListener(v -> {
-            try {
-                // Start the activity
-                Intent i = new Intent(v.getContext(), YerelTvDetailsActivity.class);
-                i.putExtra("channel", my_list.get(holder.getAdapterPosition()));
-                v.getContext().startActivity(i);
-                clickCount++;
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, TurkishCartoonYtbDetailsActivity.class);
+                intent.putExtra("image", turkishCartoonYtbModel.getImage());
+                intent.putExtra("channelName", turkishCartoonYtbModel.getChannelname());
+                intent.putExtra("videoId", turkishCartoonYtbModel.getVideoid());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // not recommended
+                context.startActivity(intent);
 
+                clickCount++;
                 if (clickCount >= 4) {
                     showInterstitialAd();
                     resetClickCount(); // Reset the click count
                 }
-
-            } catch (ActivityNotFoundException e) {
-                // Handle activity not found error
-                Log.e("StartActivityError", "Error starting activity: " + e.getMessage());
-                Toast.makeText(v.getContext(), "Error starting activity", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
-
 
     @Override
     public int getItemCount() {
         return my_list.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    static class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView image;
-        TextView name,role;
+        TextView name, role;
         RelativeLayout relative;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            image=itemView.findViewById(R.id.image);
-            name=itemView.findViewById(R.id.name);
-//            role=itemView.findViewById(R.id.role);
+            image = itemView.findViewById(R.id.image);
+            name = itemView.findViewById(R.id.name);
+            //role=itemView.findViewById(R.id.role);
         }
-    }
-
-    public void setSearchOperation(List<YerelTvModel> newList){
-        my_list=new ArrayList<>();
-        my_list.addAll(newList);
-        notifyDataSetChanged();
     }
 
     private void showInterstitialAd() {
@@ -154,5 +141,4 @@ public class YerelTvAdapter extends RecyclerView.Adapter<YerelTvAdapter.MyViewHo
     private void resetClickCount() {
         clickCount = 0;
     }
-
 }

@@ -14,7 +14,7 @@
         android:id="@+id/marqueeTextViewMainActivity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="38dp"
+        android:layout_marginTop="41dp"
         android:ellipsize="marquee"
         android:focusable="true"
         android:focusableInTouchMode="true"
@@ -23,7 +23,7 @@
         android:scrollHorizontally="true"
         android:singleLine="true"
         android:textColor="@color/button"
-        android:textSize="28sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
