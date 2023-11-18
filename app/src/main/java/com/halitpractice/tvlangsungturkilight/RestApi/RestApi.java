@@ -26,7 +26,7 @@ public interface RestApi {
     @GET("/canliTVTurkishChromeTab/retrofitCanliTV/marqueeTextAds.php")
     Call<MarqueeTextModel> getMarqueText();
 
-    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/marqueeToolBarAds-.php")
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/marqueeToolBarAds.php")
     Call<MarqueeTextModel> getMarqueTextAds();
 
     @GET("/canliTVTurkishChromeTab/retrofitCanliTV/fetchDiclaimerYeni.php")

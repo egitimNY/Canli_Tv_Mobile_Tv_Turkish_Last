@@ -27,6 +27,8 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.material.navigation.NavigationView;
 import com.halitpractice.tvlangsungturkilight.RestApi.BaseUrl;
+import com.halitpractice.tvlangsungturkilight.services.GDPRConsentManager;
+import com.halitpractice.tvlangsungturkilight.services.InAppUpdate;
 import com.halitpractice.tvlangsungturkilight.services.MarqueeTextHelper;
 
 public class MainActivity extends AppCompatActivity {
@@ -43,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
 
     private AdView mAdView;
     ImageView closedBtn;
+
+    private InAppUpdate inAppUpdate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -193,6 +197,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+//        App Auto Update enabled
+        inAppUpdate = new InAppUpdate(MainActivity.this);
+        inAppUpdate.checkForAppUpdate();
+
+        // Create an instance of GDPRConsentManager
+        GDPRConsentManager gdprConsentManager = new GDPRConsentManager(MainActivity.this);
+        // Call the method to request consent and initialize ads
+        gdprConsentManager.requestConsentAndInitializeAds();
 
     }
 

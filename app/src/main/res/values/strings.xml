@@ -15,6 +15,10 @@
     <string name="admob_interstitial_ad_unit_id">ca-app-pub-3940256099942544/1033173712</string>
 
 
+
+
+
+
     <string name="image_description">Description of the image</string>
     <string name="error_message">Error!</string>
     <string name="url_empty_or_null_message">URL is empty or null</string>
