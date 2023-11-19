@@ -1,6 +1,7 @@
 package com.halitpractice.tvlangsungturkilight.RestApi;
 
 import com.halitpractice.tvlangsungturkilight.models.FormattedTextModel;
+import com.halitpractice.tvlangsungturkilight.models.GazetelerModel;
 import com.halitpractice.tvlangsungturkilight.models.MarqueeTextModel;
 import com.halitpractice.tvlangsungturkilight.models.RadyoDinleModel;
 import com.halitpractice.tvlangsungturkilight.models.TurkYabanciMovieModel;
@@ -108,4 +109,9 @@ public interface RestApi {
 
     @GET("/canliTVTurkishChromeTab/retrofitCanliTV/ytbExtraTvCategoriesDetailsYonlendir.php")
     Call<List<YtbExtraTvYonlendirModel>> getYtbExtraTvByCategoryYonlendir(@Query("cat") String category);
+
+
+
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/gazeteler.php")
+    Call<List<GazetelerModel>> gazeteler();
 }

@@ -177,6 +177,10 @@ public class MainActivity extends AppCompatActivity {
                     // Handle item 2 click
                     Intent intent = new Intent(MainActivity.this, YtbExtraTvCategoriesActivity.class);
                     startActivity(intent);
+                } else if (id == R.id.gazeteler) {
+                    // Handle item 2 click
+                    Intent intent = new Intent(MainActivity.this, GazetelerActivity.class);
+                    startActivity(intent);
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;

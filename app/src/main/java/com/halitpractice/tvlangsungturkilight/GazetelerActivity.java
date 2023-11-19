@@ -1,0 +1,260 @@
+package com.halitpractice.tvlangsungturkilight;
+
+import android.app.SearchManager;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.TypedValue;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Toast;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.halitpractice.tvlangsungturkilight.RestApi.ManagerAll;
+import com.halitpractice.tvlangsungturkilight.adapters.GazetelerAdapter;
+import com.halitpractice.tvlangsungturkilight.models.GazetelerModel;
+import com.halitpractice.tvlangsungturkilight.services.GazetelerDataCache;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class GazetelerActivity extends AppCompatActivity {
+
+    private SearchView searchView = null;  /////// SearchView codes parts
+    private SearchView.OnQueryTextListener queryTextListener;  /////// SearchView codes parts
+
+    private RecyclerView recyclerView;
+    private List<GazetelerModel> main_list;
+    private GazetelerAdapter adapter;
+
+    private GazetelerDataCache dataCache; // Instance of DataCache for caching data
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_gazeteler);
+
+        Toolbar toolbar = findViewById(R.id.custom_toolbar);
+        setSupportActionBar(toolbar);
+
+        // Enable the back button in the action bar
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back);
+        }
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setTitle("Gazeteler");
+        }
+
+        main_list = new ArrayList<>();
+        recyclerView = findViewById(R.id.gazetelerRecyclerView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+
+        AdView mAdView = findViewById(R.id.adViewGazeteler);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
+        ImageView closedBtn = findViewById(R.id.closeBtnGazeteler);
+        closedBtn.setOnClickListener(v -> {
+            if (mAdView.getVisibility() == View.VISIBLE) {
+                mAdView.setVisibility(View.GONE);
+            } else {
+                mAdView.setVisibility(View.VISIBLE);
+            }
+
+            if (closedBtn.getVisibility() == View.VISIBLE) {
+                closedBtn.setVisibility(View.GONE);
+            } else {
+                closedBtn.setVisibility(View.VISIBLE);
+            }
+        });
+
+        // Initialize the DataCache instance
+        dataCache = GazetelerDataCache.getInstance();
+
+        // Check if there is cached data
+        List<GazetelerModel> cachedData = dataCache.getCachedData();
+
+        if (cachedData != null && !cachedData.isEmpty()) {
+            // Use cached data to update the UI
+            updateUIWithCachedData(cachedData);
+        } else {
+            // Data is not cached, fetch it from the network
+            fetchData();
+        }
+
+//        fetchData();
+    }
+
+    private void fetchData() {
+        Call<List<GazetelerModel>> req = ManagerAll.getInstance().gazetelerFetch();
+        req.enqueue(new Callback<List<GazetelerModel>>() {
+            @Override
+            public void onResponse(Call<List<GazetelerModel>> call, Response<List<GazetelerModel>> response) {
+                if (response.isSuccessful()) {
+
+                    main_list = response.body();
+
+                    if (main_list != null && !main_list.isEmpty()) {
+                        adapter = new GazetelerAdapter(main_list, GazetelerActivity.this);
+                        recyclerView.setAdapter(adapter);
+
+                        // Cache the data
+                        dataCache.setCachedData(main_list);
+
+                    } else {
+                        handleNullResponse();
+                    }
+                } else {
+                    handleUnsuccessfulResponse();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<GazetelerModel>> call, Throwable t) {
+                handleNetworkFailure();
+                t.printStackTrace();
+            }
+        });
+    }
+
+    private void updateUIWithCachedData(List<GazetelerModel> cachedData) {
+        if (cachedData != null && !cachedData.isEmpty()) {
+            adapter = new GazetelerAdapter(cachedData, GazetelerActivity.this);
+            recyclerView.setAdapter(adapter);
+        } else {
+            // Handle the case where cached data is empty
+        }
+    }
+
+    private void handleUnsuccessfulResponse() {
+        // Handle an unsuccessful response from the server
+        // For example, show an error message to the user
+//        Toast.makeText(this, "An error occurred while loading data. Please try again later.", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Veri yüklenirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.", Toast.LENGTH_LONG).show();
+        // You can also navigate to a different activity or take other appropriate actions here.
+        redirectYonlendir();
+    }
+
+    private void handleNullResponse() {
+        // Handle null response from the server
+        // For example, show an error message to the user
+//        Toast.makeText(this, "No data available. Please try again later.", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Veri bulunamadı. Lütfen daha sonra tekrar deneyin.", Toast.LENGTH_LONG).show();
+
+    }
+
+    private void handleNetworkFailure() {
+        // Show a message to the user indicating a network failure
+//        Toast.makeText(this, "No internet connection. Please check your network settings.", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "İnternet bağlantısı yok. Lütfen ağ ayarlarınızı kontrol edin.", Toast.LENGTH_LONG).show();
+    }
+
+
+    private void redirectYonlendir() {
+        // Redirect to FeatureUnderConstructionActivity
+        Intent intent = new Intent(GazetelerActivity.this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+
+        if (searchItem != null) {
+            searchView = (SearchView) searchItem.getActionView();
+        }
+        if (searchView != null) {
+            searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+
+            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String query) {
+                    return false;
+                }
+
+                @Override
+                public boolean onQueryTextChange(String newText) {
+                    newText = newText.toLowerCase();
+                    List<GazetelerModel> myList = new ArrayList<>();
+
+                    for (GazetelerModel model : dataCache.getCachedData()) {
+                        String itemName = model.getName().toLowerCase();
+
+                        if (itemName.contains(newText))
+                            myList.add(model);
+                    }
+
+                    if (adapter != null) {
+                        adapter.setSearchOperation(myList);
+                    } else {
+                        adapter = new GazetelerAdapter(myList, GazetelerActivity.this);
+                        recyclerView.setAdapter(adapter);
+                    }
+
+                    return false;
+                }
+            });
+
+            // Programmatically set the left margin of the SearchView
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+            );
+            int marginInDp = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, getResources().getDisplayMetrics());
+            params.setMargins(marginInDp, 0, 0, 0);
+            searchView.setLayoutParams(params);
+        }
+
+        return true;
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish(); // Close the current activity
+
+        // To prevent going back to TurkishLiveTvActivity on the next back press
+//        moveTaskToBack(false); // This line ensures the app goes to the background and doesn't go back to the previous activity
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            // Handle the back button click here, navigate to ThirdActivity
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish(); // Finish the current activity if you don't want to return to it
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+}

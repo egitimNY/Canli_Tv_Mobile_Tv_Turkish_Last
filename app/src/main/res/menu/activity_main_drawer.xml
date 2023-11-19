@@ -52,6 +52,11 @@
             android:icon="@drawable/category"
             android:title="@string/ytb_extra_category" />
 
+        <item
+            android:id="@+id/gazeteler"
+            android:icon="@drawable/gazeteler_kirmizi"
+            android:title="@string/gazeteler" />
+
         <!--
         <item
             android:id="@+id/herTurTvFilm"
