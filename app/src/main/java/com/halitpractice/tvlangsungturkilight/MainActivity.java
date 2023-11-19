@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
             finish();
         }
 
-        findViewById(R.id.ulusalTvler).setOnClickListener(view ->
+        findViewById(R.id.ulusalTvlerContent).setOnClickListener(view ->
                 startActivity(new Intent(MainActivity.this, UlusalTvActivity.class))
         );
         findViewById(R.id.ulusalTvlerCategory).setOnClickListener(view ->
@@ -92,6 +92,15 @@ public class MainActivity extends AppCompatActivity {
         );
         findViewById(R.id.yabanciMovie).setOnClickListener(view ->
                 startActivity(new Intent(MainActivity.this, TurkYabanciMovieActivity.class))
+        );
+        findViewById(R.id.ytbExtraTvContent).setOnClickListener(view ->
+                startActivity(new Intent(MainActivity.this, YtbExtraTvActivity.class))
+        );
+        findViewById(R.id.ytbExtraTvCategoryContent).setOnClickListener(view ->
+                startActivity(new Intent(MainActivity.this, YtbExtraTvCategoriesActivity.class))
+        );
+        findViewById(R.id.gazetelerContent).setOnClickListener(view ->
+                startActivity(new Intent(MainActivity.this, GazetelerActivity.class))
         );
 
 
@@ -337,6 +346,4 @@ public class MainActivity extends AppCompatActivity {
                 .show();
     }
     */
-
-
 }

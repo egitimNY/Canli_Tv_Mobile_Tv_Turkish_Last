@@ -51,6 +51,14 @@ public class YtbExtraTvCategoriesDetailsActivity extends AppCompatActivity {
             getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back);
         }
 
+        ImageView homeButton = findViewById(R.id.homeButton);
+        homeButton.setOnClickListener(v -> {
+            // Handle the home button click here
+            Intent homeIntent = new Intent(YtbExtraTvCategoriesDetailsActivity.this, MainActivity.class);
+            startActivity(homeIntent);
+            finish(); // Close the current activity
+        });
+
         progressBar = findViewById(R.id.ytbExtraTvCategoryDetailsProgressBar); // Initialize the ProgressBar
         progressBar.setVisibility(View.GONE); // Initially, set it to VISIBLE
 
@@ -76,7 +84,7 @@ public class YtbExtraTvCategoriesDetailsActivity extends AppCompatActivity {
         dataCache = YtbExtraTvCategoriesDetailsDataCache.getInstance();
 
         if (actionBar != null && selectedCategory != null) {
-            actionBar.setTitle("Selected Category: " + selectedCategory); // Set the selected category as the title
+            actionBar.setTitle("Kategori : " + selectedCategory); // Set the selected category as the title
 
             // Check if there is cached data for the selected category
             List<YtbExtraTvModel> cachedData = dataCache.getCachedData(selectedCategory);

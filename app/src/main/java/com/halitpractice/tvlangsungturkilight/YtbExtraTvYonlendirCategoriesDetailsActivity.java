@@ -45,6 +45,14 @@ public class YtbExtraTvYonlendirCategoriesDetailsActivity extends AppCompatActiv
             getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back);
         }
 
+        ImageView homeButton = findViewById(R.id.homeButton);
+        homeButton.setOnClickListener(v -> {
+            // Handle the home button click here
+            Intent homeIntent = new Intent(YtbExtraTvYonlendirCategoriesDetailsActivity.this, MainActivity.class);
+            startActivity(homeIntent);
+            finish(); // Close the current activity
+        });
+
         recyclerView = findViewById(R.id.ytb_extra_tv_yonlendir_details_slider_list); // Initialize the RecyclerView
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -53,10 +61,10 @@ public class YtbExtraTvYonlendirCategoriesDetailsActivity extends AppCompatActiv
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             if (selectedCategory != null) {
-                actionBar.setTitle("Seçilen Kategori: " + selectedCategory);
+                actionBar.setTitle("Kategori: " + selectedCategory);
                 fetchData(selectedCategory);
             } else {
-                actionBar.setTitle("Seçilen Kategori: ");
+                actionBar.setTitle("Kategori: ");
             }
         }
 

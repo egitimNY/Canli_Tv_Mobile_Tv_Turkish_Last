@@ -57,6 +57,15 @@ public class UlusalTvCategoriesActivity extends AppCompatActivity {
             getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back); // Replace with your custom button icon
         }
 
+        ImageView homeButton = findViewById(R.id.homeButton);
+        homeButton.setOnClickListener(v -> {
+            // Handle the home button click here
+            Intent homeIntent = new Intent(UlusalTvCategoriesActivity.this, MainActivity.class);
+            startActivity(homeIntent);
+            finish(); // Close the current activity
+        });
+
+
         progressBar = findViewById(R.id.turkishTvCategoryProgressBar); // Initialize the ProgressBar
         progressBar.setVisibility(View.GONE); // Initially, set it to GONE
 

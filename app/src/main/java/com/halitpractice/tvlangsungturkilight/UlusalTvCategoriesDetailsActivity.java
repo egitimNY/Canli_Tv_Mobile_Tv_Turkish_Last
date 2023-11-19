@@ -49,6 +49,14 @@ public class UlusalTvCategoriesDetailsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back); // Replace with your custom button icon
 
+        ImageView homeButton = findViewById(R.id.homeButton);
+        homeButton.setOnClickListener(v -> {
+            // Handle the home button click here
+            Intent homeIntent = new Intent(UlusalTvCategoriesDetailsActivity.this, MainActivity.class);
+            startActivity(homeIntent);
+            finish(); // Close the current activity
+        });
+
         progressBar = findViewById(R.id.turkishLiveTvCategoryDetailsProgressBar); // Initialize the ProgressBar
         progressBar.setVisibility(View.GONE);
 
@@ -89,7 +97,7 @@ public class UlusalTvCategoriesDetailsActivity extends AppCompatActivity {
         dataCache = UlusalTvCategoriesDetailsDataCache.getInstance();
 
         if (actionBar != null && selectedCategory != null) {
-            actionBar.setTitle("Selected Category: " + selectedCategory); // Set the selected category as the title
+            actionBar.setTitle("Kategori : " + selectedCategory); // Set the selected category as the title
 
             // Check if there is cached data for the selected category
             List<UlusalTvModel> cachedData = dataCache.getCachedData(selectedCategory);

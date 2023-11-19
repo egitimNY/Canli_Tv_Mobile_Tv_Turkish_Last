@@ -52,6 +52,14 @@ public class YerelTvYonlendirCategoriesActivity extends AppCompatActivity {
             actionBar.setTitle("Yerel TV'ler Kategori");
         }
 
+        ImageView homeButton = findViewById(R.id.homeButton);
+        homeButton.setOnClickListener(v -> {
+            // Handle the home button click here
+            Intent homeIntent = new Intent(YerelTvYonlendirCategoriesActivity.this, MainActivity.class);
+            startActivity(homeIntent);
+            finish(); // Close the current activity
+        });
+
         main_list = new ArrayList<>();
         recyclerView = findViewById(R.id.yonlendir_category_yonlendir_slider_list);
         recyclerView.setHasFixedSize(true);

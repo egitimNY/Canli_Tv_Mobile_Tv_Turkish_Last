@@ -52,6 +52,14 @@ public class YtbExtraTvYonlendirCategoriesActivity extends AppCompatActivity {
             actionBar.setTitle("Ytb Extra TV Kategori");
         }
 
+        ImageView homeButton = findViewById(R.id.homeButton);
+        homeButton.setOnClickListener(v -> {
+            // Handle the home button click here
+            Intent homeIntent = new Intent(YtbExtraTvYonlendirCategoriesActivity.this, MainActivity.class);
+            startActivity(homeIntent);
+            finish(); // Close the current activity
+        });
+
         main_list = new ArrayList<>();
         recyclerView = findViewById(R.id.ytb_extra_yonlendir_category_yonlendir_slider_list);
         recyclerView.setHasFixedSize(true);

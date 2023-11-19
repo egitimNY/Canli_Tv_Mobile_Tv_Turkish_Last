@@ -57,6 +57,14 @@ public class YtbExtraTvCategoriesActivity extends AppCompatActivity {
             actionBar.setTitle("Ytb Extra TV Kategori");
         }
 
+        ImageView homeButton = findViewById(R.id.homeButton);
+        homeButton.setOnClickListener(v -> {
+            // Handle the home button click here
+            Intent homeIntent = new Intent(YtbExtraTvCategoriesActivity.this, MainActivity.class);
+            startActivity(homeIntent);
+            finish(); // Close the current activity
+        });
+
         progressBar = findViewById(R.id.ytbExtraTvCategoryProgressBar); // Initialize the ProgressBar
         progressBar.setVisibility(View.GONE); // Initially, set it to GONE
 

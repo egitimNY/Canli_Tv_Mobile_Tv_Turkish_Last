@@ -8,6 +8,8 @@
 
     <include layout="@layout/app_bar_main" />
 
+    <include layout="@layout/home_button_layout"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/yerelTvCategoryDetailsRecycler"
         android:layout_width="match_parent"

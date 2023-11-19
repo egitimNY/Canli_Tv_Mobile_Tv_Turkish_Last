@@ -56,6 +56,14 @@ public class YerelTvCategoriesActivity extends AppCompatActivity {
             actionBar.setTitle("Yerel TV'ler Kategori");
         }
 
+        ImageView homeButton = findViewById(R.id.homeButton);
+        homeButton.setOnClickListener(v -> {
+            // Handle the home button click here
+            Intent homeIntent = new Intent(YerelTvCategoriesActivity.this, MainActivity.class);
+            startActivity(homeIntent);
+            finish(); // Close the current activity
+        });
+
         progressBar = findViewById(R.id.yerelTvCategoryProgressBar); // Initialize the ProgressBar
         progressBar.setVisibility(View.GONE); // Initially, set it to GONE
 
