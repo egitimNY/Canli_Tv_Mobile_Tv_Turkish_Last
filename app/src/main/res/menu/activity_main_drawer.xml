@@ -42,6 +42,31 @@
             android:icon="@drawable/ic_movie"
             android:title="@string/yabanci_filmler" />
 
+        <item
+            android:id="@+id/ytbExtraTv"
+            android:icon="@drawable/ic_movie"
+            android:title="@string/ytb_extra" />
+
+        <item
+            android:id="@+id/ytbExtraTvCategory"
+            android:icon="@drawable/category"
+            android:title="@string/ytb_extra_category" />
+
+        <!--
+        <item
+            android:id="@+id/herTurTvFilm"
+            app:actionLayout="@layout/custom_menu_item_layout"
+            tools:ignore="MenuTitle" />
+
+        <item
+            android:id="@+id/herTurTvFilmDevam"
+            app:actionLayout="@layout/custom_menu_item_layout_iki"
+            tools:ignore="MenuTitle" />
+        -->
+
+
+
+
     </group>
 
 </menu>

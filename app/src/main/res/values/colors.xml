@@ -33,4 +33,9 @@
     <color name="contentMainCardView">#0D80A1</color>
     <color name="contentMainTexView">#FFFFFF</color>
 
+
+    <color name="drawerTextColor">#08346A</color>
+
+
+
 </resources>

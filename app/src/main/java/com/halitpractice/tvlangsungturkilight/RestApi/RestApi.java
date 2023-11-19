@@ -1,18 +1,22 @@
 package com.halitpractice.tvlangsungturkilight.RestApi;
 
 import com.halitpractice.tvlangsungturkilight.models.FormattedTextModel;
-import com.halitpractice.tvlangsungturkilight.models.TurkishCartoonYtbRedirectModel;
 import com.halitpractice.tvlangsungturkilight.models.MarqueeTextModel;
 import com.halitpractice.tvlangsungturkilight.models.RadyoDinleModel;
 import com.halitpractice.tvlangsungturkilight.models.TurkYabanciMovieModel;
 import com.halitpractice.tvlangsungturkilight.models.TurkYabanciMovieYonlendirModel;
 import com.halitpractice.tvlangsungturkilight.models.TurkishCartoonYtbModel;
+import com.halitpractice.tvlangsungturkilight.models.TurkishCartoonYtbRedirectModel;
 import com.halitpractice.tvlangsungturkilight.models.UlusalTvCategoryModel;
 import com.halitpractice.tvlangsungturkilight.models.UlusalTvModel;
 import com.halitpractice.tvlangsungturkilight.models.YerelTvCategoryModel;
 import com.halitpractice.tvlangsungturkilight.models.YerelTvModel;
 import com.halitpractice.tvlangsungturkilight.models.YerelTvYonlendirCategoryModel;
 import com.halitpractice.tvlangsungturkilight.models.YerelTvYonlendirModel;
+import com.halitpractice.tvlangsungturkilight.models.YtbExtraTvCategoryModel;
+import com.halitpractice.tvlangsungturkilight.models.YtbExtraTvModel;
+import com.halitpractice.tvlangsungturkilight.models.YtbExtraTvYonlendirCategoryModel;
+import com.halitpractice.tvlangsungturkilight.models.YtbExtraTvYonlendirModel;
 
 import java.util.List;
 
@@ -83,4 +87,25 @@ public interface RestApi {
 
     @GET("/canliTVTurkishChromeTab/retrofitCanliTV/youtubeCizgiFilmYonlendir.php")
     Call<List<TurkishCartoonYtbRedirectModel>> urlReleaseRedirect();
+
+
+
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/ytbExtraTvler.php")
+    Call<List<YtbExtraTvModel>> ytbExtraTv();
+
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/ytbExtraTvlerCategories.php")
+    Call<List<YtbExtraTvCategoryModel>> ytbExtraTvCategory();
+
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/ytbExtraTvlerCategoriesDetails.php")
+    Call<List<YtbExtraTvModel>> getYtbExtraTvByCategory(@Query("cat") String category);
+
+
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/ytbExtraTvYonlendir.php")
+    Call<List<YtbExtraTvYonlendirModel>> ytbExtraTvYonlendir();
+
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/ytbExtraTvCategoriesYonlendir.php")
+    Call<List<YtbExtraTvYonlendirCategoryModel>> ytbExtraTvCategoryYonlendir();
+
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/ytbExtraTvCategoriesDetailsYonlendir.php")
+    Call<List<YtbExtraTvYonlendirModel>> getYtbExtraTvByCategoryYonlendir(@Query("cat") String category);
 }

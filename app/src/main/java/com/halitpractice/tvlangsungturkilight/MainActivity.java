@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
@@ -124,6 +123,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        /*
         TextView checkUpdateText = headerView.findViewById(R.id.checkForUpdate);
         checkUpdateText.setOnClickListener(v -> {
             String appPackageName = getString(R.string.app_package_name);
@@ -132,6 +132,8 @@ public class MainActivity extends AppCompatActivity {
             startActivity(browserIntent);
 
         });
+        */
+
 
         // directly change the color of the DrawerArrowDrawable, which is responsible for drawing the hamburger icon.
         toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.white)); //
@@ -166,6 +168,14 @@ public class MainActivity extends AppCompatActivity {
                 } else if (id == R.id.turkYabanciFilm) {
                     // Handle item 2 click
                     Intent intent = new Intent(MainActivity.this, TurkYabanciMovieActivity.class);
+                    startActivity(intent);
+                } else if (id == R.id.ytbExtraTv) {
+                    // Handle item 2 click
+                    Intent intent = new Intent(MainActivity.this, YtbExtraTvActivity.class);
+                    startActivity(intent);
+                } else if (id == R.id.ytbExtraTvCategory) {
+                    // Handle item 2 click
+                    Intent intent = new Intent(MainActivity.this, YtbExtraTvCategoriesActivity.class);
                     startActivity(intent);
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);

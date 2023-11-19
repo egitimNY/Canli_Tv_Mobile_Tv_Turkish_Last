@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0B1123"
+    tools:context=".YtbExtraTvDetailsActivity">
+
+    <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+        android:id="@+id/ytb_extra_tv_player_view_cartoon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:paddingBottom="15dp"
+        android:defaultFocusHighlightEnabled="true"
+        android:layout_centerInParent="true"
+        app:autoPlay="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:showFullScreenButton="true"
+        app:showSeekBar="true"
+        app:showVideoCurrentTime="true"
+        app:showVideoDuration="true"
+        app:showYouTubeButton="false" />
+
+    <ImageButton
+
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="0dp"
+        android:background="@drawable/back_button_red_no_sircle"
+        app:layout_constraintStart_toStartOf="@+id/ytb_extra_tv_player_view_cartoon"
+        tools:layout_editor_absoluteY="275dp" />
+
+    <ImageButton
+        android:id="@+id/ytb_extra_back_button_cartoon"
+        android:layout_width="75dp"
+        android:layout_height="85dp"
+        android:layout_marginStart="0dp"
+        android:background="@drawable/ic_fullscreen_big"
+        app:layout_constraintStart_toStartOf="@+id/ytb_extra_tv_player_view_cartoon"
+        tools:layout_editor_absoluteY="250dp" />
+
+
+    <ImageButton
+        android:id="@+id/ytb_extra_switch_orientation_button_cartoon"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="350dp"
+        android:background="@drawable/ic_fullscreen"
+        app:layout_constraintBottom_toBottomOf="@+id/ytb_extra_tv_player_view_cartoon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/ytb_extra_messageTextViewCartoon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textAppearance="?android:textAppearanceMedium"
+        app:layout_constraintBottom_toTopOf="@+id/ytb_extra_redirectButtonCartoon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ytb_extra_tv_player_view_cartoon" />
+
+    <Button
+        android:id="@+id/ytb_extra_redirectButtonCartoon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="150dp"
+        android:text="Open Video on YouTube App"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/ytb_extra_sameVideoButtonCartoon"
+        android:layout_width="75dp"
+        android:layout_height="55dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/youtube_icon_white_transparent"
+        android:text="Open Same Video on YouTube"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="250dp" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+        <ImageView
+            android:id="@+id/closeBtnYtbExtraTvDetails"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/ic_exit"/>
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adViewYtbExtraTvDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:adSize="FULL_BANNER"
+            app:adUnitId="@string/admob_ad_unit_id">
+        </com.google.android.gms.ads.AdView>
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

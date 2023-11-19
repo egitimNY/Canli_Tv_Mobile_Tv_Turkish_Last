@@ -6,14 +6,13 @@
 
 
     <!--               Test App Ad ID   -->
-    <string name="admob_app_id">ca-app-pub-3940256099942544~3347511713</string>
+        <string name="admob_app_id">ca-app-pub-3940256099942544~3347511713</string>
 
     <!--               Test Ad Unit ID         -->
-    <string name="admob_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+        <string name="admob_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
 
     <!--               Test Ad Interstitial ID         -->
-    <string name="admob_interstitial_ad_unit_id">ca-app-pub-3940256099942544/1033173712</string>
-
+        <string name="admob_interstitial_ad_unit_id">ca-app-pub-3940256099942544/1033173712</string>
 
 
 
@@ -42,8 +41,12 @@
     <string name="yerel_tvler">Yerel Tv\'ler</string>
     <string name="yerel_tvler_kategori">Yerel Tv\'ler Kategori</string>
     <string name="cizgi_filmler">Çizgi Filmler</string>
+    <string name="ytb_extra">YTB Ekstra - Hersey</string>
+    <string name="ytb_extra_category">YTB Ekstra Kategori</string>
     <string name="radyo_dinle">Radyo Dinle</string>
     <string name="yabanci_filmler">Yabancı Filmler</string>
+    <string name="her_tur_tv_video">Ytb Spor - Sinema - Haber - Çizgi Film</string>
+    <string name="her_tur_tv_video_multiline">Ytb Spor \n Sinema - \nHaber - \nÇizgi Film</string>
     <string name="close_button_label">Close</string>
 
 </resources>

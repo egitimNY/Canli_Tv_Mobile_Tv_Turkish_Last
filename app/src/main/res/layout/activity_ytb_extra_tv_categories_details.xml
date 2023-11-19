@@ -4,19 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".YerelTvActivity">
+    tools:context=".YtbExtraTvCategoriesDetailsActivity">
+
+    <include layout="@layout/app_bar_main" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/yerelTvRecycler"
+        android:id="@+id/ytbExtraTvCategoryDetailsRecycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="55dp">
     </androidx.recyclerview.widget.RecyclerView>
 
-    <include layout="@layout/app_bar_main" />
-
     <ProgressBar
-        android:id="@+id/yerelTvProgressBar"
+        android:id="@+id/ytbExtraTvCategoryDetailsProgressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -34,20 +34,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
         <ImageView
-            android:id="@+id/closeBtnIndiaWorldTv"
+            android:id="@+id/closeBtnYtbExtraCategoriesDetails"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:src="@drawable/ic_exit"
             android:contentDescription="@string/close_button_label" />
         <com.google.android.gms.ads.AdView
-            android:id="@+id/adViewIndiaWorldTv"
+            android:id="@+id/adViewYtbExtraCategoriesDetails"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             app:adSize="SMART_BANNER"
             app:adUnitId="@string/admob_ad_unit_id">
         </com.google.android.gms.ads.AdView>
-
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
