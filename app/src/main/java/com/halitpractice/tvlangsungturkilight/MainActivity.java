@@ -26,6 +26,9 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.material.navigation.NavigationView;
 import com.halitpractice.tvlangsungturkilight.RestApi.BaseUrl;
+import com.halitpractice.tvlangsungturkilight.activities.DunyaTvActivity;
+import com.halitpractice.tvlangsungturkilight.activities.DunyaTvCategoriesActivity;
+import com.halitpractice.tvlangsungturkilight.activities.DunyaTvCountriesActivity;
 import com.halitpractice.tvlangsungturkilight.services.GDPRConsentManager;
 import com.halitpractice.tvlangsungturkilight.services.InAppUpdate;
 import com.halitpractice.tvlangsungturkilight.services.MarqueeTextHelper;
@@ -101,6 +104,15 @@ public class MainActivity extends AppCompatActivity {
         );
         findViewById(R.id.gazetelerContent).setOnClickListener(view ->
                 startActivity(new Intent(MainActivity.this, GazetelerActivity.class))
+        );
+        findViewById(R.id.dunyaTvContent).setOnClickListener(view ->
+                startActivity(new Intent(MainActivity.this, DunyaTvActivity.class))
+        );
+        findViewById(R.id.dunyaTvCountriesContent).setOnClickListener(view ->
+                startActivity(new Intent(MainActivity.this, DunyaTvCountriesActivity.class))
+        );
+        findViewById(R.id.dunyaTvKategori).setOnClickListener(view ->
+                startActivity(new Intent(MainActivity.this, DunyaTvCategoriesActivity.class))
         );
 
 
@@ -189,6 +201,18 @@ public class MainActivity extends AppCompatActivity {
                 } else if (id == R.id.gazeteler) {
                     // Handle item 2 click
                     Intent intent = new Intent(MainActivity.this, GazetelerActivity.class);
+                    startActivity(intent);
+                } else if (id == R.id.dunyaTvDrawer) {
+                    // Handle item 2 click
+                    Intent intent = new Intent(MainActivity.this, DunyaTvActivity.class);
+                    startActivity(intent);
+                } else if (id == R.id.dunyaTvCountriesDrawer) {
+                    // Handle item 2 click
+                    Intent intent = new Intent(MainActivity.this, DunyaTvCountriesActivity.class);
+                    startActivity(intent);
+                } else if (id == R.id.dunyaTvCategoryDrawer) {
+                    // Handle item 2 click
+                    Intent intent = new Intent(MainActivity.this, DunyaTvCategoriesActivity.class);
                     startActivity(intent);
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);

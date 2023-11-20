@@ -63,6 +63,11 @@
             android:title="@string/dunyaTv" />
 
         <item
+            android:id="@+id/dunyaTvCountriesDrawer"
+            android:icon="@drawable/dunya_icon"
+            android:title="@string/dunyaTvUlkeler" />
+
+        <item
             android:id="@+id/dunyaTvCategoryDrawer"
             android:icon="@drawable/dunya_icon"
             android:title="@string/dunyaTvKategori" />

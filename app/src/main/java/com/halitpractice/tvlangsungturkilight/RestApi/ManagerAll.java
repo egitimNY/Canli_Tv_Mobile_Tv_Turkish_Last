@@ -150,4 +150,28 @@ public class ManagerAll extends BaseManager {
     }
 
 
+
+
+    public Call<List<YerelTvModel>> dunyaTvTvFetch() {
+        return getRestApi().dunyaTv();
+    }
+
+    public Call<List<YerelTvCategoryModel>> dunyaTvCategoryFetch() {
+        return getRestApi().dunyaTvCategory();
+    }
+
+    public Call<List<YerelTvModel>> dunyaTvCategoryDetailsFetch(String category) {
+        return getRestApi().getDunyaTvByCategory(category);
+    }
+
+
+
+    public Call<List<YerelTvCategoryModel>> dunyaTvCountriesFetch() {
+        return getRestApi().dunyaTvCountries();
+    }
+
+    public Call<List<YerelTvModel>> dunyaTvCountriesDetailsFetch(String category) {
+        return getRestApi().getDunyaTvByCountries(category);
+    }
+
 }
