@@ -27,6 +27,7 @@ import com.google.android.gms.ads.AdView;
 import com.halitpractice.tvlangsungturkilight.RestApi.ManagerAll;
 import com.halitpractice.tvlangsungturkilight.adapters.UlusalTvAdapter;
 import com.halitpractice.tvlangsungturkilight.models.UlusalTvModel;
+import com.halitpractice.tvlangsungturkilight.services.ChromeInstallDialogHelper;
 import com.halitpractice.tvlangsungturkilight.services.MarqueeTextAdsHelper;
 import com.halitpractice.tvlangsungturkilight.services.UlusalTvDataCache;
 
@@ -113,6 +114,9 @@ public class UlusalTvActivity extends AppCompatActivity {
             // Data is not cached, fetch it from the network
             fetchData();
         }
+
+        // Show the install Chrome dialog
+        ChromeInstallDialogHelper.showInstallChromeDialog(this);
 
     }
 
