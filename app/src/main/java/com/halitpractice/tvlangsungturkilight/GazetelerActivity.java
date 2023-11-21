@@ -25,6 +25,7 @@ import com.google.android.gms.ads.AdView;
 import com.halitpractice.tvlangsungturkilight.RestApi.ManagerAll;
 import com.halitpractice.tvlangsungturkilight.adapters.GazetelerAdapter;
 import com.halitpractice.tvlangsungturkilight.models.GazetelerModel;
+import com.halitpractice.tvlangsungturkilight.services.ChromeInstallDialogHelper;
 import com.halitpractice.tvlangsungturkilight.services.GazetelerDataCache;
 
 import java.util.ArrayList;
@@ -104,7 +105,9 @@ public class GazetelerActivity extends AppCompatActivity {
             fetchData();
         }
 
-//        fetchData();
+        // Show the install Chrome dialog
+        ChromeInstallDialogHelper.showInstallChromeDialog(this);
+
     }
 
     private void fetchData() {

@@ -28,6 +28,7 @@ import com.halitpractice.tvlangsungturkilight.RestApi.ManagerAll;
 import com.halitpractice.tvlangsungturkilight.YerelTvYonlendirActivity;
 import com.halitpractice.tvlangsungturkilight.adapters.DunyaTvAdapter;
 import com.halitpractice.tvlangsungturkilight.models.YerelTvModel;
+import com.halitpractice.tvlangsungturkilight.services.ChromeInstallDialogHelper;
 import com.halitpractice.tvlangsungturkilight.services.DunyaTvDataCache;
 
 import java.util.ArrayList;
@@ -113,6 +114,9 @@ public class DunyaTvActivity extends AppCompatActivity {
             // Data is not cached, fetch it from the network
             fetchData();
         }
+
+        // Show the install Chrome dialog
+        ChromeInstallDialogHelper.showInstallChromeDialog(this);
 
     }
 

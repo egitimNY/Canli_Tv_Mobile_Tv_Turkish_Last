@@ -25,6 +25,7 @@ import com.google.android.gms.ads.AdView;
 import com.halitpractice.tvlangsungturkilight.RestApi.ManagerAll;
 import com.halitpractice.tvlangsungturkilight.adapters.YtbExtraTvYonlendirAdapter;
 import com.halitpractice.tvlangsungturkilight.models.YtbExtraTvYonlendirModel;
+import com.halitpractice.tvlangsungturkilight.services.ChromeInstallDialogHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -87,6 +88,9 @@ public class YtbExtraTvYonlendirActivity extends AppCompatActivity {
                 closedBtn.setVisibility(View.VISIBLE);
             }
         });
+
+        // Show the install Chrome dialog
+        ChromeInstallDialogHelper.showInstallChromeDialog(this);
 
     }
 

@@ -18,6 +18,7 @@ import com.google.android.gms.ads.AdView;
 import com.halitpractice.tvlangsungturkilight.RestApi.ManagerAll;
 import com.halitpractice.tvlangsungturkilight.adapters.TurkishCartoonYtbRedirectAdapter;
 import com.halitpractice.tvlangsungturkilight.models.TurkishCartoonYtbRedirectModel;
+import com.halitpractice.tvlangsungturkilight.services.ChromeInstallDialogHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,7 +84,8 @@ public class TurkishCartoonYtbRedirectActivity extends AppCompatActivity {
 
         fetchData();
 
-
+        // Show the install Chrome dialog
+        ChromeInstallDialogHelper.showInstallChromeDialog(this);
 
     }
 

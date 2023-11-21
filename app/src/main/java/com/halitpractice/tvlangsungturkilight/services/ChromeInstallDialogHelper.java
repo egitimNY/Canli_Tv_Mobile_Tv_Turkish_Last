@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 
 public class ChromeInstallDialogHelper {
@@ -18,10 +19,25 @@ public class ChromeInstallDialogHelper {
         // Check if the dialog has been shown before
         boolean dialogShown = preferences.getBoolean(KEY_DIALOG_SHOWN, false);
         if (!dialogShown) {
-            // Dialog has not been shown, show it now
-            showChromeInstallDialog(context);
-            // Mark the dialog as shown
-            preferences.edit().putBoolean(KEY_DIALOG_SHOWN, true).apply();
+            // Dialog has not been shown, check if Google Chrome is installed
+            if (isGoogleChromeInstalled(context)) {
+                // Google Chrome is installed, no need to show the dialog
+                preferences.edit().putBoolean(KEY_DIALOG_SHOWN, true).apply();
+            } else {
+                // Google Chrome is not installed, show the installation dialog
+                showChromeInstallDialog(context);
+            }
+        }
+    }
+
+    private static boolean isGoogleChromeInstalled(Context context) {
+        PackageManager pm = context.getPackageManager();
+        try {
+            // Check if Google Chrome is installed by attempting to get its package info
+            pm.getPackageInfo("com.android.chrome", PackageManager.GET_ACTIVITIES);
+            return true; // Package info found, Chrome is installed
+        } catch (PackageManager.NameNotFoundException e) {
+            return false; // Package info not found, Chrome is not installed
         }
     }
 
@@ -30,7 +46,7 @@ public class ChromeInstallDialogHelper {
 //        builder.setTitle("Install Google Chrome");
         builder.setTitle("Google Chrome'u Yükle");
 //        builder.setMessage("For better performance, we recommend installing Google Chrome. Do you want to install it now?");
-        builder.setMessage("Daha iyi bir performans için, Google Chrome'un yüklenmesini öneriyoruz. Şimdi yüklemek ister misiniz?");
+        builder.setMessage("Daha iyi performans için, Google Chrome'un yüklenmesini öneriyoruz. Şimdi yüklemek ister misiniz?");
 
         builder.setPositiveButton("Evet", new DialogInterface.OnClickListener() {
             @Override
@@ -62,3 +78,4 @@ public class ChromeInstallDialogHelper {
         }
     }
 }
+

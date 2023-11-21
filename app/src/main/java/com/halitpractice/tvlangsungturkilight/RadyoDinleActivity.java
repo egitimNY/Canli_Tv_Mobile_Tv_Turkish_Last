@@ -19,6 +19,7 @@ import com.google.android.gms.ads.AdView;
 import com.halitpractice.tvlangsungturkilight.RestApi.ManagerAll;
 import com.halitpractice.tvlangsungturkilight.adapters.RadyoDinleAdapter;
 import com.halitpractice.tvlangsungturkilight.models.RadyoDinleModel;
+import com.halitpractice.tvlangsungturkilight.services.ChromeInstallDialogHelper;
 import com.halitpractice.tvlangsungturkilight.services.RadyoDinleDataCache;
 
 import java.util.ArrayList;
@@ -98,6 +99,9 @@ public class RadyoDinleActivity extends AppCompatActivity {
             // Data is not cached, fetch it from the network
             fetchData();
         }
+
+        // Show the install Chrome dialog
+        ChromeInstallDialogHelper.showInstallChromeDialog(this);
 
     }
 

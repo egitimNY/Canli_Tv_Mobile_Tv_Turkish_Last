@@ -17,6 +17,7 @@ import com.google.android.gms.ads.AdView;
 import com.halitpractice.tvlangsungturkilight.RestApi.ManagerAll;
 import com.halitpractice.tvlangsungturkilight.adapters.TurkYabanciMovieYonlendirAdapter;
 import com.halitpractice.tvlangsungturkilight.models.TurkYabanciMovieYonlendirModel;
+import com.halitpractice.tvlangsungturkilight.services.ChromeInstallDialogHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,6 +77,8 @@ public class TurkYabanciMovieYonlendirActivity extends AppCompatActivity {
 
         fetchData();
 
+        // Show the install Chrome dialog
+        ChromeInstallDialogHelper.showInstallChromeDialog(this);
 
     }
 
