@@ -1,6 +1,8 @@
 package com.halitpractice.tvlangsungturkilight.adapters;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.browser.customtabs.CustomTabsIntent;
@@ -45,7 +48,6 @@ public class RadyoDinleAdapter extends RecyclerView.Adapter<RadyoDinleAdapter.My
             holder.name.setText(radyoDinleModel.getChannelname());
         } else {
             // Set a default name if it's empty or null
-//            holder.name.setText("Unknown");
             holder.name.setText(R.string.no_text_available);
         }
 
@@ -75,38 +77,38 @@ public class RadyoDinleAdapter extends RecyclerView.Adapter<RadyoDinleAdapter.My
         holder.name.setSelected(true);
 
         holder.itemView.setOnClickListener(v -> {
-            // Open the URL in a Chrome Custom Tab
-            CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
-            CustomTabsIntent customTabsIntent = builder.build();
-
-            try {
-                customTabsIntent.launchUrl(context, Uri.parse(radyoDinleModel.getVideoid()));
-            } catch (Exception e) {
-                // Handle URL launch error
-                e.printStackTrace();
-                // You can show an error message to the user or take other actions
-            }
-        });
-
-        /*
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            // Check if the video ID is empty or null
+            if (radyoDinleModel.getVideoid() != null && !radyoDinleModel.getVideoid().isEmpty()) {
                 // Open the URL in a Chrome Custom Tab
                 CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
                 CustomTabsIntent customTabsIntent = builder.build();
 
                 try {
                     customTabsIntent.launchUrl(context, Uri.parse(radyoDinleModel.getVideoid()));
+                } catch (ActivityNotFoundException e) {
+                    // Handle the case where Chrome Custom Tabs are not available on the device
+                    // Open the URL in the default web browser
+                    Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(radyoDinleModel.getVideoid()));
+                    if (webIntent.resolveActivity(context.getPackageManager()) != null) {
+                        context.startActivity(webIntent);
+                    } else {
+                        // If no browser is found, you can show a message to the user or take other appropriate action
+                        String noBrowserMessage = context.getString(R.string.no_browser_found_message);
+                        Toast.makeText(context, noBrowserMessage, Toast.LENGTH_SHORT).show();
+                    }
                 } catch (Exception e) {
                     // Handle URL launch error
                     e.printStackTrace();
                     // You can show an error message to the user or take other actions
                 }
+            } else {
+                // Handle the case where the video ID is empty or null
+                String videoIdEmptyOrNullMessage = context.getString(R.string.video_id_empty_or_null_message);
+                Toast.makeText(context, videoIdEmptyOrNullMessage, Toast.LENGTH_SHORT).show();
             }
         });
-        */
     }
+
 
     @Override
     public int getItemCount() {

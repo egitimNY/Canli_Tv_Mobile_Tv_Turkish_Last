@@ -122,23 +122,28 @@ public class YtbExtraTvYonlendirAdapter extends RecyclerView.Adapter<YtbExtraTvY
             // Disable the share icon in the Chrome Custom Tab
             builder.setShareState(CustomTabsIntent.SHARE_STATE_OFF);
             // Customize other properties as needed, for example:
-//            builder.setToolbarColor(ContextCompat.getColor(context, R.color.white));
             builder.setShowTitle(true);
             // Build the CustomTabsIntent
             CustomTabsIntent customTabsIntent = builder.build();
+
             try {
                 customTabsIntent.launchUrl(context, Uri.parse(url));
             } catch (ActivityNotFoundException e) {
                 // Handle the case where Chrome Custom Tabs are not available on the device
                 // Open the URL in the default web browser
                 Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                context.startActivity(webIntent);
+                if (webIntent.resolveActivity(context.getPackageManager()) != null) {
+                    context.startActivity(webIntent);
+                } else {
+                    // If no browser is found, you can show a message to the user or take other appropriate action
+                    String noBrowserMessage = context.getString(R.string.no_browser_found_message);
+                    Toast.makeText(context, noBrowserMessage, Toast.LENGTH_SHORT).show();
+                }
             }
         } else {
             // Handle the case where the URL is empty or null
             String urlEmptyOrNullMessage = context.getString(R.string.url_empty_or_null_message);
             Toast.makeText(context, urlEmptyOrNullMessage, Toast.LENGTH_SHORT).show();
-
         }
     }
 
