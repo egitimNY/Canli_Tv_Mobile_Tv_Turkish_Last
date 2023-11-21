@@ -18,7 +18,6 @@ import com.google.android.gms.ads.AdView;
 import com.halitpractice.tvlangsungturkilight.MainActivity;
 import com.halitpractice.tvlangsungturkilight.R;
 import com.halitpractice.tvlangsungturkilight.RestApi.ManagerAll;
-import com.halitpractice.tvlangsungturkilight.YerelTvYonlendirCategoriesActivity;
 import com.halitpractice.tvlangsungturkilight.adapters.DunyaTvCountriesAdapter;
 import com.halitpractice.tvlangsungturkilight.models.YerelTvCategoryModel;
 import com.halitpractice.tvlangsungturkilight.services.DunyaTvCountriesDataCache;
@@ -191,7 +190,7 @@ public class DunyaTvCountriesActivity extends AppCompatActivity {
 
     private void redirectYonlendir() {
         // Redirect to FeatureUnderConstructionActivity
-        Intent intent = new Intent(DunyaTvCountriesActivity.this, YerelTvYonlendirCategoriesActivity.class);
+        Intent intent = new Intent(DunyaTvCountriesActivity.this, DunyaTvYonlendirCountriesActivity.class);
         startActivity(intent);
     }
 

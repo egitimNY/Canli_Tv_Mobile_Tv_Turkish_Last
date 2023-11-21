@@ -174,4 +174,27 @@ public class ManagerAll extends BaseManager {
         return getRestApi().getDunyaTvByCountries(category);
     }
 
+    public Call<List<YerelTvYonlendirModel>> dunyaTvYonlendirFetch() {
+        return getRestApi().dunyaTvYonlendir();
+    }
+
+    public Call<List<YerelTvYonlendirCategoryModel>> dunyaTvCategoryYonlendirFetch() {
+        return getRestApi().dunyaTvCategoryYonlendir();
+    }
+
+    public Call<List<YerelTvYonlendirModel>> getDunyaTvByCategoryYonlendirFetch(String category) {
+        return getRestApi().getDunyaTvByCategoryYonlendir(category);
+    }
+
+    public Call<List<YerelTvYonlendirCategoryModel>> dunyaTvYonlendirCountriesFetch() {
+        return getRestApi().dunyaTvYonlendirCountries();
+    }
+
+
+    public Call<List<YerelTvYonlendirModel>> dunyaTvYonlendirCountriesDetailsFetch(String category) {
+        return getRestApi().getDunyaTvYonlendirByCountries(category);
+    }
+
+
+
 }

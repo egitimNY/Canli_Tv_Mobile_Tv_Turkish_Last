@@ -72,7 +72,6 @@ public class DunyaTvCategoriesDetailsActivity extends AppCompatActivity {
         String selectedCategory = getIntent().getStringExtra("dunyaCategory");
         ActionBar actionBar = getSupportActionBar();
 
-
         /*
         if (actionBar != null) {
             if (selectedCategory != null) {
@@ -197,7 +196,7 @@ public class DunyaTvCategoriesDetailsActivity extends AppCompatActivity {
 
     private void redirectYonlendir() {
         // Redirect to FeatureUnderConstructionActivity
-        Intent intent = new Intent(DunyaTvCategoriesDetailsActivity.this, YerelTvYonlendirCategoriesDetailsActivity.class);
+        Intent intent = new Intent(DunyaTvCategoriesDetailsActivity.this, DunyaTvYonlendirCategoriesDetailsActivity.class);
         startActivity(intent);
     }
 

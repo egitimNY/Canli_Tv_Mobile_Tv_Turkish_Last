@@ -31,7 +31,7 @@
 
 
     <string name="aulia_app">Aulia</string>
-<!--    <string name="aulia_apps">Apps Universe</string>-->
+    <!--    <string name="aulia_apps">Apps Universe</string>-->
     <string name="aulia_apps">Apps Semesta</string>
     <string name="disclaimer_text">Uyarı</string>
     <string name="check_for_update_text">Güncellemeleri Kontrol Et</string>
@@ -39,7 +39,7 @@
 
     <string name="ulusal_tvler">Ulusal Tv\'ler</string>
     <string name="ulusal_tvler_kategori">Ulusal Tv\'ler Kategori</string>
-<!--    <string name="no_browser_found_message">No suitable browser found. Please install or activate a web browser to open the link.</string>-->
+    <!--    <string name="no_browser_found_message">No suitable browser found. Please install or activate a web browser to open the link.</string>-->
     <string name="no_browser_found_message">Uygun tarayıcı bulunamadı. Lütfen bağlantıyı açmak için bir web tarayıcısı yükleyin veya etkinleştirin.</string>
     <string name="video_id_empty_or_null_message">Video ID is empty or null</string>
     <string name="yerel_tvler">Yerel Tv\'ler</string>
