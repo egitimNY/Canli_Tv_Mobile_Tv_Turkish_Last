@@ -1,7 +1,6 @@
 package com.halitpractice.tvlangsungturkilight;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -31,9 +30,10 @@ import com.halitpractice.tvlangsungturkilight.activities.DunyaTvCategoriesActivi
 import com.halitpractice.tvlangsungturkilight.activities.DunyaTvCountriesActivity;
 import com.halitpractice.tvlangsungturkilight.services.GDPRConsentManager;
 import com.halitpractice.tvlangsungturkilight.services.InAppUpdate;
+import com.halitpractice.tvlangsungturkilight.services.InternetConnectivityChecker;
 import com.halitpractice.tvlangsungturkilight.services.MarqueeTextHelper;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements InternetConnectivityChecker.InternetConnectivityListener {
 
     public static final String TERMS_AND_CONDITIONS = "TERMS_AND_CONDITIONS";
     public static final String PLANT_PLACES_PREFS = "PLANT_PLACES_PREFS";
@@ -254,6 +254,23 @@ public class MainActivity extends AppCompatActivity {
         // Call the method to request consent and initialize ads
         gdprConsentManager.requestConsentAndInitializeAds();
 
+        // Check internet connectivity when your activity is created
+        new InternetConnectivityChecker(this, this).execute();
+
+    }
+
+    @Override
+    public void onInternetConnectivityChecked(boolean isInternetAvailable) {
+        if (isInternetAvailable) {
+            // Internet is available, continue with your app logic
+        } else {
+            // No internet connection
+            showNoInternetWarning();
+        }
+    }
+
+    private void showNoInternetWarning() {
+        Toast.makeText(this, "No internet connection. Please check your internet settings.", Toast.LENGTH_LONG).show();
     }
 
     private void showTermsAndConditionsDialog() {
@@ -311,40 +328,46 @@ public class MainActivity extends AppCompatActivity {
         return super.onKeyDown(keyCode, event);
     }
 
+    private static final String PREFS_NAME = "MyPrefsFile";
+    private static final String PREF_MESSAGE_COUNTER = "MessageCounter";
+
     private void showFirstConfirmationDialog() {
-        new AlertDialog.Builder(this)
-                .setTitle("Önemli Duyuru:")
-//                .setMessage("Please launch the app using the app icon from your home screen.")
-//                .setMessage("You are about to close the app. Before closing, please read this notice. Please relaunch the app by tapping its icon on your device's home screen. Avoid reopening the app from the recent apps if you have already closed it. Always start the app from your home screen for proper functionality.")
-                .setMessage("Uygulamayı kapatmaya hazırsınız. Kapatmadan önce bu duyuruyu dikkatlice okumanız önemlidir. Uygulamayı yeniden başlatmak için, lütfen cihazınızın ana ekranındaki uygulama simgesine dokunun. Eğer uygulamayı tamamen kapatmışsanız, lütfen yeniden açmak için son kullanılanlar listesini değil, her zaman ana ekrandaki simgeyi kullanın. En iyi performans ve işlevsellik için bu yöntemi tercih edin.")
-                .setPositiveButton("TAMAM", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // User acknowledged the information, now show the exit confirmation
+        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        int messageCounter = prefs.getInt(PREF_MESSAGE_COUNTER, 0);
+        final int[] finalMessageCounter = {messageCounter};
+        if (messageCounter < 2) {
+            new AlertDialog.Builder(this)
+//                    .setTitle("Important Announcement:")
+                    .setTitle("Önemli Duyuru:")
+//                    .setMessage("You are ready to close the application. It is important to read this announcement carefully before closing. To restart the application, please touch the application icon on your device's home screen. If you have completely closed the application, please reopen it by using the icon on the home screen, not from the recent apps. Always use this method for the best performance and functionality.")
+                    .setMessage("Uygulamayı kapatmaya hazırsınız. Kapatmadan önce bu duyuruyu dikkatlice okumanız önemlidir. Uygulamayı yeniden başlatmak için, lütfen cihazınızın ana ekranındaki uygulama simgesine dokunun. Eğer uygulamayı tamamen kapatmışsanız, lütfen yeniden açmak için son kullanılanlar listesini değil, her zaman ana ekrandaki simgeyi kullanın. En iyi performans ve işlevsellik için bu yöntemi tercih edin.")
+//                    .setPositiveButton("OK", (dialog, which) -> {
+                    .setPositiveButton("TAMAM", (dialog, which) -> {
+                        finalMessageCounter[0]++;
+                        prefs.edit().putInt(PREF_MESSAGE_COUNTER, finalMessageCounter[0]).apply();
                         showExitConfirmationDialog();
-                    }
-                })
-                .show();
+                    })
+                    .show();
+        } else {
+            showExitConfirmationDialog();
+        }
     }
+
 
     private void showExitConfirmationDialog() {
         new AlertDialog.Builder(this)
-//                .setMessage("Are you sure you want to close the app?")
+//                .setTitle("Exiting the Application!")
                 .setTitle("Uygulamadan Çıkmak Üzeresiniz!")
+//                .setMessage("Are you sure you want to close the application?")
                 .setMessage("Uygulamayı kapatmak istediğinizden emin misiniz?")
-                .setPositiveButton("Evet", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        finishAffinity(); // Finish all activities in the task
-                        // Additional option to close the app completely
-                        finishAndRemoveTask(); // This can be used for API 21 and above
-                    }
+//                .setPositiveButton("Yes", (dialog, which) -> {
+                .setPositiveButton("Evet", (dialog, which) -> {
+                    finishAffinity(); // Finish all activities in the task
+                    finishAndRemoveTask(); // This can be used for API 21 and above
                 })
-                .setNegativeButton("Hayır", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // The user prefers not to close the app; do nothing
-                    }
+//                .setNegativeButton("No", (dialog, which) -> {
+                .setNegativeButton("Hayır", (dialog, which) -> {
+                    // The user prefers not to close the app; do nothing
                 })
                 .show();
     }

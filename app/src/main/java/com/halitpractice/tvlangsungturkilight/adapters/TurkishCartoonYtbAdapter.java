@@ -74,7 +74,7 @@ public class TurkishCartoonYtbAdapter extends RecyclerView.Adapter<TurkishCartoo
                 context.startActivity(intent);
 
                 clickCount++;
-                if (clickCount >= 4) {
+                if (clickCount >= 3) {
                     showInterstitialAd();
                     resetClickCount(); // Reset the click count
                 }

@@ -51,7 +51,7 @@ public class DunyaTvYonlendirCountriesActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setTitle("Dünya TV'leri Kategori");
+            actionBar.setTitle("Dünya TV'leri Ülkeler");
         }
 
         ImageView homeButton = findViewById(R.id.homeButton);

@@ -64,10 +64,10 @@ public class DunyaTvYonlendirCountriesDetailsActivity extends AppCompatActivity 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             if (selectedCategory != null) {
-                actionBar.setTitle("Kategori: " + selectedCategory);
+                actionBar.setTitle("Ülke: " + selectedCategory);
                 fetchData(selectedCategory);
             } else {
-                actionBar.setTitle("Kategori: ");
+                actionBar.setTitle("Ülke: ");
             }
         }
 
@@ -153,7 +153,7 @@ public class DunyaTvYonlendirCountriesDetailsActivity extends AppCompatActivity 
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, DunyaTvYonlendirCategoriesActivity.class);
+        Intent intent = new Intent(this, DunyaTvYonlendirCountriesActivity.class);
         startActivity(intent);
         finish(); // Close the current activity
 
@@ -165,7 +165,7 @@ public class DunyaTvYonlendirCountriesDetailsActivity extends AppCompatActivity 
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             // Handle the back button click here, navigate to ThirdActivity
-            Intent intent = new Intent(this, DunyaTvYonlendirCategoriesActivity.class);
+            Intent intent = new Intent(this, DunyaTvYonlendirCountriesActivity.class);
             startActivity(intent);
             finish(); // Finish the current activity if you don't want to return to it
             return true;

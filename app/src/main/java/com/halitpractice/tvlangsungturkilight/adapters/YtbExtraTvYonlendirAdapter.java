@@ -18,6 +18,9 @@ import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.LoadAdError;
@@ -26,8 +29,6 @@ import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.halitpractice.tvlangsungturkilight.R;
 import com.halitpractice.tvlangsungturkilight.models.YtbExtraTvYonlendirModel;
-import com.squareup.picasso.Callback;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +55,6 @@ public class YtbExtraTvYonlendirAdapter extends RecyclerView.Adapter<YtbExtraTvY
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         final YtbExtraTvYonlendirModel ytbExtraTvYonlendirModel = my_list.get(holder.getAdapterPosition()); // Use getAdapterPosition
-//        holder.name.setText(chromeTabChannelsModel.getName());
 
         // Set the name text, and check if it's empty or null
         if (ytbExtraTvYonlendirModel.getName() != null && !ytbExtraTvYonlendirModel.getName().isEmpty()) {
@@ -63,28 +63,19 @@ public class YtbExtraTvYonlendirAdapter extends RecyclerView.Adapter<YtbExtraTvY
             holder.name.setTextColor(ContextCompat.getColor(context, R.color.defaultChannelColor));
         } else {
             // If the text is empty or null, display "No text available" in red
-//            holder.name.setText("No text available");
-//            holder.name.setText("Metin mevcut değil");
             holder.name.setText(context.getString(R.string.no_text_available));
             holder.name.setTextColor(ContextCompat.getColor(context, R.color.redChannelColor)); // Set the text color to red
         }
 
-        // Load the image with Picasso or any other image loading library
+        // Load the image with Glide, resizing it to 150x150 pixels
         if (ytbExtraTvYonlendirModel.getThumbnail() != null && !ytbExtraTvYonlendirModel.getThumbnail().isEmpty()) {
-            Picasso.get().load(ytbExtraTvYonlendirModel.getThumbnail())
-                    .error(R.drawable.default_there_is_no_logo) // Set the default image here
-                    .into(holder.image, new Callback() {
-                        @Override
-                        public void onSuccess() {
-                            // Image loaded successfully
-                        }
-
-                        @Override
-                        public void onError(Exception e) {
-                            // Handle image loading error, e.g., set the default image
-                            holder.image.setImageResource(R.drawable.default_there_is_no_logo);
-                        }
-                    });
+            Glide.with(context)
+                    .load(ytbExtraTvYonlendirModel.getThumbnail())
+                    .override(150, 150) // Resize the image to 150x150 pixels
+                    .placeholder(R.drawable.default_there_is_no_logo) // Placeholder for loading
+                    .error(R.drawable.default_there_is_no_logo)
+                    .apply(new RequestOptions().diskCacheStrategy(DiskCacheStrategy.AUTOMATIC))
+                    .into(holder.image);
         } else {
             // If the image URL is empty or null, set the default image
             holder.image.setImageResource(R.drawable.default_there_is_no_logo);
@@ -94,27 +85,17 @@ public class YtbExtraTvYonlendirAdapter extends RecyclerView.Adapter<YtbExtraTvY
         holder.name.setSelected(true);
 
         // Set an OnClickListener to open the Chrome Custom Tab when the channel is clicked
-        /*
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openChannelInChromeCustomTab(turkishLiveTvModel.getLive_url());
-            }
-        });
-        */
-//        holder.itemView.setOnClickListener(v -> openChannelInChromeCustomTab(ytbExtraTvYonlendirModel.getLive_url()));
-
         holder.itemView.setOnClickListener(v -> {
             openChannelInChromeCustomTab(ytbExtraTvYonlendirModel.getLive_url());
 
             clickCount++;
-            if (clickCount >= 5) {
+            if (clickCount >= 4) {
                 showInterstitialAd();
                 resetClickCount(); // Reset the click count
             }
         });
-
     }
+
 
     @Override
     public int getItemCount() {

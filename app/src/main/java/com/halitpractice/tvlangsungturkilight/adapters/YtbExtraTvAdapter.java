@@ -16,6 +16,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.LoadAdError;
@@ -25,14 +28,13 @@ import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.halitpractice.tvlangsungturkilight.R;
 import com.halitpractice.tvlangsungturkilight.YtbExtraTvDetailsActivity;
 import com.halitpractice.tvlangsungturkilight.models.YtbExtraTvModel;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class YtbExtraTvAdapter extends RecyclerView.Adapter<YtbExtraTvAdapter.MyViewHolder> {
-    List<YtbExtraTvModel> my_list;
-    Context context;
+    private List<YtbExtraTvModel> my_list;
+    private Context context;
     private int clickCount = 0; // Track the number of item clicks
     private InterstitialAd mInterstitialAd;
 
@@ -51,13 +53,17 @@ public class YtbExtraTvAdapter extends RecyclerView.Adapter<YtbExtraTvAdapter.My
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        final YtbExtraTvModel ytbExtraTvModel = my_list.get(holder.getAdapterPosition()); // Use getAdapterPosition
+        final YtbExtraTvModel ytbExtraTvModel = my_list.get(holder.getAdapterPosition());
         holder.name.setText(ytbExtraTvModel.getName());
 
-        // Load the image with Picasso or any other image loading library
+        // Load the image with Glide, resizing it to 150x150 pixels
         if (ytbExtraTvModel.getThumbnail() != null && !ytbExtraTvModel.getThumbnail().isEmpty()) {
-            Picasso.get().load(ytbExtraTvModel.getThumbnail())
-                    .error(R.drawable.default_there_is_no_logo) // Set the default image here
+            Glide.with(context)
+                    .load(ytbExtraTvModel.getThumbnail())
+                    .override(150, 150) // Resize the image to 150x150 pixels
+                    .placeholder(R.drawable.default_there_is_no_logo) // Placeholder for loading
+                    .error(R.drawable.default_there_is_no_logo)
+                    .apply(new RequestOptions().diskCacheStrategy(DiskCacheStrategy.AUTOMATIC))
                     .into(holder.image);
         } else {
             // If the image URL is empty or null, set the default image
@@ -72,7 +78,7 @@ public class YtbExtraTvAdapter extends RecyclerView.Adapter<YtbExtraTvAdapter.My
                 // Start the activity
                 Intent i = new Intent(v.getContext(), YtbExtraTvDetailsActivity.class);
                 i.putExtra("channel", my_list.get(holder.getAdapterPosition()));
-                i.putExtra("live_url", my_list.get(holder.getAdapterPosition()).getLive_url()); // Add this line
+                i.putExtra("live_url", ytbExtraTvModel.getLive_url()); // Use the variable directly
                 v.getContext().startActivity(i);
                 clickCount++;
 
@@ -87,9 +93,7 @@ public class YtbExtraTvAdapter extends RecyclerView.Adapter<YtbExtraTvAdapter.My
                 Toast.makeText(v.getContext(), "Error starting activity", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
-
 
     @Override
     public int getItemCount() {
@@ -98,19 +102,18 @@ public class YtbExtraTvAdapter extends RecyclerView.Adapter<YtbExtraTvAdapter.My
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView image;
-        TextView name,role;
+        TextView name, role;
         RelativeLayout relative;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            image=itemView.findViewById(R.id.image);
-            name=itemView.findViewById(R.id.name);
-//            role=itemView.findViewById(R.id.role);
+            image = itemView.findViewById(R.id.image);
+            name = itemView.findViewById(R.id.name);
         }
     }
 
-    public void setSearchOperation(List<YtbExtraTvModel> newList){
-        my_list=new ArrayList<>();
-        my_list.addAll(newList);
+    public void setSearchOperation(List<YtbExtraTvModel> newList) {
+        my_list = new ArrayList<>(newList); // Use ArrayList constructor for shallow copy
         notifyDataSetChanged();
     }
 
@@ -155,5 +158,4 @@ public class YtbExtraTvAdapter extends RecyclerView.Adapter<YtbExtraTvAdapter.My
     private void resetClickCount() {
         clickCount = 0;
     }
-
 }

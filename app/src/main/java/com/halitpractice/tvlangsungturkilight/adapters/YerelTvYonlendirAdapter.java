@@ -33,8 +33,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class YerelTvYonlendirAdapter extends RecyclerView.Adapter<YerelTvYonlendirAdapter.MyViewHolder> {
-    List<YerelTvYonlendirModel> my_list;
-    Context context;
+    private List<YerelTvYonlendirModel> my_list;
+    private Context context;
     private int clickCount = 0; // Track the number of item clicks
     private InterstitialAd mInterstitialAd;
 
@@ -94,16 +94,6 @@ public class YerelTvYonlendirAdapter extends RecyclerView.Adapter<YerelTvYonlend
         holder.name.setSelected(true);
 
         // Set an OnClickListener to open the Chrome Custom Tab when the channel is clicked
-        /*
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openChannelInChromeCustomTab(turkishLiveTvModel.getLive_url());
-            }
-        });
-        */
-//        holder.itemView.setOnClickListener(v -> openChannelInChromeCustomTab(yerelTvYonlendirModel.getLive_url()));
-
         holder.itemView.setOnClickListener(v -> {
             openChannelInChromeCustomTab(yerelTvYonlendirModel.getLive_url());
 
@@ -113,7 +103,6 @@ public class YerelTvYonlendirAdapter extends RecyclerView.Adapter<YerelTvYonlend
                 resetClickCount(); // Reset the click count
             }
         });
-
     }
 
     @Override
@@ -130,10 +119,13 @@ public class YerelTvYonlendirAdapter extends RecyclerView.Adapter<YerelTvYonlend
             super(itemView);
             image = itemView.findViewById(R.id.image);
             name = itemView.findViewById(R.id.name);
-            // role=itemView.findViewById(R.id.role);
         }
     }
 
+    public void setSearchOperation(List<YerelTvYonlendirModel> newList) {
+        my_list = new ArrayList<>(newList); // Use ArrayList constructor for shallow copy
+        notifyDataSetChanged();
+    }
 
     private void openChannelInChromeCustomTab(String url) {
         if (url != null && !url.isEmpty()) {
@@ -157,16 +149,8 @@ public class YerelTvYonlendirAdapter extends RecyclerView.Adapter<YerelTvYonlend
             // Handle the case where the URL is empty or null
             String urlEmptyOrNullMessage = context.getString(R.string.url_empty_or_null_message);
             Toast.makeText(context, urlEmptyOrNullMessage, Toast.LENGTH_SHORT).show();
-
         }
     }
-
-    public void setSearchOperation(List<YerelTvYonlendirModel> newList){
-        my_list=new ArrayList<>();
-        my_list.addAll(newList);
-        notifyDataSetChanged();
-    }
-
 
     private void showInterstitialAd() {
         if (mInterstitialAd != null) {
@@ -209,5 +193,4 @@ public class YerelTvYonlendirAdapter extends RecyclerView.Adapter<YerelTvYonlend
     private void resetClickCount() {
         clickCount = 0;
     }
-
 }

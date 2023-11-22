@@ -64,10 +64,10 @@ public class DunyaTvYonlendirCategoriesDetailsActivity extends AppCompatActivity
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             if (selectedCategory != null) {
-                actionBar.setTitle("Kategori: " + selectedCategory);
+                actionBar.setTitle("Ülke: " + selectedCategory);
                 fetchData(selectedCategory);
             } else {
-                actionBar.setTitle("Kategori: ");
+                actionBar.setTitle("Ülke: ");
             }
         }
 

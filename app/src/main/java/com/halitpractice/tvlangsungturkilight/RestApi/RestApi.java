@@ -50,13 +50,13 @@ public interface RestApi {
     Call<List<UlusalTvModel>> ulusalTvCategoryDetails(@Query("cat") String category);
 
 
-    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/yerelTvlerExo.php")
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/yerelTvlerExoo.php")
     Call<List<YerelTvModel>> yerelTv();
 
-    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/yerelTvlerCategoriesExo.php")
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/yerelTvlerCategoriesExoo.php")
     Call<List<YerelTvCategoryModel>> yerelTvCategory();
 
-    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/yerelTvlerCategoriesDetailsExo.php")
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/yerelTvlerCategoriesDetailsExoo.php")
     Call<List<YerelTvModel>> getYerelTvByCategory(@Query("cat") String category);
 
 
@@ -70,7 +70,7 @@ public interface RestApi {
     Call<List<YerelTvYonlendirModel>> getYerelTvByCategoryYonlendir(@Query("cat") String category);
 
 
-    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/turkYabanciMovieNeww.php")
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/turkYabanciMovieNewww.php")
     Call<List<TurkYabanciMovieModel>> urlGetir();
 
     @GET("/canliTVTurkishChromeTab/retrofitCanliTV/ZReleaseTvOne.php")
@@ -81,7 +81,7 @@ public interface RestApi {
     Call<List<RadyoDinleModel>> radyoDinleBakim();
 
 
-    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/youtubeCizgiFilmNew.php")
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/youtubeCizgiFilmNeww.php")
     Call<List<TurkishCartoonYtbModel>> indoCartoonTv();
 
     @GET("/canliTVTurkishChromeTab/retrofitCanliTV/youtubeCizgiFilmYonlendir.php")

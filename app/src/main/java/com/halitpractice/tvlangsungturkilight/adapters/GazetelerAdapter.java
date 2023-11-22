@@ -5,6 +5,8 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -108,15 +110,24 @@ public class GazetelerAdapter extends RecyclerView.Adapter<GazetelerAdapter.MyVi
         holder.itemView.setOnClickListener(v -> {
             openChannelInChromeCustomTab(gazetelerModel.getLive_url());
 
-            clickCount++;
-            if (clickCount >= 2) {
-                showInterstitialAd();
-                resetClickCount(); // Reset the click count
+            if (clickCount < 2) {
+                clickCount++;
+                Log.d("ClickCount", "Click Count: " + clickCount);
+                if (clickCount >= 2) {
+                    showInterstitialAd();
+                    // Reset the click count after displaying the ad or after a delay
+                    resetClickCountWithDelay(5000); // 5000 milliseconds (adjust as needed)
+                }
             }
 
         });
 
     }
+
+    private void resetClickCountWithDelay(long delayMillis) {
+        new Handler().postDelayed(() -> resetClickCount(), delayMillis);
+    }
+
 
     @Override
     public int getItemCount() {

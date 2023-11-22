@@ -87,7 +87,7 @@ public class DunyaTvCountriesDetailsActivity extends AppCompatActivity {
         dataCache = DunyaTvCountriesDetailsDataCache.getInstance();
 
         if (actionBar != null && selectedCategory != null) {
-            actionBar.setTitle("Ulkeler : " + selectedCategory); // Set the selected category as the title
+            actionBar.setTitle("Ülke : " + selectedCategory); // Set the selected category as the title
 
             // Check if there is cached data for the selected category
             List<YerelTvModel> cachedData = dataCache.getCachedData(selectedCategory);

@@ -16,6 +16,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.LoadAdError;
@@ -25,14 +28,13 @@ import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.halitpractice.tvlangsungturkilight.R;
 import com.halitpractice.tvlangsungturkilight.YerelTvDetailsActivity;
 import com.halitpractice.tvlangsungturkilight.models.YerelTvModel;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class YerelTvAdapter extends RecyclerView.Adapter<YerelTvAdapter.MyViewHolder> {
-    List<YerelTvModel> my_list;
-    Context context;
+    private List<YerelTvModel> my_list;
+    private Context context;
     private int clickCount = 0; // Track the number of item clicks
     private InterstitialAd mInterstitialAd;
 
@@ -51,21 +53,27 @@ public class YerelTvAdapter extends RecyclerView.Adapter<YerelTvAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        final YerelTvModel yerelTvModel = my_list.get(holder.getAdapterPosition()); // Use getAdapterPosition
+        final YerelTvModel yerelTvModel = my_list.get(position);
         holder.name.setText(yerelTvModel.getName());
 
-        // Load the image with Picasso or any other image loading library
+        // Load the image with Glide, resizing it to 150x150 pixels
         if (yerelTvModel.getThumbnail() != null && !yerelTvModel.getThumbnail().isEmpty()) {
-            Picasso.get().load(yerelTvModel.getThumbnail())
-                    .error(R.drawable.default_there_is_no_logo) // Set the default image here
+            Glide.with(context)
+                    .load(yerelTvModel.getThumbnail())
+                    .override(150, 150) // Resize the image to 150x150 pixels
+                    .placeholder(R.drawable.default_there_is_no_logo) // Placeholder for loading
+                    .error(R.drawable.default_there_is_no_logo)
+                    .apply(new RequestOptions().diskCacheStrategy(DiskCacheStrategy.AUTOMATIC))
                     .into(holder.image);
         } else {
             // If the image URL is empty or null, set the default image
             holder.image.setImageResource(R.drawable.default_there_is_no_logo);
         }
 
-        // Start marquee scrolling for the name TextView
+
+// Start marquee scrolling for the name TextView
         holder.name.setSelected(true);
+
 
         holder.itemView.setOnClickListener(v -> {
             try {
@@ -86,9 +94,7 @@ public class YerelTvAdapter extends RecyclerView.Adapter<YerelTvAdapter.MyViewHo
                 Toast.makeText(v.getContext(), "Error starting activity", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
-
 
     @Override
     public int getItemCount() {
@@ -97,19 +103,18 @@ public class YerelTvAdapter extends RecyclerView.Adapter<YerelTvAdapter.MyViewHo
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView image;
-        TextView name,role;
+        TextView name, role;
         RelativeLayout relative;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            image=itemView.findViewById(R.id.image);
-            name=itemView.findViewById(R.id.name);
-//            role=itemView.findViewById(R.id.role);
+            image = itemView.findViewById(R.id.image);
+            name = itemView.findViewById(R.id.name);
         }
     }
 
-    public void setSearchOperation(List<YerelTvModel> newList){
-        my_list=new ArrayList<>();
-        my_list.addAll(newList);
+    public void setSearchOperation(List<YerelTvModel> newList) {
+        my_list = new ArrayList<>(newList); // Use ArrayList constructor for a shallow copy
         notifyDataSetChanged();
     }
 
@@ -154,5 +159,4 @@ public class YerelTvAdapter extends RecyclerView.Adapter<YerelTvAdapter.MyViewHo
     private void resetClickCount() {
         clickCount = 0;
     }
-
 }

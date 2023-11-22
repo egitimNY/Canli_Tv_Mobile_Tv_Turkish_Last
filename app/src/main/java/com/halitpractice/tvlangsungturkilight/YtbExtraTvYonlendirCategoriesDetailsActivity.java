@@ -151,7 +151,7 @@ public class YtbExtraTvYonlendirCategoriesDetailsActivity extends AppCompatActiv
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, YerelTvYonlendirCategoriesActivity.class);
+        Intent intent = new Intent(this, YtbExtraTvYonlendirCategoriesActivity.class);
         startActivity(intent);
         finish(); // Close the current activity
 
@@ -163,7 +163,7 @@ public class YtbExtraTvYonlendirCategoriesDetailsActivity extends AppCompatActiv
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             // Handle the back button click here, navigate to ThirdActivity
-            Intent intent = new Intent(this, YerelTvYonlendirCategoriesActivity.class);
+            Intent intent = new Intent(this, YtbExtraTvYonlendirCategoriesActivity.class);
             startActivity(intent);
             finish(); // Finish the current activity if you don't want to return to it
             return true;
