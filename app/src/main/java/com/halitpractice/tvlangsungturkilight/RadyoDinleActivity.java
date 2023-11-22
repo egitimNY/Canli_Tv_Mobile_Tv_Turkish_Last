@@ -2,6 +2,7 @@ package com.halitpractice.tvlangsungturkilight;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -20,6 +21,7 @@ import com.halitpractice.tvlangsungturkilight.RestApi.ManagerAll;
 import com.halitpractice.tvlangsungturkilight.adapters.RadyoDinleAdapter;
 import com.halitpractice.tvlangsungturkilight.models.RadyoDinleModel;
 import com.halitpractice.tvlangsungturkilight.services.ChromeInstallDialogHelper;
+import com.halitpractice.tvlangsungturkilight.services.InterstitialAdHelper;
 import com.halitpractice.tvlangsungturkilight.services.RadyoDinleDataCache;
 
 import java.util.ArrayList;
@@ -37,6 +39,8 @@ public class RadyoDinleActivity extends AppCompatActivity {
     private ProgressBar progressBar;
 
     private RadyoDinleDataCache dataCache; // Instance of DataCache for caching data
+
+    private InterstitialAdHelper interstitialAdHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +107,28 @@ public class RadyoDinleActivity extends AppCompatActivity {
         // Show the install Chrome dialog
         ChromeInstallDialogHelper.showInstallChromeDialog(this);
 
+        // Initialize InterstitialAdHelper
+        interstitialAdHelper = new InterstitialAdHelper(this, getString(R.string.admob_interstitial_ad_unit_id));
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Show interstitial ad on resume
+        Log.d("Debug", "onResume called");
+        interstitialAdHelper.showInterstitialAd(this);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish(); // Close the current activity
+
+        // Handle back button press with interstitial ad
+        Log.d("Debug", "onBackPressed called");
+        interstitialAdHelper.onBackPressedWithAd(this, new Intent(this, MainActivity.class));
     }
 
     private void fetchData() {
@@ -175,6 +201,7 @@ public class RadyoDinleActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /*
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(this, MainActivity.class);
@@ -184,6 +211,7 @@ public class RadyoDinleActivity extends AppCompatActivity {
         // To prevent going back to TurkishLiveTvActivity on the next back press
 //        moveTaskToBack(false); // This line ensures the app goes to the background and doesn't go back to the previous activity
     }
+    */
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

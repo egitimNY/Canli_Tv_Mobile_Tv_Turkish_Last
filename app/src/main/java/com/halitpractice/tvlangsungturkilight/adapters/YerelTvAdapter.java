@@ -73,8 +73,8 @@ public class YerelTvAdapter extends RecyclerView.Adapter<YerelTvAdapter.MyViewHo
                 Intent i = new Intent(v.getContext(), YerelTvDetailsActivity.class);
                 i.putExtra("channel", my_list.get(holder.getAdapterPosition()));
                 v.getContext().startActivity(i);
-                clickCount++;
 
+                clickCount++;
                 if (clickCount >= 4) {
                     showInterstitialAd();
                     resetClickCount(); // Reset the click count

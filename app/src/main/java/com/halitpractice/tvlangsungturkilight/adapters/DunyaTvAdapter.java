@@ -75,7 +75,7 @@ public class DunyaTvAdapter extends RecyclerView.Adapter<DunyaTvAdapter.MyViewHo
                 v.getContext().startActivity(i);
                 clickCount++;
 
-                if (clickCount >= 4) {
+                if (clickCount >= 3) {
                     showInterstitialAd();
                     resetClickCount(); // Reset the click count
                 }

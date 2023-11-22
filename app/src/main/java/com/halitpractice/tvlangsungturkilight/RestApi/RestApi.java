@@ -27,7 +27,6 @@ import retrofit2.http.Query;
 
 public interface RestApi {
 
-
     @GET("/canliTVTurkishChromeTab/retrofitCanliTV/marqueeTextAds.php")
     Call<MarqueeTextModel> getMarqueText();
 
@@ -41,15 +40,14 @@ public interface RestApi {
     Call<FormattedTextModel> underConstructionFormatedText();
 
 
-    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/TurkishLiveTv.php")
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/ulusalTv.php")
     Call<List<UlusalTvModel>> ulusalTV();
 
-    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/TurkishLiveTvCategories.php")
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/ulusalTvCategories.php")
     Call<List<UlusalTvCategoryModel>> ulusalTvCategory();
 
-    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/TurkishLiveTvCategoriesDetails.php")
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/ulusalTvCategoriesDetails.php")
     Call<List<UlusalTvModel>> ulusalTvCategoryDetails(@Query("cat") String category);
-
 
 
     @GET("/canliTVTurkishChromeTab/retrofitCanliTV/yerelTvlerExo.php")
