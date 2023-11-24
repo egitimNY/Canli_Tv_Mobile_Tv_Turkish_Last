@@ -81,19 +81,19 @@ public class MainActivity extends AppCompatActivity implements InternetConnectiv
         findViewById(R.id.ulusalTvlerCategory).setOnClickListener(view ->
                 startActivity(new Intent(MainActivity.this, UlusalTvCategoriesActivity.class))
         );
-        findViewById(R.id.indiaExtraTv).setOnClickListener(view ->
+        findViewById(R.id.yerelTvlerContent).setOnClickListener(view ->
                 startActivity(new Intent(MainActivity.this, YerelTvActivity.class))
         );
-        findViewById(R.id.indiaTvCartoon).setOnClickListener(view ->
+        findViewById(R.id.yerelTvlerKategoriContent).setOnClickListener(view ->
                 startActivity(new Intent(MainActivity.this, YerelTvCategoriesActivity.class))
         );
-        findViewById(R.id.indiaTvMovie).setOnClickListener(view ->
+        findViewById(R.id.cizgiFilmContent).setOnClickListener(view ->
                 startActivity(new Intent(MainActivity.this, TurkishCartoonYtbActivity.class))
         );
-        findViewById(R.id.radyoDinle).setOnClickListener(view ->
+        findViewById(R.id.radyoDinleContent).setOnClickListener(view ->
                 startActivity(new Intent(MainActivity.this, RadyoDinleActivity.class))
         );
-        findViewById(R.id.yabanciMovie).setOnClickListener(view ->
+        findViewById(R.id.yabanciMoviesContent).setOnClickListener(view ->
                 startActivity(new Intent(MainActivity.this, TurkYabanciMovieActivity.class))
         );
         findViewById(R.id.ytbExtraTvContent).setOnClickListener(view ->
@@ -108,11 +108,11 @@ public class MainActivity extends AppCompatActivity implements InternetConnectiv
         findViewById(R.id.dunyaTvContent).setOnClickListener(view ->
                 startActivity(new Intent(MainActivity.this, DunyaTvActivity.class))
         );
-        findViewById(R.id.dunyaTvCountriesContent).setOnClickListener(view ->
-                startActivity(new Intent(MainActivity.this, DunyaTvCountriesActivity.class))
-        );
         findViewById(R.id.dunyaTvKategori).setOnClickListener(view ->
                 startActivity(new Intent(MainActivity.this, DunyaTvCategoriesActivity.class))
+        );
+        findViewById(R.id.dunyaTvCountriesContent).setOnClickListener(view ->
+                startActivity(new Intent(MainActivity.this, DunyaTvCountriesActivity.class))
         );
 
 

@@ -132,7 +132,6 @@ public interface RestApi {
     Call<List<YerelTvModel>> getDunyaTvByCountries(@Query("cat") String category);
 
 
-
     @GET("/canliTVTurkishChromeTab/retrofitCanliTV/dunyaTvlerExoYonlendir.php")
     Call<List<YerelTvYonlendirModel>> dunyaTvYonlendir();
 

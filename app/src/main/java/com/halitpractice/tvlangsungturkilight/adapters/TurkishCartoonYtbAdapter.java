@@ -19,11 +19,12 @@ import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
-import com.halitpractice.tvlangsungturkilight.TurkishCartoonYtbDetailsActivity;
 import com.halitpractice.tvlangsungturkilight.R;
+import com.halitpractice.tvlangsungturkilight.TurkishCartoonYtbDetailsActivity;
 import com.halitpractice.tvlangsungturkilight.models.TurkishCartoonYtbModel;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TurkishCartoonYtbAdapter extends RecyclerView.Adapter<TurkishCartoonYtbAdapter.MyViewHolder> {
@@ -141,4 +142,11 @@ public class TurkishCartoonYtbAdapter extends RecyclerView.Adapter<TurkishCartoo
     private void resetClickCount() {
         clickCount = 0;
     }
+
+
+    public void setSearchOperation(List<TurkishCartoonYtbModel> newList) {
+        my_list = new ArrayList<>(newList); // Use ArrayList constructor for shallow copy
+        notifyDataSetChanged();
+    }
+
 }

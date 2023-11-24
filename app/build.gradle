@@ -10,8 +10,8 @@ android {
         applicationId "com.halitpractice.tvlangsungturkilight"
         minSdkVersion 21
         targetSdkVersion 33
-        versionCode 21
-        versionName "4.6"
+        versionCode 25
+        versionName "4.8"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

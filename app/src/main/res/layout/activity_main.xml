@@ -40,7 +40,8 @@
             </RelativeLayout>
             -->
 
-            <include layout="@layout/content_main" />
+<!--            <include layout="@layout/content_main" />-->
+            <include layout="@layout/content_main_new" />
 
         </FrameLayout>
 

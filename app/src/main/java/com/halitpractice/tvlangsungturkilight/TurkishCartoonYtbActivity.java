@@ -1,14 +1,21 @@
 package com.halitpractice.tvlangsungturkilight;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.TypedValue;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,6 +35,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class TurkishCartoonYtbActivity extends AppCompatActivity {
+
+    private SearchView searchView = null;  /////// SearchView codes parts
+    private SearchView.OnQueryTextListener queryTextListener;  /////// SearchView codes parts
 
     private RecyclerView recyclerView;
     private List<TurkishCartoonYtbModel> main_list;
@@ -167,6 +177,64 @@ public class TurkishCartoonYtbActivity extends AppCompatActivity {
             // Handle the case where cached data is empty
         }
     }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+
+        if (searchItem != null) {
+            searchView = (SearchView) searchItem.getActionView();
+        }
+        if (searchView != null) {
+            searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+
+            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String query) {
+                    return false;
+                }
+
+                @Override
+                public boolean onQueryTextChange(String newText) {
+                    newText = newText.toLowerCase();
+                    List<TurkishCartoonYtbModel> myList = new ArrayList<>();
+
+                    for (TurkishCartoonYtbModel model : dataCache.getCachedData()) {
+                        String itemName = model.getChannelname().toLowerCase();
+
+                        if (itemName.contains(newText))
+                            myList.add(model);
+                    }
+
+                    if (adapter != null) {
+                        adapter.setSearchOperation(myList);
+                    } else {
+                        adapter = new TurkishCartoonYtbAdapter(myList, TurkishCartoonYtbActivity.this);
+                        recyclerView.setAdapter(adapter);
+                    }
+
+                    return false;
+                }
+            });
+
+            // Programmatically set the left margin of the SearchView
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+            );
+            int marginInDp = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, getResources().getDisplayMetrics());
+            params.setMargins(marginInDp, 0, 0, 0);
+            searchView.setLayoutParams(params);
+        }
+
+        return true;
+    }
+
 
 
     @Override
