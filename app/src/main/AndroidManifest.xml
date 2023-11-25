@@ -14,13 +14,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CanliTvMobileTvTurkishLast">
 
-        <activity android:name=".activities.DunyaTvYonlendirCountriesActivity"
+        <activity android:name=".YtbExtraTvCountriesDetailsActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/AppTheme.NoActionBar"/>
 
-        <activity android:name=".activities.DunyaTvYonlendirCountriesDetailsActivity"
+        <activity android:name=".YtbExtraTvCountriesActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".activities.DunyaTvYonlendirCountriesActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.DunyaTvYonlendirCountriesDetailsActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activities.DunyaTvYonlendirCategoriesDetailsActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"

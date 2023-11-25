@@ -6,13 +6,13 @@
 
 
     <!--               Test App Ad ID   -->
-        <string name="admob_app_id">ca-app-pub-3940256099942544~3347511713</string>
+            <string name="admob_app_id">ca-app-pub-3940256099942544~3347511713</string>
 
     <!--               Test Ad Unit ID         -->
-        <string name="admob_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+            <string name="admob_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
 
     <!--               Test Ad Interstitial ID         -->
-        <string name="admob_interstitial_ad_unit_id">ca-app-pub-3940256099942544/1033173712</string>
+            <string name="admob_interstitial_ad_unit_id">ca-app-pub-3940256099942544/1033173712</string>
 
 
 
@@ -47,6 +47,7 @@
     <string name="cizgi_filmler">Çizgi Filmler</string>
     <string name="ytb_extra">YTB Ekstra - Hersey</string>
     <string name="ytb_extra_kategori">YTB Ekstra - Kategori</string>
+    <string name="ytb_extra_countries">YTB Ekstra - Ülkeler</string>
     <string name="gazeteler">Gazeteler</string>
     <string name="dunyaTv">Dünya Tv\'leri Hepsi</string>
     <string name="ulkeler">Dünya Tv\'leri Ülkeler</string>

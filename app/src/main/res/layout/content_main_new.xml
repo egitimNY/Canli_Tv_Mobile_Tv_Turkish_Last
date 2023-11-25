@@ -291,7 +291,7 @@
                         android:layout_height="25dp"
                         android:layout_margin="15dp"
                         android:layout_weight="1"
-                        android:src="@drawable/gazeteler_kirmizi"
+                        android:src="@drawable/ic_radio"
                         app:civ_border_color="#2c6087" />
 
                     <TextView
@@ -338,7 +338,7 @@
                         android:layout_height="25dp"
                         android:layout_margin="15dp"
                         android:layout_weight="1"
-                        android:src="@drawable/gazeteler_kirmizi"
+                        android:src="@drawable/ic_movie"
                         app:civ_border_color="#2c6087" />
 
                     <TextView
@@ -453,6 +453,54 @@
                         android:src="@drawable/ic_navigate_next" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                app:cardBackgroundColor="@color/contentMainCardView"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="20dp">
+
+                <LinearLayout
+                    android:id="@+id/ytbExtraTvCountriesContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="43dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="0dp"
+                        android:layout_height="25dp"
+                        android:layout_margin="15dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_movie"
+                        app:civ_border_color="#2c6087" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="@string/ytb_extra_countries"
+                        android:textColor="@color/contentMainTexView"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_margin="1dp"
+                        android:layout_weight="2"
+                        android:src="@drawable/ic_navigate_next" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"

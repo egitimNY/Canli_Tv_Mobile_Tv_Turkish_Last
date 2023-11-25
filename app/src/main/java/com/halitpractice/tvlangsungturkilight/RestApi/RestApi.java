@@ -98,6 +98,11 @@ public interface RestApi {
     @GET("/canliTVTurkishChromeTab/retrofitCanliTV/ytbExtraTvlerCategoriesDetails.php")
     Call<List<YtbExtraTvModel>> getYtbExtraTvByCategory(@Query("cat") String category);
 
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/ytbExtraTvlerCountries.php")
+    Call<List<YtbExtraTvCategoryModel>> ytbExtraTvCountry();
+
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/ytbExtraTvlerCountriesDetails.php")
+    Call<List<YtbExtraTvModel>> getYtbExtraTvByCountry(@Query("cat") String category);
 
 
     @GET("/canliTVTurkishChromeTab/retrofitCanliTV/ytbExtraTvYonlendir.php")

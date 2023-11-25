@@ -102,6 +102,9 @@ public class MainActivity extends AppCompatActivity implements InternetConnectiv
         findViewById(R.id.ytbExtraTvCategoryContent).setOnClickListener(view ->
                 startActivity(new Intent(MainActivity.this, YtbExtraTvCategoriesActivity.class))
         );
+        findViewById(R.id.ytbExtraTvCountriesContent).setOnClickListener(view ->
+                startActivity(new Intent(MainActivity.this, YtbExtraTvCountriesActivity.class))
+        );
         findViewById(R.id.gazetelerContent).setOnClickListener(view ->
                 startActivity(new Intent(MainActivity.this, GazetelerActivity.class))
         );
