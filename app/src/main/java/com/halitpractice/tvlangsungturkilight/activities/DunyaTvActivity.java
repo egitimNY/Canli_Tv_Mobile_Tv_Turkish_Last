@@ -218,11 +218,17 @@ public class DunyaTvActivity extends AppCompatActivity {
                     newText = newText.toLowerCase();
                     List<YerelTvModel> myList = new ArrayList<>();
 
-                    for (YerelTvModel model : dataCache.getCachedData()) {
-                        String itemName = model.getName().toLowerCase();
+                    List<YerelTvModel> cachedData = dataCache.getCachedData();
 
-                        if (itemName.contains(newText))
-                            myList.add(model);
+                    if (cachedData != null) {
+                        for (YerelTvModel model : cachedData) {
+                            if (model != null && model.getName() != null) {
+                                String itemName = model.getName().toLowerCase();
+
+                                if (itemName.contains(newText))
+                                    myList.add(model);
+                            }
+                        }
                     }
 
                     if (adapter != null) {
@@ -248,6 +254,7 @@ public class DunyaTvActivity extends AppCompatActivity {
 
         return true;
     }
+
 
 
     @Override

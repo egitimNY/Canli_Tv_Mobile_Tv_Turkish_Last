@@ -204,11 +204,17 @@ public class TurkishCartoonYtbActivity extends AppCompatActivity {
                     newText = newText.toLowerCase();
                     List<TurkishCartoonYtbModel> myList = new ArrayList<>();
 
-                    for (TurkishCartoonYtbModel model : dataCache.getCachedData()) {
-                        String itemName = model.getChannelname().toLowerCase();
+                    List<TurkishCartoonYtbModel> cachedData = dataCache.getCachedData();
 
-                        if (itemName.contains(newText))
-                            myList.add(model);
+                    if (cachedData != null) {
+                        for (TurkishCartoonYtbModel model : cachedData) {
+                            if (model != null && model.getChannelname() != null) {
+                                String itemName = model.getChannelname().toLowerCase();
+
+                                if (itemName.contains(newText))
+                                    myList.add(model);
+                            }
+                        }
                     }
 
                     if (adapter != null) {
@@ -234,6 +240,7 @@ public class TurkishCartoonYtbActivity extends AppCompatActivity {
 
         return true;
     }
+
 
 
 

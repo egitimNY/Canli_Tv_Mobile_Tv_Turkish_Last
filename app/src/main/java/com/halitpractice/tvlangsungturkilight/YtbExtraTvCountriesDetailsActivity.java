@@ -85,7 +85,7 @@ public class YtbExtraTvCountriesDetailsActivity extends AppCompatActivity {
         dataCache = YtbExtraTvCategoriesDetailsDataCache.getInstance();
 
         if (actionBar != null && selectedCategory != null) {
-            actionBar.setTitle("Kategori : " + selectedCategory); // Set the selected category as the title
+            actionBar.setTitle("Ülkeler : " + selectedCategory); // Set the selected category as the title
 
             // Check if there is cached data for the selected category
             List<YtbExtraTvModel> cachedData = dataCache.getCachedData(selectedCategory);

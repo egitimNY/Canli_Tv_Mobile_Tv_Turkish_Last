@@ -217,11 +217,17 @@ public class UlusalTvActivity extends AppCompatActivity {
                     newText = newText.toLowerCase();
                     List<UlusalTvModel> myList = new ArrayList<>();
 
-                    for (UlusalTvModel model : dataCache.getCachedData()) {
-                        String itemName = model.getName().toLowerCase();
+                    List<UlusalTvModel> cachedData = dataCache.getCachedData();
 
-                        if (itemName.contains(newText))
-                            myList.add(model);
+                    if (cachedData != null) {
+                        for (UlusalTvModel model : cachedData) {
+                            if (model != null && model.getName() != null) {
+                                String itemName = model.getName().toLowerCase();
+
+                                if (itemName.contains(newText))
+                                    myList.add(model);
+                            }
+                        }
                     }
 
                     if (adapter != null) {

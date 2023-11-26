@@ -39,8 +39,8 @@
 
     <string name="ulusal_tvler">Ulusal Tv\'ler</string>
     <string name="ulusal_tvler_kategori">Ulusal Tv\'ler Kategori</string>
-    <!--    <string name="no_browser_found_message">No suitable browser found. Please install or activate a web browser to open the link.</string>-->
-    <string name="no_browser_found_message">Uygun tarayıcı bulunamadı. Lütfen bağlantıyı açmak için bir web tarayıcısı yükleyin veya etkinleştirin.</string>
+    <!--    <string name="no_browser_found_message">Chrome Custom Tabs is required to open this link. Please install Google Chrome for the best experience.</string>-->
+    <string name="no_browser_found_message">Bu bağlantıyı açmak için Chrome Custom Tabs gereklidir. En iyi deneyim için lütfen Google Chrome\'u yükleyin.</string>
     <string name="video_id_empty_or_null_message">Video ID is empty or null</string>
     <string name="yerel_tvler">Yerel Tv\'ler</string>
     <string name="yerel_tvler_kategori">Yerel Tv\'ler Kategori</string>

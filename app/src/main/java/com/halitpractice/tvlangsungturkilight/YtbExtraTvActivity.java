@@ -213,11 +213,17 @@ public class YtbExtraTvActivity extends AppCompatActivity {
                     newText = newText.toLowerCase();
                     List<YtbExtraTvModel> myList = new ArrayList<>();
 
-                    for (YtbExtraTvModel model : dataCache.getCachedData()) {
-                        String itemName = model.getName().toLowerCase();
+                    List<YtbExtraTvModel> cachedData = dataCache.getCachedData();
 
-                        if (itemName.contains(newText))
-                            myList.add(model);
+                    if (cachedData != null) {
+                        for (YtbExtraTvModel model : cachedData) {
+                            if (model != null && model.getName() != null) {
+                                String itemName = model.getName().toLowerCase();
+
+                                if (itemName.contains(newText))
+                                    myList.add(model);
+                            }
+                        }
                     }
 
                     if (adapter != null) {
@@ -243,6 +249,7 @@ public class YtbExtraTvActivity extends AppCompatActivity {
 
         return true;
     }
+
 
 
     @Override
