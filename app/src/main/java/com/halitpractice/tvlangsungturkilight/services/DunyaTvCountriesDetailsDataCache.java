@@ -1,13 +1,13 @@
 package com.halitpractice.tvlangsungturkilight.services;
 
-import com.halitpractice.tvlangsungturkilight.models.YerelTvModel;
+import com.halitpractice.tvlangsungturkilight.models.DunyaTvModel;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class DunyaTvCountriesDetailsDataCache {
-    private Map<String, List<YerelTvModel>> categoryCaches = new HashMap<>();
+    private Map<String, List<DunyaTvModel>> categoryCaches = new HashMap<>();
     private static DunyaTvCountriesDetailsDataCache instance;
 
     public static DunyaTvCountriesDetailsDataCache getInstance() {
@@ -17,11 +17,11 @@ public class DunyaTvCountriesDetailsDataCache {
         return instance;
     }
 
-    public List<YerelTvModel> getCachedData(String categoryName) {
+    public List<DunyaTvModel> getCachedData(String categoryName) {
         return categoryCaches.get(categoryName);
     }
 
-    public void setCachedData(String categoryName, List<YerelTvModel> data) {
+    public void setCachedData(String categoryName, List<DunyaTvModel> data) {
         categoryCaches.put(categoryName, data);
     }
 }

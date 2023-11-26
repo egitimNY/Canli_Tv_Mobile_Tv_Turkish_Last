@@ -13,14 +13,19 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/Theme.CanliTvMobileTvTurkishLast">
-
-        <activity android:name=".YtbExtraTvCountriesDetailsActivity"
+        <activity android:name=".activities.DunyaTvDetailsActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:theme="@style/AppTheme.NoActionBar"/>
-
-        <activity android:name=".YtbExtraTvCountriesActivity"
+            android:keepScreenOn="true"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".YtbExtraTvCountriesDetailsActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".YtbExtraTvCountriesActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activities.DunyaTvYonlendirCountriesActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"

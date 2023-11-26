@@ -19,7 +19,7 @@ import com.halitpractice.tvlangsungturkilight.MainActivity;
 import com.halitpractice.tvlangsungturkilight.R;
 import com.halitpractice.tvlangsungturkilight.RestApi.ManagerAll;
 import com.halitpractice.tvlangsungturkilight.adapters.DunyaTvYonlendirCategoryAdapter;
-import com.halitpractice.tvlangsungturkilight.models.YerelTvYonlendirCategoryModel;
+import com.halitpractice.tvlangsungturkilight.models.DunyaTvYonlendirCategoryModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +31,7 @@ import retrofit2.Response;
 public class DunyaTvYonlendirCategoriesActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private List<YerelTvYonlendirCategoryModel> main_list;
+    private List<DunyaTvYonlendirCategoryModel> main_list;
     private DunyaTvYonlendirCategoryAdapter adapter;
 
     @Override
@@ -92,10 +92,10 @@ public class DunyaTvYonlendirCategoriesActivity extends AppCompatActivity {
 
     private void fetchData() {
 
-        Call<List<YerelTvYonlendirCategoryModel>> req = ManagerAll.getInstance().dunyaTvCategoryYonlendirFetch();
-        req.enqueue(new Callback<List<YerelTvYonlendirCategoryModel>>() {
+        Call<List<DunyaTvYonlendirCategoryModel>> req = ManagerAll.getInstance().dunyaTvCategoryYonlendirFetch();
+        req.enqueue(new Callback<List<DunyaTvYonlendirCategoryModel>>() {
             @Override
-            public void onResponse(Call<List<YerelTvYonlendirCategoryModel>> call, Response<List<YerelTvYonlendirCategoryModel>> response) {
+            public void onResponse(Call<List<DunyaTvYonlendirCategoryModel>> call, Response<List<DunyaTvYonlendirCategoryModel>> response) {
 
                 if (response.isSuccessful()) {
 
@@ -114,7 +114,7 @@ public class DunyaTvYonlendirCategoriesActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<YerelTvYonlendirCategoryModel>> call, Throwable t) {
+            public void onFailure(Call<List<DunyaTvYonlendirCategoryModel>> call, Throwable t) {
                 handleNetworkFailure();
             }
         });

@@ -1,23 +1,24 @@
 package com.halitpractice.tvlangsungturkilight.services;
 
-import com.halitpractice.tvlangsungturkilight.models.YerelTvModel;
+import com.halitpractice.tvlangsungturkilight.models.DunyaTvModel;
 
 import java.util.List;
 
 public class DunyaTvDataCache {
-    private List<YerelTvModel> cachedData;
+    private List<DunyaTvModel> cachedData;
     private static final DunyaTvDataCache instance = new DunyaTvDataCache();
 
     public static DunyaTvDataCache getInstance() {
         return instance;
     }
 
-    public List<YerelTvModel> getCachedData() {
+    public List<DunyaTvModel> getCachedData() {
         return cachedData;
     }
 
-    public void setCachedData(List<YerelTvModel> data) {
+    public void setCachedData(List<DunyaTvModel> data) {
         cachedData = data;
     }
 }
+
 

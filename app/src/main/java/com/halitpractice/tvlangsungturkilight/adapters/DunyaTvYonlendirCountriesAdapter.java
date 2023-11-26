@@ -14,17 +14,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.halitpractice.tvlangsungturkilight.R;
 import com.halitpractice.tvlangsungturkilight.activities.DunyaTvYonlendirCountriesDetailsActivity;
-import com.halitpractice.tvlangsungturkilight.models.YerelTvYonlendirCategoryModel;
+import com.halitpractice.tvlangsungturkilight.models.DunyaTvYonlendirCategoryModel;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class DunyaTvYonlendirCountriesAdapter extends RecyclerView.Adapter<DunyaTvYonlendirCountriesAdapter.MyViewHolder> {
-    List<YerelTvYonlendirCategoryModel> my_list;
+    List<DunyaTvYonlendirCategoryModel> my_list;
     Context context;
 
-    public DunyaTvYonlendirCountriesAdapter(List<YerelTvYonlendirCategoryModel> my_list, Context context) {
+    public DunyaTvYonlendirCountriesAdapter(List<DunyaTvYonlendirCategoryModel> my_list, Context context) {
         this.my_list = my_list;
         this.context = context;
     }
@@ -32,19 +32,19 @@ public class DunyaTvYonlendirCountriesAdapter extends RecyclerView.Adapter<Dunya
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.yerel_tv_yonlendir_list_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.dunya_tv_list_item, parent, false);
         return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        final YerelTvYonlendirCategoryModel yerelTvYonlendirCategoryModel = my_list.get(position);
-        holder.name.setText(yerelTvYonlendirCategoryModel.getName());
+        final DunyaTvYonlendirCategoryModel dunyaTvYonlendirCategoryModel = my_list.get(position);
+        holder.name.setText(dunyaTvYonlendirCategoryModel.getName());
 
 
         // Load the image with Picasso or any other image loading library
-        if (yerelTvYonlendirCategoryModel.getImage_url() != null && !yerelTvYonlendirCategoryModel.getImage_url().isEmpty()) {
-            Picasso.get().load(yerelTvYonlendirCategoryModel.getImage_url())
+        if (dunyaTvYonlendirCategoryModel.getImage_url() != null && !dunyaTvYonlendirCategoryModel.getImage_url().isEmpty()) {
+            Picasso.get().load(dunyaTvYonlendirCategoryModel.getImage_url())
                     .error(R.drawable.default_there_is_no_logo) // Set the default image here
                     .into(holder.image, new Callback() {
                         @Override

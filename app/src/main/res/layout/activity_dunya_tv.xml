@@ -7,7 +7,7 @@
     tools:context=".activities.DunyaTvActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/dunyaTvRecycler"
+        android:id="@+id/dunyaTvActivityRecycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="55dp">
@@ -16,7 +16,7 @@
     <include layout="@layout/app_bar_main" />
 
     <ProgressBar
-        android:id="@+id/dunyaTvProgressBar"
+        android:id="@+id/progressBarDunyaTvActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -34,13 +34,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
         <ImageView
-            android:id="@+id/closeBtnDunyaTv"
+            android:id="@+id/closeBtnDunyaTvActivity"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:src="@drawable/ic_exit"
             android:contentDescription="@string/close_button_label" />
         <com.google.android.gms.ads.AdView
-            android:id="@+id/adViewDunyaTv"
+            android:id="@+id/adViewDunyaTvActivity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -49,7 +49,5 @@
         </com.google.android.gms.ads.AdView>
 
     </LinearLayout>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -18,8 +18,8 @@ import com.google.android.gms.ads.AdView;
 import com.halitpractice.tvlangsungturkilight.MainActivity;
 import com.halitpractice.tvlangsungturkilight.R;
 import com.halitpractice.tvlangsungturkilight.RestApi.ManagerAll;
-import com.halitpractice.tvlangsungturkilight.adapters.YerelTvAdapter;
-import com.halitpractice.tvlangsungturkilight.models.YerelTvModel;
+import com.halitpractice.tvlangsungturkilight.adapters.DunyaTvAdapter;
+import com.halitpractice.tvlangsungturkilight.models.DunyaTvModel;
 import com.halitpractice.tvlangsungturkilight.services.DunyaTvCountriesDetailsDataCache;
 
 import java.util.List;
@@ -31,8 +31,8 @@ import retrofit2.Response;
 public class DunyaTvCountriesDetailsActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private List<YerelTvModel> main_list;
-    private YerelTvAdapter adapter;
+    private List<DunyaTvModel> main_list;
+    private DunyaTvAdapter adapter;
     private ProgressBar progressBar;
 
     // In your activity class
@@ -42,7 +42,6 @@ public class DunyaTvCountriesDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dunya_tv_countries_details);
-
 
         // Find and set the Toolbar as the action bar
         Toolbar toolbar = findViewById(R.id.custom_toolbar);
@@ -90,7 +89,7 @@ public class DunyaTvCountriesDetailsActivity extends AppCompatActivity {
             actionBar.setTitle("Ülke : " + selectedCategory); // Set the selected category as the title
 
             // Check if there is cached data for the selected category
-            List<YerelTvModel> cachedData = dataCache.getCachedData(selectedCategory);
+            List<DunyaTvModel> cachedData = dataCache.getCachedData(selectedCategory);
 
             if (cachedData != null && !cachedData.isEmpty()) {
                 // Use cached data to update the UI
@@ -125,21 +124,21 @@ public class DunyaTvCountriesDetailsActivity extends AppCompatActivity {
     private void fetchData(String selectedCategory) {
         progressBar.setVisibility(View.VISIBLE);
 
-        List<YerelTvModel> cachedData = dataCache.getCachedData(selectedCategory);
+        List<DunyaTvModel> cachedData = dataCache.getCachedData(selectedCategory);
 
         if (cachedData != null && !cachedData.isEmpty()) {
             // Use cached data to update the UI
             updateUIWithCachedData(cachedData);
             progressBar.setVisibility(View.GONE);
         } else {
-            Call<List<YerelTvModel>> req = ManagerAll.getInstance().dunyaTvCountriesDetailsFetch(selectedCategory);
-            req.enqueue(new Callback<List<YerelTvModel>>() {
+            Call<List<DunyaTvModel>> req = ManagerAll.getInstance().dunyaTvCountriesDetailsFetch(selectedCategory);
+            req.enqueue(new Callback<List<DunyaTvModel>>() {
                 @Override
-                public void onResponse(Call<List<YerelTvModel>> call, Response<List<YerelTvModel>> response) {
+                public void onResponse(Call<List<DunyaTvModel>> call, Response<List<DunyaTvModel>> response) {
                     progressBar.setVisibility(View.GONE); // Always hide the ProgressBar
 
                     if (response.isSuccessful()) {
-                        List<YerelTvModel> data = response.body();
+                        List<DunyaTvModel> data = response.body();
                         if (data != null && !data.isEmpty()) {
                             // Cache the data in the specific category cache
                             dataCache.setCachedData(selectedCategory, data);
@@ -154,7 +153,7 @@ public class DunyaTvCountriesDetailsActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onFailure(Call<List<YerelTvModel>> call, Throwable t) {
+                public void onFailure(Call<List<DunyaTvModel>> call, Throwable t) {
                     progressBar.setVisibility(View.GONE); // Always hide the ProgressBar
                     handleNetworkFailure();
                     t.printStackTrace(); // Print the error details for debugging
@@ -163,9 +162,9 @@ public class DunyaTvCountriesDetailsActivity extends AppCompatActivity {
         }
     }
 
-    private void updateUIWithCachedData(List<YerelTvModel> cachedData) {
+    private void updateUIWithCachedData(List<DunyaTvModel> cachedData) {
         if (cachedData != null && !cachedData.isEmpty()) {
-            adapter = new YerelTvAdapter(cachedData, DunyaTvCountriesDetailsActivity.this);
+            adapter = new DunyaTvAdapter(cachedData, DunyaTvCountriesDetailsActivity.this);
             recyclerView.setAdapter(adapter);
         } else {
             handleNullResponse();

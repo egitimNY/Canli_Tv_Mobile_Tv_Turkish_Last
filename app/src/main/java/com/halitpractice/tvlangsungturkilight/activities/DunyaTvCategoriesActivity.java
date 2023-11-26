@@ -19,9 +19,8 @@ import com.halitpractice.tvlangsungturkilight.MainActivity;
 import com.halitpractice.tvlangsungturkilight.R;
 import com.halitpractice.tvlangsungturkilight.RestApi.ManagerAll;
 import com.halitpractice.tvlangsungturkilight.adapters.DunyaTvCategoryAdapter;
-import com.halitpractice.tvlangsungturkilight.models.YerelTvCategoryModel;
+import com.halitpractice.tvlangsungturkilight.models.DunyaTvCategoryModel;
 import com.halitpractice.tvlangsungturkilight.services.DunyaTvCategoriesDataCache;
-import com.halitpractice.tvlangsungturkilight.services.YerelTvCategoriesDataCache;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +32,7 @@ import retrofit2.Response;
 public class DunyaTvCategoriesActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private List<YerelTvCategoryModel> main_list;
+    private List<DunyaTvCategoryModel> main_list;
     private DunyaTvCategoryAdapter adapter;
     private ProgressBar progressBar;
 
@@ -101,7 +100,7 @@ public class DunyaTvCategoriesActivity extends AppCompatActivity {
         dataCache = DunyaTvCategoriesDataCache.getInstance();
 
         // Check if there is cached data
-        List<YerelTvCategoryModel> cachedData = dataCache.getCachedData();
+        List<DunyaTvCategoryModel> cachedData = dataCache.getCachedData();
 
         if (cachedData != null && !cachedData.isEmpty()) {
             // Use cached data to update the UI
@@ -117,7 +116,7 @@ public class DunyaTvCategoriesActivity extends AppCompatActivity {
         progressBar.setVisibility(View.VISIBLE);
 
         // Check if there's cached data available
-        List<YerelTvCategoryModel> cachedData = YerelTvCategoriesDataCache.getInstance().getCachedData();
+        List<DunyaTvCategoryModel> cachedData = DunyaTvCategoriesDataCache.getInstance().getCachedData();
 
         // If cached data exists, use it to update the UI
         if (cachedData != null && !cachedData.isEmpty()) {
@@ -125,14 +124,14 @@ public class DunyaTvCategoriesActivity extends AppCompatActivity {
             progressBar.setVisibility(View.GONE);
         } else {
             // No cached data, fetch from the network
-            Call<List<YerelTvCategoryModel>> req = ManagerAll.getInstance().dunyaTvCategoryFetch();
-            req.enqueue(new Callback<List<YerelTvCategoryModel>>() {
+            Call<List<DunyaTvCategoryModel>> req = ManagerAll.getInstance().dunyaTvCategoryFetch();
+            req.enqueue(new Callback<List<DunyaTvCategoryModel>>() {
                 @Override
-                public void onResponse(Call<List<YerelTvCategoryModel>> call, Response<List<YerelTvCategoryModel>> response) {
+                public void onResponse(Call<List<DunyaTvCategoryModel>> call, Response<List<DunyaTvCategoryModel>> response) {
                     progressBar.setVisibility(View.GONE); // Always hide the ProgressBar
 
                     if (response.isSuccessful()) {
-                        List<YerelTvCategoryModel> data = response.body();
+                        List<DunyaTvCategoryModel> data = response.body();
                         // If data is fetched, cache it and update the UI
                         if (data != null && !data.isEmpty()) {
                             DunyaTvCategoriesDataCache.getInstance().setCachedData(data);
@@ -148,7 +147,7 @@ public class DunyaTvCategoriesActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onFailure(Call<List<YerelTvCategoryModel>> call, Throwable t) {
+                public void onFailure(Call<List<DunyaTvCategoryModel>> call, Throwable t) {
                     progressBar.setVisibility(View.GONE); // Always hide the ProgressBar
                     handleNetworkFailure();
                 }
@@ -156,7 +155,7 @@ public class DunyaTvCategoriesActivity extends AppCompatActivity {
         }
     }
 
-    private void updateUIWithCachedData(List<YerelTvCategoryModel> cachedData) {
+    private void updateUIWithCachedData(List<DunyaTvCategoryModel> cachedData) {
         if (cachedData != null && !cachedData.isEmpty()) {
             adapter = new DunyaTvCategoryAdapter(cachedData, DunyaTvCategoriesActivity.this);
             recyclerView.setAdapter(adapter);

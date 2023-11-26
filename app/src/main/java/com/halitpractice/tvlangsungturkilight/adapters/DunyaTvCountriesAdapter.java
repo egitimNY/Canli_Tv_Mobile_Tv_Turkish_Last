@@ -14,16 +14,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.halitpractice.tvlangsungturkilight.R;
 import com.halitpractice.tvlangsungturkilight.activities.DunyaTvCountriesDetailsActivity;
-import com.halitpractice.tvlangsungturkilight.models.YerelTvCategoryModel;
+import com.halitpractice.tvlangsungturkilight.models.DunyaTvCategoryModel;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class DunyaTvCountriesAdapter extends RecyclerView.Adapter<DunyaTvCountriesAdapter.MyViewHolder> {
-    List<YerelTvCategoryModel> my_list;
+    List<DunyaTvCategoryModel> my_list;
     Context context;
 
-    public DunyaTvCountriesAdapter(List<YerelTvCategoryModel> my_list, Context context) {
+    public DunyaTvCountriesAdapter(List<DunyaTvCategoryModel> my_list, Context context) {
         this.my_list = my_list;
         this.context = context;
     }
@@ -31,18 +31,18 @@ public class DunyaTvCountriesAdapter extends RecyclerView.Adapter<DunyaTvCountri
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.yerel_tv_list_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.dunya_tv_list_item, parent, false);
         return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        final YerelTvCategoryModel yerelTvCategoryModel = my_list.get(position);
-        holder.name.setText(yerelTvCategoryModel.getName());
+        final DunyaTvCategoryModel dunyaTvCategoryModel = my_list.get(position);
+        holder.name.setText(dunyaTvCategoryModel.getName());
 
         // Load the image with Picasso or any other image loading library
-        if (yerelTvCategoryModel.getImage_url() != null && !yerelTvCategoryModel.getImage_url().isEmpty()) {
-            Picasso.get().load(yerelTvCategoryModel.getImage_url())
+        if (dunyaTvCategoryModel.getImage_url() != null && !dunyaTvCategoryModel.getImage_url().isEmpty()) {
+            Picasso.get().load(dunyaTvCategoryModel.getImage_url())
                     .error(R.drawable.default_there_is_no_logo) // Set the default image here
                     .into(holder.image);
         } else {

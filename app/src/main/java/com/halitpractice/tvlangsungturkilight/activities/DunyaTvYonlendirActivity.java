@@ -25,8 +25,8 @@ import com.google.android.gms.ads.AdView;
 import com.halitpractice.tvlangsungturkilight.MainActivity;
 import com.halitpractice.tvlangsungturkilight.R;
 import com.halitpractice.tvlangsungturkilight.RestApi.ManagerAll;
-import com.halitpractice.tvlangsungturkilight.adapters.YerelTvYonlendirAdapter;
-import com.halitpractice.tvlangsungturkilight.models.YerelTvYonlendirModel;
+import com.halitpractice.tvlangsungturkilight.adapters.DunyaTvYonlendirAdapter;
+import com.halitpractice.tvlangsungturkilight.models.DunyaTvYonlendirModel;
 import com.halitpractice.tvlangsungturkilight.services.ChromeInstallDialogHelper;
 
 import java.util.ArrayList;
@@ -42,14 +42,13 @@ public class DunyaTvYonlendirActivity extends AppCompatActivity {
     private SearchView.OnQueryTextListener queryTextListener;  /////// SearchView codes parts
 
     private RecyclerView recyclerView;
-    private List<YerelTvYonlendirModel> main_list;
-    private YerelTvYonlendirAdapter adapter;
+    private List<DunyaTvYonlendirModel> main_list;
+    private DunyaTvYonlendirAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dunya_tv_yonlendir);
-
 
         Toolbar toolbar = findViewById(R.id.custom_toolbar);
         setSupportActionBar(toolbar);
@@ -97,16 +96,16 @@ public class DunyaTvYonlendirActivity extends AppCompatActivity {
     }
 
     private void fetchData() {
-        Call<List<YerelTvYonlendirModel>> req = ManagerAll.getInstance().dunyaTvYonlendirFetch();
-        req.enqueue(new Callback<List<YerelTvYonlendirModel>>() {
+        Call<List<DunyaTvYonlendirModel>> req = ManagerAll.getInstance().dunyaTvYonlendirFetch();
+        req.enqueue(new Callback<List<DunyaTvYonlendirModel>>() {
             @Override
-            public void onResponse(Call<List<YerelTvYonlendirModel>> call, Response<List<YerelTvYonlendirModel>> response) {
+            public void onResponse(Call<List<DunyaTvYonlendirModel>> call, Response<List<DunyaTvYonlendirModel>> response) {
                 if (response.isSuccessful()) {
 
                     main_list = response.body();
 
                     if (main_list != null && !main_list.isEmpty()) {
-                        adapter = new YerelTvYonlendirAdapter(main_list, DunyaTvYonlendirActivity.this);
+                        adapter = new DunyaTvYonlendirAdapter(main_list, DunyaTvYonlendirActivity.this);
                         recyclerView.setAdapter(adapter);
 
                     } else {
@@ -118,7 +117,7 @@ public class DunyaTvYonlendirActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<YerelTvYonlendirModel>> call, Throwable t) {
+            public void onFailure(Call<List<DunyaTvYonlendirModel>> call, Throwable t) {
                 handleNetworkFailure();
                 t.printStackTrace();
             }
@@ -178,9 +177,9 @@ public class DunyaTvYonlendirActivity extends AppCompatActivity {
                 @Override
                 public boolean onQueryTextChange(String newText) {
                     newText = newText.toLowerCase();
-                    List<YerelTvYonlendirModel> myList = new ArrayList<>();
+                    List<DunyaTvYonlendirModel> myList = new ArrayList<>();
 
-                    for (YerelTvYonlendirModel model : main_list) {
+                    for (DunyaTvYonlendirModel model : main_list) {
                         String javaSoru = model.getName().toLowerCase();
 
                         if (javaSoru.contains(newText))

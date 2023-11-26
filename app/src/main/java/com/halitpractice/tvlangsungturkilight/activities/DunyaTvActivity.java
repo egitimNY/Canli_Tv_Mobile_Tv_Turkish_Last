@@ -26,7 +26,7 @@ import com.halitpractice.tvlangsungturkilight.MainActivity;
 import com.halitpractice.tvlangsungturkilight.R;
 import com.halitpractice.tvlangsungturkilight.RestApi.ManagerAll;
 import com.halitpractice.tvlangsungturkilight.adapters.DunyaTvAdapter;
-import com.halitpractice.tvlangsungturkilight.models.YerelTvModel;
+import com.halitpractice.tvlangsungturkilight.models.DunyaTvModel;
 import com.halitpractice.tvlangsungturkilight.services.ChromeInstallDialogHelper;
 import com.halitpractice.tvlangsungturkilight.services.DunyaTvDataCache;
 
@@ -43,7 +43,7 @@ public class DunyaTvActivity extends AppCompatActivity {
     private SearchView.OnQueryTextListener queryTextListener;  /////// SearchView codes parts
 
     private RecyclerView recyclerView;
-    private List<YerelTvModel> main_list;
+    private List<DunyaTvModel> main_list;
     private DunyaTvAdapter adapter;
     private ProgressBar progressBar;
 
@@ -52,7 +52,8 @@ public class DunyaTvActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_yerel_tv);
+        setContentView(R.layout.activity_dunya_tv);
+
 
         Toolbar toolbar = findViewById(R.id.custom_toolbar);
         setSupportActionBar(toolbar);
@@ -71,20 +72,20 @@ public class DunyaTvActivity extends AppCompatActivity {
 //        TextView marqueeTextView = findViewById(R.id.marqueeTextView);
 //        MarqueeTextAdsHelper.fetchAndDisplayMarqueeTextAds(marqueeTextView);
 
-        progressBar = findViewById(R.id.yerelTvProgressBar); // Initialize the ProgressBar
+        progressBar = findViewById(R.id.progressBarDunyaTvActivity); // Initialize the ProgressBar
         progressBar.setVisibility(View.GONE); // Initially, set it to GONE
 
         main_list = new ArrayList<>();
-        recyclerView = findViewById(R.id.yerelTvRecycler);
+        recyclerView = findViewById(R.id.dunyaTvActivityRecycler);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
-        AdView mAdView = findViewById(R.id.adViewIndiaWorldTv);
+        AdView mAdView = findViewById(R.id.adViewDunyaTvActivity);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
-        ImageView closedBtn = findViewById(R.id.closeBtnIndiaWorldTv);
+        ImageView closedBtn = findViewById(R.id.closeBtnDunyaTvActivity);
         closedBtn.setOnClickListener(v -> {
             if (mAdView.getVisibility() == View.VISIBLE) {
                 mAdView.setVisibility(View.GONE);
@@ -105,7 +106,7 @@ public class DunyaTvActivity extends AppCompatActivity {
         dataCache = DunyaTvDataCache.getInstance();
 
         // Check for cached data and update UI
-        List<YerelTvModel> cachedData = dataCache.getCachedData();
+        List<DunyaTvModel> cachedData = dataCache.getCachedData();
 
         if (cachedData != null && !cachedData.isEmpty()) {
             updateUIWithCachedData(cachedData);
@@ -121,10 +122,10 @@ public class DunyaTvActivity extends AppCompatActivity {
 
     private void fetchData() {
         progressBar.setVisibility(View.VISIBLE); // Show the ProgressBar
-        Call<List<YerelTvModel>> req = ManagerAll.getInstance().dunyaTvTvFetch();
-        req.enqueue(new Callback<List<YerelTvModel>>() {
+        Call<List<DunyaTvModel>> req = ManagerAll.getInstance().dunyaTvTvFetch();
+        req.enqueue(new Callback<List<DunyaTvModel>>() {
             @Override
-            public void onResponse(Call<List<YerelTvModel>> call, Response<List<YerelTvModel>> response) {
+            public void onResponse(Call<List<DunyaTvModel>> call, Response<List<DunyaTvModel>> response) {
                 if (response.isSuccessful()) {
 
                     main_list = response.body();
@@ -146,7 +147,7 @@ public class DunyaTvActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<YerelTvModel>> call, Throwable t) {
+            public void onFailure(Call<List<DunyaTvModel>> call, Throwable t) {
                 handleNetworkFailure();
                 t.printStackTrace();
                 progressBar.setVisibility(View.GONE); // Hide the ProgressBar in case of failure
@@ -154,7 +155,7 @@ public class DunyaTvActivity extends AppCompatActivity {
         });
     }
 
-    private void updateUIWithCachedData(List<YerelTvModel> cachedData) {
+    private void updateUIWithCachedData(List<DunyaTvModel> cachedData) {
         if (cachedData != null && !cachedData.isEmpty()) {
             adapter = new DunyaTvAdapter(cachedData, DunyaTvActivity.this);
             recyclerView.setAdapter(adapter);
@@ -216,12 +217,12 @@ public class DunyaTvActivity extends AppCompatActivity {
                 @Override
                 public boolean onQueryTextChange(String newText) {
                     newText = newText.toLowerCase();
-                    List<YerelTvModel> myList = new ArrayList<>();
+                    List<DunyaTvModel> myList = new ArrayList<>();
 
-                    List<YerelTvModel> cachedData = dataCache.getCachedData();
+                    List<DunyaTvModel> cachedData = dataCache.getCachedData();
 
                     if (cachedData != null) {
-                        for (YerelTvModel model : cachedData) {
+                        for (DunyaTvModel model : cachedData) {
                             if (model != null && model.getName() != null) {
                                 String itemName = model.getName().toLowerCase();
 

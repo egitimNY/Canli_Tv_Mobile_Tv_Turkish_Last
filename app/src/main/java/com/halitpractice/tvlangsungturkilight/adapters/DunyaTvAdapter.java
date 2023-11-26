@@ -26,19 +26,19 @@ import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.halitpractice.tvlangsungturkilight.R;
-import com.halitpractice.tvlangsungturkilight.YerelTvDetailsActivity;
-import com.halitpractice.tvlangsungturkilight.models.YerelTvModel;
+import com.halitpractice.tvlangsungturkilight.activities.DunyaTvDetailsActivity;
+import com.halitpractice.tvlangsungturkilight.models.DunyaTvModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DunyaTvAdapter extends RecyclerView.Adapter<DunyaTvAdapter.MyViewHolder> {
-    private List<YerelTvModel> my_list;
+    private List<DunyaTvModel> my_list;
     private Context context;
     private int clickCount = 0; // Track the number of item clicks
     private InterstitialAd mInterstitialAd;
 
-    public DunyaTvAdapter(List<YerelTvModel> my_list, Context context) {
+    public DunyaTvAdapter(List<DunyaTvModel> my_list, Context context) {
         this.my_list = my_list;
         this.context = context;
         loadAds(); // Initialize and load the interstitial ad
@@ -47,19 +47,19 @@ public class DunyaTvAdapter extends RecyclerView.Adapter<DunyaTvAdapter.MyViewHo
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.yerel_tv_list_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.dunya_tv_list_item, parent, false);
         return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        final YerelTvModel yerelTvModel = my_list.get(position);
-        holder.name.setText(yerelTvModel.getName());
+        final DunyaTvModel dunyaTvModel = my_list.get(position);
+        holder.name.setText(dunyaTvModel.getName());
 
         // Load the image with Glide, resizing it to 150x150 pixels
-        if (yerelTvModel.getThumbnail() != null && !yerelTvModel.getThumbnail().isEmpty()) {
+        if (dunyaTvModel.getThumbnail() != null && !dunyaTvModel.getThumbnail().isEmpty()) {
             Glide.with(context)
-                    .load(yerelTvModel.getThumbnail())
+                    .load(dunyaTvModel.getThumbnail())
                     .override(150, 150) // Resize the image to 150x150 pixels
                     .placeholder(R.drawable.default_there_is_no_logo) // Placeholder for loading
                     .error(R.drawable.default_there_is_no_logo)
@@ -76,7 +76,7 @@ public class DunyaTvAdapter extends RecyclerView.Adapter<DunyaTvAdapter.MyViewHo
         holder.itemView.setOnClickListener(v -> {
             try {
                 // Start the activity
-                Intent i = new Intent(v.getContext(), YerelTvDetailsActivity.class);
+                Intent i = new Intent(v.getContext(), DunyaTvDetailsActivity.class);
                 i.putExtra("channel", my_list.get(holder.getAdapterPosition()));
                 v.getContext().startActivity(i);
                 clickCount++;
@@ -112,7 +112,7 @@ public class DunyaTvAdapter extends RecyclerView.Adapter<DunyaTvAdapter.MyViewHo
         }
     }
 
-    public void setSearchOperation(List<YerelTvModel> newList) {
+    public void setSearchOperation(List<DunyaTvModel> newList) {
         my_list = new ArrayList<>(newList); // Use ArrayList constructor for a shallow copy
         notifyDataSetChanged();
     }

@@ -19,7 +19,7 @@ import com.halitpractice.tvlangsungturkilight.MainActivity;
 import com.halitpractice.tvlangsungturkilight.R;
 import com.halitpractice.tvlangsungturkilight.RestApi.ManagerAll;
 import com.halitpractice.tvlangsungturkilight.adapters.DunyaTvYonlendirCountriesAdapter;
-import com.halitpractice.tvlangsungturkilight.models.YerelTvYonlendirCategoryModel;
+import com.halitpractice.tvlangsungturkilight.models.DunyaTvYonlendirCategoryModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,14 +31,13 @@ import retrofit2.Response;
 public class DunyaTvYonlendirCountriesActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private List<YerelTvYonlendirCategoryModel> main_list;
+    private List<DunyaTvYonlendirCategoryModel> main_list;
     private DunyaTvYonlendirCountriesAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dunya_tv_yonlendir_countries);
-
 
         Toolbar toolbar = findViewById(R.id.custom_toolbar);
         setSupportActionBar(toolbar);
@@ -92,10 +91,10 @@ public class DunyaTvYonlendirCountriesActivity extends AppCompatActivity {
 
     private void fetchData() {
 
-        Call<List<YerelTvYonlendirCategoryModel>> req = ManagerAll.getInstance().dunyaTvYonlendirCountriesFetch();
-        req.enqueue(new Callback<List<YerelTvYonlendirCategoryModel>>() {
+        Call<List<DunyaTvYonlendirCategoryModel>> req = ManagerAll.getInstance().dunyaTvYonlendirCountriesFetch();
+        req.enqueue(new Callback<List<DunyaTvYonlendirCategoryModel>>() {
             @Override
-            public void onResponse(Call<List<YerelTvYonlendirCategoryModel>> call, Response<List<YerelTvYonlendirCategoryModel>> response) {
+            public void onResponse(Call<List<DunyaTvYonlendirCategoryModel>> call, Response<List<DunyaTvYonlendirCategoryModel>> response) {
 
                 if (response.isSuccessful()) {
 
@@ -114,7 +113,7 @@ public class DunyaTvYonlendirCountriesActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<YerelTvYonlendirCategoryModel>> call, Throwable t) {
+            public void onFailure(Call<List<DunyaTvYonlendirCategoryModel>> call, Throwable t) {
                 handleNetworkFailure();
             }
         });

@@ -1,5 +1,9 @@
 package com.halitpractice.tvlangsungturkilight.RestApi;
 
+import com.halitpractice.tvlangsungturkilight.models.DunyaTvCategoryModel;
+import com.halitpractice.tvlangsungturkilight.models.DunyaTvModel;
+import com.halitpractice.tvlangsungturkilight.models.DunyaTvYonlendirCategoryModel;
+import com.halitpractice.tvlangsungturkilight.models.DunyaTvYonlendirModel;
 import com.halitpractice.tvlangsungturkilight.models.FormattedTextModel;
 import com.halitpractice.tvlangsungturkilight.models.GazetelerModel;
 import com.halitpractice.tvlangsungturkilight.models.MarqueeTextModel;
@@ -160,49 +164,47 @@ public class ManagerAll extends BaseManager {
 
 
 
-    public Call<List<YerelTvModel>> dunyaTvTvFetch() {
+    public Call<List<DunyaTvModel>> dunyaTvTvFetch() {
         return getRestApi().dunyaTv();
     }
 
-    public Call<List<YerelTvCategoryModel>> dunyaTvCategoryFetch() {
+    public Call<List<DunyaTvCategoryModel>> dunyaTvCategoryFetch() {
         return getRestApi().dunyaTvCategory();
     }
 
-    public Call<List<YerelTvModel>> dunyaTvCategoryDetailsFetch(String category) {
+    public Call<List<DunyaTvModel>> dunyaTvCategoryDetailsFetch(String category) {
         return getRestApi().getDunyaTvByCategory(category);
     }
 
-
-
-    public Call<List<YerelTvCategoryModel>> dunyaTvCountriesFetch() {
+    public Call<List<DunyaTvCategoryModel>> dunyaTvCountriesFetch() {
         return getRestApi().dunyaTvCountries();
     }
 
-    public Call<List<YerelTvModel>> dunyaTvCountriesDetailsFetch(String category) {
+    public Call<List<DunyaTvModel>> dunyaTvCountriesDetailsFetch(String category) {
         return getRestApi().getDunyaTvByCountries(category);
     }
 
-    public Call<List<YerelTvYonlendirModel>> dunyaTvYonlendirFetch() {
+
+
+    public Call<List<DunyaTvYonlendirModel>> dunyaTvYonlendirFetch() {
         return getRestApi().dunyaTvYonlendir();
     }
 
-    public Call<List<YerelTvYonlendirCategoryModel>> dunyaTvCategoryYonlendirFetch() {
+    public Call<List<DunyaTvYonlendirCategoryModel>> dunyaTvCategoryYonlendirFetch() {
         return getRestApi().dunyaTvCategoryYonlendir();
     }
 
-    public Call<List<YerelTvYonlendirModel>> getDunyaTvByCategoryYonlendirFetch(String category) {
+    public Call<List<DunyaTvYonlendirModel>> getDunyaTvByCategoryYonlendirFetch(String category) {
         return getRestApi().getDunyaTvByCategoryYonlendir(category);
     }
 
-    public Call<List<YerelTvYonlendirCategoryModel>> dunyaTvYonlendirCountriesFetch() {
+    public Call<List<DunyaTvYonlendirCategoryModel>> dunyaTvYonlendirCountriesFetch() {
         return getRestApi().dunyaTvYonlendirCountries();
     }
 
 
-    public Call<List<YerelTvYonlendirModel>> dunyaTvYonlendirCountriesDetailsFetch(String category) {
+    public Call<List<DunyaTvYonlendirModel>> dunyaTvYonlendirCountriesDetailsFetch(String category) {
         return getRestApi().getDunyaTvYonlendirByCountries(category);
     }
-
-
 
 }
