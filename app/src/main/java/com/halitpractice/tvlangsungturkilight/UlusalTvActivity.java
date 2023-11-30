@@ -203,7 +203,8 @@ public class UlusalTvActivity extends AppCompatActivity {
         if (searchItem != null) {
             searchView = (SearchView) searchItem.getActionView();
         }
-        if (searchView != null) {
+
+        if (searchView != null && searchManager != null) {
             searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
 
             searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -224,8 +225,9 @@ public class UlusalTvActivity extends AppCompatActivity {
                             if (model != null && model.getName() != null) {
                                 String itemName = model.getName().toLowerCase();
 
-                                if (itemName.contains(newText))
+                                if (itemName.contains(newText)) {
                                     myList.add(model);
+                                }
                             }
                         }
                     }
