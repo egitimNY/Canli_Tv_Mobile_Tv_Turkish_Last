@@ -31,130 +31,130 @@ import retrofit2.http.Query;
 
 public interface RestApi {
 
-    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/marqueeTextAds.php")
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTVversionOne/marqueeTextAds.php")
     Call<MarqueeTextModel> getMarqueText();
 
-    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/marqueeToolBarAds.php")
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTVversionOne/marqueeToolBarAds.php")
     Call<MarqueeTextModel> getMarqueTextAds();
 
-    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/fetchDiclaimerYeni.php")
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTVversionOne/fetchDiclaimerYeni.php")
     Call<FormattedTextModel> disclaimerFormatedText();
 
-    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/underConstructionTR.php")
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTVversionOne/underConstructionTR.php")
     Call<FormattedTextModel> underConstructionFormatedText();
 
 
-    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/ulusalTv.php")
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTVversionOne/ulusalTv.php")
     Call<List<UlusalTvModel>> ulusalTV();
 
-    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/ulusalTvCategories.php")
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTVversionOne/ulusalTvCategories.php")
     Call<List<UlusalTvCategoryModel>> ulusalTvCategory();
 
-    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/ulusalTvCategoriesDetails.php")
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTVversionOne/ulusalTvCategoriesDetails.php")
     Call<List<UlusalTvModel>> ulusalTvCategoryDetails(@Query("cat") String category);
 
 
-    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/yerelTvlerExoo.php")
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTVversionOne/yerelTvlerExoo.php")
     Call<List<YerelTvModel>> yerelTv();
 
-    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/yerelTvlerCategoriesExoo.php")
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTVversionOne/yerelTvlerCategoriesExoo.php")
     Call<List<YerelTvCategoryModel>> yerelTvCategory();
 
-    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/yerelTvlerCategoriesDetailsExoo.php")
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTVversionOne/yerelTvlerCategoriesDetailsExoo.php")
     Call<List<YerelTvModel>> getYerelTvByCategory(@Query("cat") String category);
 
 
-    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/zYerelTvYonlendir.php")
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTVversionOne/zYerelTvYonlendir.php")
     Call<List<YerelTvYonlendirModel>> yerelTvYonlendir();
 
-    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/zYerelTvCategoriesYonlendir.php")
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTVversionOne/zYerelTvCategoriesYonlendir.php")
     Call<List<YerelTvYonlendirCategoryModel>> yerelTvCategoryYonlendir();
 
-    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/zYerelTvCategoriesDetailsYonlendir.php")
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTVversionOne/zYerelTvCategoriesDetailsYonlendir.php")
     Call<List<YerelTvYonlendirModel>> getYerelTvByCategoryYonlendir(@Query("cat") String category);
 
 
-    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/turkYabanciMovieNewww.php")
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTVversionOne/turkYabanciMovieNewww.php")
     Call<List<TurkYabanciMovieModel>> urlGetir();
 
-    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/ZReleaseTvOne.php")
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTVversionOne/ZReleaseTvOne.php")
     Call<List<TurkYabanciMovieYonlendirModel>> urlRelease();
 
 
-    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/turkRadyolariYeni.php")
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTVversionOne/turkRadyolariYeni.php")
     Call<List<RadyoDinleModel>> radyoDinleBakim();
 
 
-    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/youtubeCizgiFilmNeww.php")
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTVversionOne/youtubeCizgiFilmNeww.php")
     Call<List<TurkishCartoonYtbModel>> indoCartoonTv();
 
-    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/youtubeCizgiFilmYonlendir.php")
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTVversionOne/youtubeCizgiFilmYonlendir.php")
     Call<List<TurkishCartoonYtbRedirectModel>> urlReleaseRedirect();
 
 
 
-    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/ytbExtraTvler.php")
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTVversionOne/ytbExtraTvler.php")
     Call<List<YtbExtraTvModel>> ytbExtraTv();
 
-    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/ytbExtraTvlerCategories.php")
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTVversionOne/ytbExtraTvlerCategories.php")
     Call<List<YtbExtraTvCategoryModel>> ytbExtraTvCategory();
 
-    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/ytbExtraTvlerCategoriesDetails.php")
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTVversionOne/ytbExtraTvlerCategoriesDetails.php")
     Call<List<YtbExtraTvModel>> getYtbExtraTvByCategory(@Query("cat") String category);
 
-    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/ytbExtraTvlerCountries.php")
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTVversionOne/ytbExtraTvlerCountries.php")
     Call<List<YtbExtraTvCategoryModel>> ytbExtraTvCountry();
 
-    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/ytbExtraTvlerCountriesDetails.php")
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTVversionOne/ytbExtraTvlerCountriesDetails.php")
     Call<List<YtbExtraTvModel>> getYtbExtraTvByCountry(@Query("cat") String category);
 
 
-    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/ytbExtraTvYonlendir.php")
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTVversionOne/ytbExtraTvYonlendir.php")
     Call<List<YtbExtraTvYonlendirModel>> ytbExtraTvYonlendir();
 
-    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/ytbExtraTvCategoriesYonlendir.php")
+    @GET("/ccanliTVTurkishChromeTab/retrofitCanliTVversionOne/ytbExtraTvCategoriesYonlendir.php")
     Call<List<YtbExtraTvYonlendirCategoryModel>> ytbExtraTvCategoryYonlendir();
 
-    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/ytbExtraTvCategoriesDetailsYonlendir.php")
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTVversionOne/ytbExtraTvCategoriesDetailsYonlendir.php")
     Call<List<YtbExtraTvYonlendirModel>> getYtbExtraTvByCategoryYonlendir(@Query("cat") String category);
 
 
 
-    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/gazeteler.php")
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTVversionOne/gazeteler.php")
     Call<List<GazetelerModel>> gazeteler();
 
 
 
-    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/dunyaTvlerExo.php")
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTVversionOne/dunyaTvlerExo.php")
     Call<List<DunyaTvModel>> dunyaTv();
 
-    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/dunyaTvlerCategoriesExo.php")
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTVversionOne/dunyaTvlerCategoriesExo.php")
     Call<List<DunyaTvCategoryModel>> dunyaTvCategory();
 
-    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/dunyaTvlerCategoriesDetailsExo.php")
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTVversionOne/dunyaTvlerCategoriesDetailsExo.php")
     Call<List<DunyaTvModel>> getDunyaTvByCategory(@Query("cat") String category);
 
-    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/dunyaTvlerCountriesExo.php")
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTVversionOne/dunyaTvlerCountriesExo.php")
     Call<List<DunyaTvCategoryModel>> dunyaTvCountries();
 
-    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/dunyaTvlerCountriesDetailsExo.php")
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTVversionOne/dunyaTvlerCountriesDetailsExo.php")
     Call<List<DunyaTvModel>> getDunyaTvByCountries(@Query("cat") String category);
 
 
 
-    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/dunyaTvlerExoYonlendir.php")
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTVversionOne/dunyaTvlerExoYonlendir.php")
     Call<List<DunyaTvYonlendirModel>> dunyaTvYonlendir();
 
-    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/dunyaTvlerCategoriesExoYonlendir.php")
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTVversionOne/dunyaTvlerCategoriesExoYonlendir.php")
     Call<List<DunyaTvYonlendirCategoryModel>> dunyaTvCategoryYonlendir();
 
-    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/dunyaTvlerCategoriesDetailsExoYonlendir.php")
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTVversionOne/dunyaTvlerCategoriesDetailsExoYonlendir.php")
     Call<List<DunyaTvYonlendirModel>> getDunyaTvByCategoryYonlendir(@Query("cat") String category);
 
-    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/dunyaTvlerCountriesExoYonlendir.php")
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTVversionOne/dunyaTvlerCountriesExoYonlendir.php")
     Call<List<DunyaTvYonlendirCategoryModel>> dunyaTvYonlendirCountries();
 
-    @GET("/canliTVTurkishChromeTab/retrofitCanliTV/dunyaTvlerCountriesDetailsExoYonlendir.php")
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTVversionOne/dunyaTvlerCountriesDetailsExoYonlendir.php")
     Call<List<DunyaTvYonlendirModel>> getDunyaTvYonlendirByCountries(@Query("cat") String category);
 
 }

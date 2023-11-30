@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -47,7 +48,7 @@ public class DunyaTvAdapter extends RecyclerView.Adapter<DunyaTvAdapter.MyViewHo
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.dunya_tv_list_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.dunya_tv_ulkeler_list_item, parent, false);
         return new MyViewHolder(view);
     }
 
@@ -55,6 +56,19 @@ public class DunyaTvAdapter extends RecyclerView.Adapter<DunyaTvAdapter.MyViewHo
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         final DunyaTvModel dunyaTvModel = my_list.get(position);
         holder.name.setText(dunyaTvModel.getName());
+
+        // Set the country name with the "CountryName: " prefix
+        String countryName = dunyaTvModel.getCountryname();
+        if (countryName != null && !countryName.isEmpty()) {
+            String countryText = "Ülke: " + countryName;
+            holder.country.setText(countryText);
+            holder.country.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary));
+        } else {
+            // If the country name is null or empty, set a default text and change text color
+            holder.country.setText("Ülke: ismi yazılmamış");
+            holder.country.setTextColor(ContextCompat.getColor(context, R.color.redChannelColor));
+            // You can also choose to hide the TextView or set a different message based on your app logic
+        }
 
         // Load the image with Glide, resizing it to 150x150 pixels
         if (dunyaTvModel.getThumbnail() != null && !dunyaTvModel.getThumbnail().isEmpty()) {
@@ -101,14 +115,14 @@ public class DunyaTvAdapter extends RecyclerView.Adapter<DunyaTvAdapter.MyViewHo
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView image;
-        TextView name, role;
+        TextView name, country;
         RelativeLayout relative;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.image);
             name = itemView.findViewById(R.id.name);
-//            role = itemView.findViewById(R.id.role);
+            country = itemView.findViewById(R.id.country);
         }
     }
 
