@@ -89,15 +89,13 @@ public class DunyaTvAdapter extends RecyclerView.Adapter<DunyaTvAdapter.MyViewHo
 
         holder.itemView.setOnClickListener(v -> {
             try {
-                // Start the activity
-                Intent i = new Intent(v.getContext(), DunyaTvDetailsActivity.class);
-                i.putExtra("channel", my_list.get(holder.getAdapterPosition()));
-                v.getContext().startActivity(i);
                 clickCount++;
 
                 if (clickCount >= 3) {
-                    showInterstitialAd();
-                    resetClickCount(); // Reset the click count
+                    showInterstitialAd(holder);
+                    resetClickCount(); // Reset the click count after showing the ad
+                } else {
+                    startDetailsActivity(holder);
                 }
 
             } catch (ActivityNotFoundException e) {
@@ -106,6 +104,13 @@ public class DunyaTvAdapter extends RecyclerView.Adapter<DunyaTvAdapter.MyViewHo
                 Toast.makeText(v.getContext(), "Error starting activity", Toast.LENGTH_SHORT).show();
             }
         });
+
+    }
+
+    private void startDetailsActivity(MyViewHolder holder) {
+        Intent i = new Intent(holder.itemView.getContext(), DunyaTvDetailsActivity.class);
+        i.putExtra("channel", my_list.get(holder.getAdapterPosition()));
+        holder.itemView.getContext().startActivity(i);
     }
 
     @Override
@@ -131,7 +136,7 @@ public class DunyaTvAdapter extends RecyclerView.Adapter<DunyaTvAdapter.MyViewHo
         notifyDataSetChanged();
     }
 
-    private void showInterstitialAd() {
+    private void showInterstitialAd(MyViewHolder holder) {
         if (mInterstitialAd != null) {
             mInterstitialAd.show((Activity) context);
             mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
@@ -139,6 +144,7 @@ public class DunyaTvAdapter extends RecyclerView.Adapter<DunyaTvAdapter.MyViewHo
                 public void onAdDismissedFullScreenContent() {
                     super.onAdDismissedFullScreenContent();
                     mInterstitialAd = null;
+                    startDetailsActivity(holder); // Start playing the video after the ad is dismissed
                     resetClickCount(); // Reset the click count
                     loadAds(); // Reload the ad for subsequent interactions
                 }
@@ -172,4 +178,5 @@ public class DunyaTvAdapter extends RecyclerView.Adapter<DunyaTvAdapter.MyViewHo
     private void resetClickCount() {
         clickCount = 0;
     }
+
 }

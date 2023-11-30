@@ -70,22 +70,18 @@ public class YerelTvAdapter extends RecyclerView.Adapter<YerelTvAdapter.MyViewHo
             holder.image.setImageResource(R.drawable.default_there_is_no_logo);
         }
 
-
-// Start marquee scrolling for the name TextView
+        // Start marquee scrolling for the name TextView
         holder.name.setSelected(true);
-
 
         holder.itemView.setOnClickListener(v -> {
             try {
-                // Start the activity
-                Intent i = new Intent(v.getContext(), YerelTvDetailsActivity.class);
-                i.putExtra("channel", my_list.get(holder.getAdapterPosition()));
-                v.getContext().startActivity(i);
-
                 clickCount++;
-                if (clickCount >= 4) {
-                    showInterstitialAd();
-                    resetClickCount(); // Reset the click count
+
+                if (clickCount >= 3) {
+                    showInterstitialAd(holder);
+                    resetClickCount(); // Reset the click count after showing the ad
+                } else {
+                    startDetailsActivity(holder);
                 }
 
             } catch (ActivityNotFoundException e) {
@@ -94,6 +90,12 @@ public class YerelTvAdapter extends RecyclerView.Adapter<YerelTvAdapter.MyViewHo
                 Toast.makeText(v.getContext(), "Error starting activity", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void startDetailsActivity(MyViewHolder holder) {
+        Intent i = new Intent(holder.itemView.getContext(), YerelTvDetailsActivity.class);
+        i.putExtra("channel", my_list.get(holder.getAdapterPosition()));
+        holder.itemView.getContext().startActivity(i);
     }
 
     @Override
@@ -118,7 +120,7 @@ public class YerelTvAdapter extends RecyclerView.Adapter<YerelTvAdapter.MyViewHo
         notifyDataSetChanged();
     }
 
-    private void showInterstitialAd() {
+    private void showInterstitialAd(MyViewHolder holder) {
         if (mInterstitialAd != null) {
             mInterstitialAd.show((Activity) context);
             mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
@@ -126,6 +128,7 @@ public class YerelTvAdapter extends RecyclerView.Adapter<YerelTvAdapter.MyViewHo
                 public void onAdDismissedFullScreenContent() {
                     super.onAdDismissedFullScreenContent();
                     mInterstitialAd = null;
+                    startDetailsActivity(holder); // Start playing the video after the ad is dismissed
                     resetClickCount(); // Reset the click count
                     loadAds(); // Reload the ad for subsequent interactions
                 }

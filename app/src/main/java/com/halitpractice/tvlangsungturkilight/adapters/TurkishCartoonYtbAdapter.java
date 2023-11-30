@@ -67,17 +67,13 @@ public class TurkishCartoonYtbAdapter extends RecyclerView.Adapter<TurkishCartoo
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, TurkishCartoonYtbDetailsActivity.class);
-                intent.putExtra("image", turkishCartoonYtbModel.getImage());
-                intent.putExtra("channelName", turkishCartoonYtbModel.getChannelname());
-                intent.putExtra("videoId", turkishCartoonYtbModel.getVideoid());
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // not recommended
-                context.startActivity(intent);
-
                 clickCount++;
+
                 if (clickCount >= 3) {
-                    showInterstitialAd();
-                    resetClickCount(); // Reset the click count
+                    showInterstitialAd(holder);
+                    resetClickCount(); // Reset the click count after showing the ad
+                } else {
+                    startDetailsActivity(holder);
                 }
             }
         });
@@ -101,7 +97,16 @@ public class TurkishCartoonYtbAdapter extends RecyclerView.Adapter<TurkishCartoo
         }
     }
 
-    private void showInterstitialAd() {
+    private void startDetailsActivity(MyViewHolder holder) {
+        Intent intent = new Intent(context, TurkishCartoonYtbDetailsActivity.class);
+        intent.putExtra("image", my_list.get(holder.getAdapterPosition()).getImage());
+        intent.putExtra("channelName", my_list.get(holder.getAdapterPosition()).getChannelname());
+        intent.putExtra("videoId", my_list.get(holder.getAdapterPosition()).getVideoid());
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
+
+    private void showInterstitialAd(MyViewHolder holder) {
         if (mInterstitialAd != null) {
             mInterstitialAd.show((Activity) context);
             mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
@@ -109,6 +114,7 @@ public class TurkishCartoonYtbAdapter extends RecyclerView.Adapter<TurkishCartoo
                 public void onAdDismissedFullScreenContent() {
                     super.onAdDismissedFullScreenContent();
                     mInterstitialAd = null;
+                    startDetailsActivity(holder); // Start the details activity after the ad is dismissed
                     resetClickCount(); // Reset the click count
                     loadAds(); // Reload the ad for subsequent interactions
                 }
@@ -143,10 +149,8 @@ public class TurkishCartoonYtbAdapter extends RecyclerView.Adapter<TurkishCartoo
         clickCount = 0;
     }
 
-
     public void setSearchOperation(List<TurkishCartoonYtbModel> newList) {
-        my_list = new ArrayList<>(newList); // Use ArrayList constructor for shallow copy
+        my_list = new ArrayList<>(newList); // Use ArrayList constructor for a shallow copy
         notifyDataSetChanged();
     }
-
 }

@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,7 +53,7 @@ public class YtbExtraTvAdapter extends RecyclerView.Adapter<YtbExtraTvAdapter.My
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        final YtbExtraTvModel ytbExtraTvModel = my_list.get(holder.getAdapterPosition());
+        final YtbExtraTvModel ytbExtraTvModel = my_list.get(position);
         holder.name.setText(ytbExtraTvModel.getName());
 
         // Set the country name with the "CountryName: " prefix
@@ -89,16 +88,13 @@ public class YtbExtraTvAdapter extends RecyclerView.Adapter<YtbExtraTvAdapter.My
 
         holder.itemView.setOnClickListener(v -> {
             try {
-                // Start the activity
-                Intent i = new Intent(v.getContext(), YtbExtraTvDetailsActivity.class);
-                i.putExtra("channel", my_list.get(holder.getAdapterPosition()));
-                i.putExtra("live_url", ytbExtraTvModel.getLive_url()); // Use the variable directly
-                v.getContext().startActivity(i);
                 clickCount++;
 
-                if (clickCount >= 4) {
-                    showInterstitialAd();
-                    resetClickCount(); // Reset the click count
+                if (clickCount >= 3) {
+                    showInterstitialAd(holder);
+                    resetClickCount(); // Reset the click count after showing the ad
+                } else {
+                    startDetailsActivity(holder);
                 }
 
             } catch (ActivityNotFoundException e) {
@@ -109,6 +105,13 @@ public class YtbExtraTvAdapter extends RecyclerView.Adapter<YtbExtraTvAdapter.My
         });
     }
 
+    private void startDetailsActivity(MyViewHolder holder) {
+        Intent i = new Intent(holder.itemView.getContext(), YtbExtraTvDetailsActivity.class);
+        i.putExtra("channel", my_list.get(holder.getAdapterPosition()));
+        i.putExtra("live_url", my_list.get(holder.getAdapterPosition()).getLive_url()); // Use the variable directly
+        holder.itemView.getContext().startActivity(i);
+    }
+
     @Override
     public int getItemCount() {
         return my_list.size();
@@ -117,7 +120,6 @@ public class YtbExtraTvAdapter extends RecyclerView.Adapter<YtbExtraTvAdapter.My
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView image;
         TextView name, country;
-        RelativeLayout relative;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -132,7 +134,7 @@ public class YtbExtraTvAdapter extends RecyclerView.Adapter<YtbExtraTvAdapter.My
         notifyDataSetChanged();
     }
 
-    private void showInterstitialAd() {
+    private void showInterstitialAd(MyViewHolder holder) {
         if (mInterstitialAd != null) {
             mInterstitialAd.show((Activity) context);
             mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
@@ -140,6 +142,7 @@ public class YtbExtraTvAdapter extends RecyclerView.Adapter<YtbExtraTvAdapter.My
                 public void onAdDismissedFullScreenContent() {
                     super.onAdDismissedFullScreenContent();
                     mInterstitialAd = null;
+                    startDetailsActivity(holder); // Start activity after the ad is dismissed
                     resetClickCount(); // Reset the click count
                     loadAds(); // Reload the ad for subsequent interactions
                 }
@@ -173,4 +176,5 @@ public class YtbExtraTvAdapter extends RecyclerView.Adapter<YtbExtraTvAdapter.My
     private void resetClickCount() {
         clickCount = 0;
     }
+
 }
