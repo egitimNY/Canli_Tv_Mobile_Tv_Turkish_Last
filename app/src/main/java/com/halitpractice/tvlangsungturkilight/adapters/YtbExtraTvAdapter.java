@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.Target;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.LoadAdError;
@@ -73,8 +74,8 @@ public class YtbExtraTvAdapter extends RecyclerView.Adapter<YtbExtraTvAdapter.My
         if (ytbExtraTvModel.getThumbnail() != null && !ytbExtraTvModel.getThumbnail().isEmpty()) {
             Glide.with(context)
                     .load(ytbExtraTvModel.getThumbnail())
-                    .override(150, 150) // Resize the image to 150x150 pixels
-                    .placeholder(R.drawable.default_there_is_no_logo) // Placeholder for loading
+                    .override(Target.SIZE_ORIGINAL)
+                    .placeholder(R.drawable.default_there_is_no_logo)
                     .error(R.drawable.default_there_is_no_logo)
                     .apply(new RequestOptions().diskCacheStrategy(DiskCacheStrategy.AUTOMATIC))
                     .into(holder.image);

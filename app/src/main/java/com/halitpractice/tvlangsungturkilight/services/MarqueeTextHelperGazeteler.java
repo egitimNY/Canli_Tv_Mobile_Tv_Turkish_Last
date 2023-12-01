@@ -9,10 +9,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MarqueeTextHelper {
+public class MarqueeTextHelperGazeteler {
 
-    public static void fetchAndDisplayMarqueeText(TextView marqueeTextView) {
-        Call<MarqueeTextModel> req = ManagerAll.getInstance().getMarqueText();
+    public static void fetchAndDisplayMarqueeTextGazeteler(TextView marqueeTextView) {
+        Call<MarqueeTextModel> req = ManagerAll.getInstance().getMarqueTextGazeteler();
         req.enqueue(new Callback<MarqueeTextModel>() {
             @Override
             public void onResponse(Call<MarqueeTextModel> call, Response<MarqueeTextModel> response) {

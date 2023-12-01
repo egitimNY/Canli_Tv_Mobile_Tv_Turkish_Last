@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,6 +30,7 @@ import com.halitpractice.tvlangsungturkilight.adapters.DunyaTvAdapter;
 import com.halitpractice.tvlangsungturkilight.models.DunyaTvModel;
 import com.halitpractice.tvlangsungturkilight.services.ChromeInstallDialogHelper;
 import com.halitpractice.tvlangsungturkilight.services.DunyaTvDataCache;
+import com.halitpractice.tvlangsungturkilight.services.MarqueeTextHelperDunyaTv;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,8 +71,8 @@ public class DunyaTvActivity extends AppCompatActivity {
             actionBar.setTitle("Dünya Tv'leri Hepsi");
         }
 
-//        TextView marqueeTextView = findViewById(R.id.marqueeTextView);
-//        MarqueeTextAdsHelper.fetchAndDisplayMarqueeTextAds(marqueeTextView);
+        TextView marqueeTextView = findViewById(R.id.marqueeTextView);
+        MarqueeTextHelperDunyaTv.fetchAndDisplayMarqueeTextDunyaTv(marqueeTextView);
 
         progressBar = findViewById(R.id.progressBarDunyaTvActivity); // Initialize the ProgressBar
         progressBar.setVisibility(View.GONE); // Initially, set it to GONE

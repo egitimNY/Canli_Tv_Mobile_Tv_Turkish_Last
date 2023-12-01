@@ -9,10 +9,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MarqueeTextAdsHelper {
+public class MarqueeTextHelperUlusaTV {
 
-    public static void fetchAndDisplayMarqueeTextAds(TextView marqueeTextView) {
-        Call<MarqueeTextModel> req = ManagerAll.getInstance().getMarqueTextTolbarAds();
+    public static void fetchAndDisplayMarqueeTextUlusalTv(TextView marqueeTextView) {
+        Call<MarqueeTextModel> req = ManagerAll.getInstance().getMarqueTextUlusalTv();
         req.enqueue(new Callback<MarqueeTextModel>() {
             @Override
             public void onResponse(Call<MarqueeTextModel> call, Response<MarqueeTextModel> response) {

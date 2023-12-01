@@ -37,25 +37,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="@string/disclaimer_text"
+        android:layout_marginTop="8dp"
         android:paddingBottom="8dp"
+        android:text="@string/disclaimer_text"
         android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/auliaApps" />
 
-    <!--
     <TextView
         android:id="@+id/checkForUpdate"
         style="@style/Navigation_Kontrol"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="55dp"
         android:text="@string/check_for_update_text"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="@+id/disclaimer"
         app:layout_constraintStart_toEndOf="@+id/disclaimer"
         app:layout_constraintTop_toTopOf="@+id/disclaimer" />
-    -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

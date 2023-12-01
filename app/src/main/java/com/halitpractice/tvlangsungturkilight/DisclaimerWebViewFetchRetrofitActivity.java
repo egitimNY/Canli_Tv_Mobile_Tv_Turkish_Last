@@ -18,7 +18,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.halitpractice.tvlangsungturkilight.RestApi.ManagerAll;
 import com.halitpractice.tvlangsungturkilight.models.FormattedTextModel;
-import com.halitpractice.tvlangsungturkilight.services.MarqueeTextHelper;
+import com.halitpractice.tvlangsungturkilight.services.MarqueeTextHelperUyariDisclaimer;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -43,7 +43,7 @@ public class DisclaimerWebViewFetchRetrofitActivity extends AppCompatActivity {
         }
 
         TextView marqueeTextView = findViewById(R.id.marqueeDiclaimerFetchTextView);
-        MarqueeTextHelper.fetchAndDisplayMarqueeText(marqueeTextView);
+        MarqueeTextHelperUyariDisclaimer.fetchAndDisplayMarqueeTextUyariDisclaimer(marqueeTextView);
 
         progressBar = findViewById(R.id.progressBarDisclaimer);
         webView = findViewById(R.id.webViewDisc);

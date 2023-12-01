@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
@@ -27,6 +28,7 @@ import com.halitpractice.tvlangsungturkilight.adapters.GazetelerAdapter;
 import com.halitpractice.tvlangsungturkilight.models.GazetelerModel;
 import com.halitpractice.tvlangsungturkilight.services.ChromeInstallDialogHelper;
 import com.halitpractice.tvlangsungturkilight.services.GazetelerDataCache;
+import com.halitpractice.tvlangsungturkilight.services.MarqueeTextHelperGazeteler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,6 +67,9 @@ public class GazetelerActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setTitle("Gazeteler");
         }
+
+        TextView marqueeTextView = findViewById(R.id.marqueeTextView);
+        MarqueeTextHelperGazeteler.fetchAndDisplayMarqueeTextGazeteler(marqueeTextView);
 
         main_list = new ArrayList<>();
         recyclerView = findViewById(R.id.gazetelerRecyclerView);

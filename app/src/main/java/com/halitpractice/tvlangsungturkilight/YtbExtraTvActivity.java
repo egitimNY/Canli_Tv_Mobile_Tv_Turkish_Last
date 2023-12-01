@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +26,7 @@ import com.google.android.gms.ads.AdView;
 import com.halitpractice.tvlangsungturkilight.RestApi.ManagerAll;
 import com.halitpractice.tvlangsungturkilight.adapters.YtbExtraTvAdapter;
 import com.halitpractice.tvlangsungturkilight.models.YtbExtraTvModel;
+import com.halitpractice.tvlangsungturkilight.services.MarqueeTextHelperYtbExtra;
 import com.halitpractice.tvlangsungturkilight.services.YtbExtraTvDataCache;
 
 import java.util.ArrayList;
@@ -66,8 +68,8 @@ public class YtbExtraTvActivity extends AppCompatActivity {
             actionBar.setTitle("Ytb Extra TV");
         }
 
-//        TextView marqueeTextView = findViewById(R.id.marqueeTextView);
-//        MarqueeTextAdsHelper.fetchAndDisplayMarqueeTextAds(marqueeTextView);
+        TextView marqueeTextView = findViewById(R.id.marqueeTextView);
+        MarqueeTextHelperYtbExtra.fetchAndDisplayMarqueeTextYtbExtra(marqueeTextView);
 
         progressBar = findViewById(R.id.ytbExtraTvProgressBar); // Initialize the ProgressBar
         progressBar.setVisibility(View.GONE); // Initially, set it to GONE

@@ -40,8 +40,32 @@ public class ManagerAll extends BaseManager {
         return getRestApi().getMarqueText();
     }
 
-    public Call<MarqueeTextModel> getMarqueTextTolbarAds() {
-        return getRestApi().getMarqueTextAds();
+    public Call<MarqueeTextModel> getMarqueTextUlusalTv() {
+        return getRestApi().getMarqueTextUlusalTv();
+    }
+
+    public Call<MarqueeTextModel> getMarqueTextYerelTv() {
+        return getRestApi().getMarqueTextYerelTv();
+    }
+
+    public Call<MarqueeTextModel> getMarqueTextUyariDisclaimer() {
+        return getRestApi().getMarqueTextUyariDisclaimer();
+    }
+
+    public Call<MarqueeTextModel> getMarqueTextCizgiFilmler() {
+        return getRestApi().getMarqueTextCizgiFilmler();
+    }
+
+    public Call<MarqueeTextModel> getMarqueTextYtbExtra() {
+        return getRestApi().getMarqueTextYtbExtra();
+    }
+
+    public Call<MarqueeTextModel> getMarqueTextGazeteler() {
+        return getRestApi().getMarqueTextGazeteler();
+    }
+
+    public Call<MarqueeTextModel> getMarqueTextDunyaTv() {
+        return getRestApi().getMarqueTextDunyaTv();
     }
 
     public Call<FormattedTextModel> disclaimerFormated() {
@@ -51,7 +75,6 @@ public class ManagerAll extends BaseManager {
     public Call<FormattedTextModel> underConstruction() {
         return getRestApi().underConstructionFormatedText();
     }
-
 
 
     public Call<List<UlusalTvModel>> ulusalTvFetch() {

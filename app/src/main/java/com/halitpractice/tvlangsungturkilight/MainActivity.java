@@ -3,6 +3,7 @@ package com.halitpractice.tvlangsungturkilight;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
@@ -31,7 +32,7 @@ import com.halitpractice.tvlangsungturkilight.activities.DunyaTvCountriesActivit
 import com.halitpractice.tvlangsungturkilight.services.GDPRConsentManager;
 import com.halitpractice.tvlangsungturkilight.services.InAppUpdate;
 import com.halitpractice.tvlangsungturkilight.services.InternetConnectivityChecker;
-import com.halitpractice.tvlangsungturkilight.services.MarqueeTextHelper;
+import com.halitpractice.tvlangsungturkilight.services.MarqueeTextHelperMainActivity;
 
 public class MainActivity extends AppCompatActivity implements InternetConnectivityChecker.InternetConnectivityListener {
 
@@ -122,7 +123,7 @@ public class MainActivity extends AppCompatActivity implements InternetConnectiv
         // Initialize your TextView where you'll display marquee text
         TextView marqueeTextView = findViewById(R.id.marqueeTextViewToolBarUnder);
         // Fetch and display marquee text using the helper method
-        MarqueeTextHelper.fetchAndDisplayMarqueeText(marqueeTextView);
+        MarqueeTextHelperMainActivity.fetchAndDisplayMarqueeText(marqueeTextView);
 
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.navView);
@@ -147,7 +148,6 @@ public class MainActivity extends AppCompatActivity implements InternetConnectiv
             startActivity(intent);
         });
 
-        /*
         TextView checkUpdateText = headerView.findViewById(R.id.checkForUpdate);
         checkUpdateText.setOnClickListener(v -> {
             String appPackageName = getString(R.string.app_package_name);
@@ -156,7 +156,6 @@ public class MainActivity extends AppCompatActivity implements InternetConnectiv
             startActivity(browserIntent);
 
         });
-        */
 
 
         // directly change the color of the DrawerArrowDrawable, which is responsible for drawing the hamburger icon.

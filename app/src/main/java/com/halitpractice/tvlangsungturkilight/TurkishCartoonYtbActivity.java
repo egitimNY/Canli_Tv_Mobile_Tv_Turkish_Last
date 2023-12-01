@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +26,7 @@ import com.google.android.gms.ads.AdView;
 import com.halitpractice.tvlangsungturkilight.RestApi.ManagerAll;
 import com.halitpractice.tvlangsungturkilight.adapters.TurkishCartoonYtbAdapter;
 import com.halitpractice.tvlangsungturkilight.models.TurkishCartoonYtbModel;
+import com.halitpractice.tvlangsungturkilight.services.MarqueeTextHelperCizgiFilmler;
 import com.halitpractice.tvlangsungturkilight.services.TurkishCartoonYoutubeDataCache;
 
 import java.util.ArrayList;
@@ -61,11 +63,11 @@ public class TurkishCartoonYtbActivity extends AppCompatActivity {
             actionBar.setTitle("Çizgi Filmler");
         }
 
+        TextView marqueeTextView = findViewById(R.id.marqueeTextView);
+        MarqueeTextHelperCizgiFilmler.fetchAndDisplayMarqueeTextCizgiFilmler(marqueeTextView);
+
         progressBar = findViewById(R.id.indiaCartoonYtbProgressBar); // Initialize the ProgressBar
         progressBar.setVisibility(View.GONE); // Initially, set it to GONE
-
-//        TextView marqueeTextView = findViewById(R.id.marqueeTextView);
-//        MarqueeTextAdsHelper.fetchAndDisplayMarqueeTextAds(marqueeTextView);
 
         // Enable the back button in the action bar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

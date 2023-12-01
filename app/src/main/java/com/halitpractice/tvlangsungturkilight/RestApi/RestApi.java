@@ -31,11 +31,31 @@ import retrofit2.http.Query;
 
 public interface RestApi {
 
-    @GET("/canliTVTurkishChromeTab/retrofitCanliTVversionOne/marqueeTextAds.php")
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTVversionOne/MarqueTexAds/marqueeTextMainActivity.php")
     Call<MarqueeTextModel> getMarqueText();
 
-    @GET("/canliTVTurkishChromeTab/retrofitCanliTVversionOne/marqueeToolBarAds.php")
-    Call<MarqueeTextModel> getMarqueTextAds();
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTVversionOne/MarqueTexAds/marqueeTextUlusalTV.php")
+    Call<MarqueeTextModel> getMarqueTextUlusalTv();
+
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTVversionOne/MarqueTexAds/marqueeTextYerelTV.php")
+    Call<MarqueeTextModel> getMarqueTextYerelTv();
+
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTVversionOne/MarqueTexAds/marqueeTextUyariDisclaimer.php")
+    Call<MarqueeTextModel> getMarqueTextUyariDisclaimer();
+
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTVversionOne/MarqueTexAds/marqueeTextCizgiFilmler.php")
+    Call<MarqueeTextModel> getMarqueTextCizgiFilmler();
+
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTVversionOne/MarqueTexAds/marqueeTextYtbExtra.php")
+    Call<MarqueeTextModel> getMarqueTextYtbExtra();
+
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTVversionOne/MarqueTexAds/marqueeTextGazeteler.php")
+    Call<MarqueeTextModel> getMarqueTextGazeteler();
+
+    @GET("/canliTVTurkishChromeTab/retrofitCanliTVversionOne/MarqueTexAds/marqueeTextDunyaTv.php")
+    Call<MarqueeTextModel> getMarqueTextDunyaTv();
+
+
 
     @GET("/canliTVTurkishChromeTab/retrofitCanliTVversionOne/fetchDiclaimerYeni.php")
     Call<FormattedTextModel> disclaimerFormatedText();
