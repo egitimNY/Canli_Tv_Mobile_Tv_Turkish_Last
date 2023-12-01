@@ -187,7 +187,7 @@ public class YtbExtraTvCountriesActivity extends AppCompatActivity {
 
     private void redirectYonlendir() {
         // Redirect to FeatureUnderConstructionActivity
-        Intent intent = new Intent(YtbExtraTvCountriesActivity.this, YtbExtraTvYonlendirCategoriesActivity.class);
+        Intent intent = new Intent(YtbExtraTvCountriesActivity.this, YtbExtraTvYonlendirCountriesActivity.class);
         startActivity(intent);
     }
 

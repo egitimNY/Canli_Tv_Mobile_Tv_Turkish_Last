@@ -47,8 +47,10 @@ public class InternetConnectivityChecker extends AsyncTask<Void, Void, Boolean> 
         } else {
             builder = new AlertDialog.Builder(context);
         }
-        builder.setTitle("No Internet Connection")
-                .setMessage("Please check your internet connection and try again.")
+//        builder.setTitle("No Internet Connection")
+        builder.setTitle("İnternet Bağlantısı Yok")
+//                .setMessage("Please check your internet connection and try again.")
+                .setMessage("Lütfen internet bağlantınızı kontrol edip tekrar deneyin.")
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         // You can add additional actions here if needed

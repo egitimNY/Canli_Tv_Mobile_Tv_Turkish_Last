@@ -178,6 +178,14 @@ public class ManagerAll extends BaseManager {
         return getRestApi().getYtbExtraTvByCategoryYonlendir(category);
     }
 
+    public Call<List<YtbExtraTvYonlendirCategoryModel>> ytbExtraTvCountryYonlendirFetch() {
+        return getRestApi().ytbExtraTvCountryYonlendir();
+    }
+
+    public Call<List<YtbExtraTvYonlendirModel>> getYtbExtraTvByCountryYonlendirFetch(String category) {
+        return getRestApi().getYtbExtraTvByCountryYonlendir(category);
+    }
+
 
 
     public Call<List<GazetelerModel>> gazetelerFetch() {
