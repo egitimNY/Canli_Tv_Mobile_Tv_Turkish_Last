@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.halitpractice.tvlangsungturkilight.R;
@@ -39,8 +40,18 @@ public class YtbExtraTvYonlendirCategoryAdapter extends RecyclerView.Adapter<Ytb
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         final YtbExtraTvYonlendirCategoryModel ytbExtraTvYonlendirCategoryModel = my_list.get(position);
-        holder.name.setText(ytbExtraTvYonlendirCategoryModel.getName());
+//        holder.name.setText(ytbExtraTvYonlendirCategoryModel.getName());
 
+        // Set the name text, and check if it's empty or null
+        if (ytbExtraTvYonlendirCategoryModel.getName() != null && !ytbExtraTvYonlendirCategoryModel.getName().isEmpty()) {
+            holder.name.setText(ytbExtraTvYonlendirCategoryModel.getName());
+            // Set the text color to the default color (e.g., black)
+            holder.name.setTextColor(ContextCompat.getColor(context, R.color.defaultChannelColor));
+        } else {
+            // If the text is empty or null, display "No text available" in red
+            holder.name.setText(context.getString(R.string.ytb_extra_category_not_found));
+            holder.name.setTextColor(ContextCompat.getColor(context, R.color.redChannelColor)); // Set the text color to red
+        }
 
         // Load the image with Picasso or any other image loading library
         if (ytbExtraTvYonlendirCategoryModel.getImage_url() != null && !ytbExtraTvYonlendirCategoryModel.getImage_url().isEmpty()) {

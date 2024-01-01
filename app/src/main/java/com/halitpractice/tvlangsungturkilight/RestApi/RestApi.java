@@ -21,6 +21,7 @@ import com.halitpractice.tvlangsungturkilight.models.YerelTvYonlendirModel;
 import com.halitpractice.tvlangsungturkilight.models.YtbExtraTvCategoryModel;
 import com.halitpractice.tvlangsungturkilight.models.YtbExtraTvModel;
 import com.halitpractice.tvlangsungturkilight.models.YtbExtraTvYonlendirCategoryModel;
+import com.halitpractice.tvlangsungturkilight.models.YtbExtraTvYonlendirCountryModel;
 import com.halitpractice.tvlangsungturkilight.models.YtbExtraTvYonlendirModel;
 
 import java.util.List;
@@ -140,7 +141,7 @@ public interface RestApi {
     Call<List<YtbExtraTvYonlendirModel>> getYtbExtraTvByCategoryYonlendir(@Query("cat") String category);
 
     @GET("/canliTVTurkishChromeTab/retrofitCanliTVversionOne/ytbExtraTvCountriesYonlendir.php")
-    Call<List<YtbExtraTvYonlendirCategoryModel>> ytbExtraTvCountryYonlendir();
+    Call<List<YtbExtraTvYonlendirCountryModel>> ytbExtraTvCountryYonlendir();
 
     @GET("/canliTVTurkishChromeTab/retrofitCanliTVversionOne/ytbExtraTvCountriesDetailsYonlendir.php")
     Call<List<YtbExtraTvYonlendirModel>> getYtbExtraTvByCountryYonlendir(@Query("cat") String category);

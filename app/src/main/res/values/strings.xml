@@ -16,8 +16,6 @@
 
 
 
-
-
     <string name="image_description">Description of the image</string>
     <string name="error_message">Error!</string>
     <string name="url_empty_or_null_message">URL is empty or null</string>
@@ -48,6 +46,8 @@
     <string name="ytb_extra">YTB Ekstra - Hersey</string>
     <string name="ytb_extra_kategori">YTB Ekstra - Kategori</string>
     <string name="ytb_extra_countries">YTB Ekstra - Ülkeler</string>
+    <string name="ytb_extra_category_not_found">Kategori hatasi</string>
+    <string name="ytb_extra_country_not_found">Ülke hatasi</string>
     <string name="country">Country!</string>
     <string name="gazeteler">Gazeteler</string>
     <string name="dunyaTv">Dünya Tv\'leri Hepsi</string>

@@ -21,6 +21,7 @@ import com.halitpractice.tvlangsungturkilight.models.YerelTvYonlendirModel;
 import com.halitpractice.tvlangsungturkilight.models.YtbExtraTvCategoryModel;
 import com.halitpractice.tvlangsungturkilight.models.YtbExtraTvModel;
 import com.halitpractice.tvlangsungturkilight.models.YtbExtraTvYonlendirCategoryModel;
+import com.halitpractice.tvlangsungturkilight.models.YtbExtraTvYonlendirCountryModel;
 import com.halitpractice.tvlangsungturkilight.models.YtbExtraTvYonlendirModel;
 
 import java.util.List;
@@ -178,7 +179,7 @@ public class ManagerAll extends BaseManager {
         return getRestApi().getYtbExtraTvByCategoryYonlendir(category);
     }
 
-    public Call<List<YtbExtraTvYonlendirCategoryModel>> ytbExtraTvCountryYonlendirFetch() {
+    public Call<List<YtbExtraTvYonlendirCountryModel>> ytbExtraTvCountryYonlendirFetch() {
         return getRestApi().ytbExtraTvCountryYonlendir();
     }
 

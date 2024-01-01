@@ -17,7 +17,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.halitpractice.tvlangsungturkilight.RestApi.ManagerAll;
 import com.halitpractice.tvlangsungturkilight.adapters.YtbExtraTvYonlendirCountryAdapter;
-import com.halitpractice.tvlangsungturkilight.models.YtbExtraTvYonlendirCategoryModel;
+import com.halitpractice.tvlangsungturkilight.models.YtbExtraTvYonlendirCountryModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +29,7 @@ import retrofit2.Response;
 public class YtbExtraTvYonlendirCountriesActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private List<YtbExtraTvYonlendirCategoryModel> main_list;
+    private List<YtbExtraTvYonlendirCountryModel> main_list;
     private YtbExtraTvYonlendirCountryAdapter adapter;
 
     @Override
@@ -89,10 +89,10 @@ public class YtbExtraTvYonlendirCountriesActivity extends AppCompatActivity {
 
     private void fetchData() {
 
-        Call<List<YtbExtraTvYonlendirCategoryModel>> req = ManagerAll.getInstance().ytbExtraTvCountryYonlendirFetch();
-        req.enqueue(new Callback<List<YtbExtraTvYonlendirCategoryModel>>() {
+        Call<List<YtbExtraTvYonlendirCountryModel>> req = ManagerAll.getInstance().ytbExtraTvCountryYonlendirFetch();
+        req.enqueue(new Callback<List<YtbExtraTvYonlendirCountryModel>>() {
             @Override
-            public void onResponse(Call<List<YtbExtraTvYonlendirCategoryModel>> call, Response<List<YtbExtraTvYonlendirCategoryModel>> response) {
+            public void onResponse(Call<List<YtbExtraTvYonlendirCountryModel>> call, Response<List<YtbExtraTvYonlendirCountryModel>> response) {
 
                 if (response.isSuccessful()) {
 
@@ -111,7 +111,7 @@ public class YtbExtraTvYonlendirCountriesActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<YtbExtraTvYonlendirCategoryModel>> call, Throwable t) {
+            public void onFailure(Call<List<YtbExtraTvYonlendirCountryModel>> call, Throwable t) {
                 handleNetworkFailure();
             }
         });

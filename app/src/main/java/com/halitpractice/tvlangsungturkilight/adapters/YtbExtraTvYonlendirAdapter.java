@@ -48,7 +48,7 @@ public class YtbExtraTvYonlendirAdapter extends RecyclerView.Adapter<YtbExtraTvY
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.ytb_extra_tv_yonlendir_list_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.ytb_extra_tv_yonlendir_ulkeler_list_item, parent, false);
         return new MyViewHolder(view);
     }
 
@@ -65,6 +65,19 @@ public class YtbExtraTvYonlendirAdapter extends RecyclerView.Adapter<YtbExtraTvY
             // If the text is empty or null, display "No text available" in red
             holder.name.setText(context.getString(R.string.no_text_available));
             holder.name.setTextColor(ContextCompat.getColor(context, R.color.redChannelColor)); // Set the text color to red
+        }
+
+        // Set the country name with the "CountryName: " prefix
+        String countryName = ytbExtraTvYonlendirModel.getCountryname();
+        if (countryName != null && !countryName.isEmpty()) {
+            String countryText = "Ülke: " + countryName;
+            holder.country.setText(countryText);
+            holder.country.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary));
+        } else {
+            // If the country name is null or empty, set a default text and change text color
+            holder.country.setText("Ülke: ismi yazılmamış");
+            holder.country.setTextColor(ContextCompat.getColor(context, R.color.redChannelColor));
+            // You can also choose to hide the TextView or set a different message based on your app logic
         }
 
         // Load the image with Glide, resizing it to 150x150 pixels
@@ -104,14 +117,14 @@ public class YtbExtraTvYonlendirAdapter extends RecyclerView.Adapter<YtbExtraTvY
 
     static class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView image;
-        TextView name, role;
+        TextView name, country;
         RelativeLayout relative;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.image);
             name = itemView.findViewById(R.id.name);
-            // role=itemView.findViewById(R.id.role);
+            country = itemView.findViewById(R.id.ytbExtraYonlendirUlkeler);
         }
     }
 

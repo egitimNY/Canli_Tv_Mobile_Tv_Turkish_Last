@@ -1,7 +1,5 @@
 package com.halitpractice.tvlangsungturkilight.models;
 
-import androidx.annotation.NonNull;
-
 import java.io.Serializable;
 
 public class DunyaTvYonlendirModel implements Serializable {
@@ -9,12 +7,14 @@ public class DunyaTvYonlendirModel implements Serializable {
     private String name;
     private String live_url;
     private String thumbnail;
+    private String countryname;
 
-    public DunyaTvYonlendirModel(int id, String name, String live_url, String thumbnail) {
+    public DunyaTvYonlendirModel(int id, String name, String live_url, String thumbnail, String countryname) {
         this.id = id;
         this.name = name;
         this.live_url = live_url;
         this.thumbnail = thumbnail;
+        this.countryname = countryname;
     }
 
     public int getId() {
@@ -49,14 +49,22 @@ public class DunyaTvYonlendirModel implements Serializable {
         this.thumbnail = thumbnail;
     }
 
-    @NonNull
+    public String getCountryname() {
+        return countryname;
+    }
+
+    public void setCountryname(String countryname) {
+        this.countryname = countryname;
+    }
+
     @Override
     public String toString() {
-        return "YerelTvModel{" +
+        return "DunyaTvYonlendirModel{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", live_url='" + live_url + '\'' +
                 ", thumbnail='" + thumbnail + '\'' +
+                ", countryname='" + countryname + '\'' +
                 '}';
     }
 

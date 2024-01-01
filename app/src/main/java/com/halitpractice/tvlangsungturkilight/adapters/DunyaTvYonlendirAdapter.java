@@ -47,7 +47,7 @@ public class DunyaTvYonlendirAdapter extends RecyclerView.Adapter<DunyaTvYonlend
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.dunya_tv_list_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.dunya_tv_yonlendir_ulkeler_list_item, parent, false);
         return new MyViewHolder(view);
     }
 
@@ -67,6 +67,19 @@ public class DunyaTvYonlendirAdapter extends RecyclerView.Adapter<DunyaTvYonlend
 //            holder.name.setText("Metin mevcut değil");
             holder.name.setText(context.getString(R.string.no_text_available));
             holder.name.setTextColor(ContextCompat.getColor(context, R.color.redChannelColor)); // Set the text color to red
+        }
+
+        // Set the country name with the "CountryName: " prefix
+        String countryName = dunyaTvYonlendirModel.getCountryname();
+        if (countryName != null && !countryName.isEmpty()) {
+            String countryText = "Ülke: " + countryName;
+            holder.country.setText(countryText);
+            holder.country.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary));
+        } else {
+            // If the country name is null or empty, set a default text and change text color
+            holder.country.setText("Ülke: ismi yazılmamış");
+            holder.country.setTextColor(ContextCompat.getColor(context, R.color.redChannelColor));
+            // You can also choose to hide the TextView or set a different message based on your app logic
         }
 
         // Load the image with Picasso or any other image loading library
@@ -112,13 +125,14 @@ public class DunyaTvYonlendirAdapter extends RecyclerView.Adapter<DunyaTvYonlend
 
     static class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView image;
-        TextView name, role;
+        TextView name, country;
         RelativeLayout relative;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.image);
             name = itemView.findViewById(R.id.name);
+            country = itemView.findViewById(R.id.dunyaYonlendirUlkeler);
         }
     }
 

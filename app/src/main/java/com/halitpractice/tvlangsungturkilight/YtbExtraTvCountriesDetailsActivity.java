@@ -41,7 +41,6 @@ public class YtbExtraTvCountriesDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ytb_extra_tv_countries_details);
 
-
         // Find and set the Toolbar as the action bar
         Toolbar toolbar = findViewById(R.id.custom_toolbar);
         setSupportActionBar(toolbar);
@@ -70,7 +69,6 @@ public class YtbExtraTvCountriesDetailsActivity extends AppCompatActivity {
         String selectedCategory = getIntent().getStringExtra("ytbExtraTvCountries");
         ActionBar actionBar = getSupportActionBar();
 
-
         /*
         if (actionBar != null) {
             if (selectedCategory != null) {
@@ -79,7 +77,6 @@ public class YtbExtraTvCountriesDetailsActivity extends AppCompatActivity {
             }
         }
         */
-
 
         // Initialize the DataCacheCategory instance
         dataCache = YtbExtraTvCategoriesDetailsDataCache.getInstance();
@@ -192,18 +189,15 @@ public class YtbExtraTvCountriesDetailsActivity extends AppCompatActivity {
 //        Toast.makeText(this, "İnternet bağlantısı yok. Lütfen ağ ayarlarınızı kontrol edin.", Toast.LENGTH_LONG).show();
     }
 
-
     private void redirectYonlendir() {
         // Redirect to FeatureUnderConstructionActivity
         Intent intent = new Intent(YtbExtraTvCountriesDetailsActivity.this, YtbExtraTvYonlendirCategoriesDetailsActivity.class);
         startActivity(intent);
     }
 
-
-
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, YtbExtraTvCategoriesActivity.class);
+        Intent intent = new Intent(this, YtbExtraTvCountriesActivity.class);
         startActivity(intent);
         finish(); // Close the current activity
 
@@ -215,7 +209,7 @@ public class YtbExtraTvCountriesDetailsActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             // Handle the back button click here, navigate to ThirdActivity
-            Intent intent = new Intent(this, YtbExtraTvCategoriesActivity.class);
+            Intent intent = new Intent(this, YtbExtraTvCountriesActivity.class);
             startActivity(intent);
             finish(); // Finish the current activity if you don't want to return to it
             return true;

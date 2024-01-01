@@ -37,7 +37,6 @@ public class YtbExtraTvYonlendirCountriesDetailsActivity extends AppCompatActivi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ytb_extra_tv_yonlendir_countries_details);
 
-
         Toolbar toolbar = findViewById(R.id.custom_toolbar);
         setSupportActionBar(toolbar);
 
@@ -69,7 +68,6 @@ public class YtbExtraTvYonlendirCountriesDetailsActivity extends AppCompatActivi
                 actionBar.setTitle("Ülkeler: ");
             }
         }
-
 
         AdView mAdView = findViewById(R.id.adViewYtbExtraYonlendirCountries);
         AdRequest adRequest = new AdRequest.Builder().build();
@@ -141,16 +139,11 @@ public class YtbExtraTvYonlendirCountriesDetailsActivity extends AppCompatActivi
         }
     }
 
-
-
-
     private void redirectYonlendir() {
         // Redirect to FeatureUnderConstructionActivity
         Intent intent = new Intent(YtbExtraTvYonlendirCountriesDetailsActivity.this, MainActivity.class);
         startActivity(intent);
     }
-
-
 
     @Override
     public void onBackPressed() {
