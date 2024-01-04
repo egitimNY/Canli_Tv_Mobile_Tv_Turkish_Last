@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RadyoDinleActivity">
+    tools:context=".activities.RadyoDinleActivity">
 
-    <include layout="@layout/app_bar_main" />
+    <include
+        android:id="@+id/include3"
+        layout="@layout/app_bar_main" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/movieYoutubeRecycler"
+        android:id="@+id/radyoDinleRecycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="55dp">
-    </androidx.recyclerview.widget.RecyclerView>
+        android:layout_height="0dp"
+        android:layout_marginTop="55dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ProgressBar
         android:id="@+id/progressBarRadyoDinle"
@@ -22,6 +28,7 @@
         android:layout_gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.614"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,21 +40,26 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
+
+        <!--
         <ImageView
-            android:id="@+id/closeBtnRadyoDinleYoutube"
+            android:id="@+id/closeBtnRadyoDinle"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:src="@drawable/ic_exit"
             android:contentDescription="@string/close_button_label" />
+        -->
+
         <com.google.android.gms.ads.AdView
-            android:id="@+id/adViewRadyoDinleYoutube"
+            android:id="@+id/adViewRadyoDinle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             app:adSize="SMART_BANNER"
-            app:adUnitId="@string/admob_ad_unit_id">
+            app:adUnitId="@string/admob_ad_unit_id"
+            app:layout_constraintTop_toBottomOf="@+id/radyoDinleRecycler"
+            android:layout_marginTop="5dp">
         </com.google.android.gms.ads.AdView>
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

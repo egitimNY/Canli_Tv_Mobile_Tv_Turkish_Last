@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.halitpractice.tvlangsungturkilight.R;
-import com.halitpractice.tvlangsungturkilight.YerelTvCategoriesDetailsActivity;
+import com.halitpractice.tvlangsungturkilight.TurkTvCategoriesDetailsActivity;
 import com.halitpractice.tvlangsungturkilight.models.YerelTvCategoryModel;
 import com.squareup.picasso.Picasso;
 
@@ -55,7 +55,7 @@ public class YerelTvCategoryAdapter extends RecyclerView.Adapter<YerelTvCategory
 
 
         holder.itemView.setOnClickListener(v -> {
-            Intent i = new Intent(v.getContext(), YerelTvCategoriesDetailsActivity.class);
+            Intent i = new Intent(v.getContext(), TurkTvCategoriesDetailsActivity.class);
             int clickedPosition = holder.getAdapterPosition();
             String selectedCategory = my_list.get(clickedPosition).getName(); // Get the category name
             i.putExtra("category", selectedCategory);

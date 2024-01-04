@@ -7,12 +7,16 @@ public class GazetelerModel implements Serializable {
     private String name;
     private String live_url;
     private String thumbnail;
+    private String countryname;
+    private String regional;
 
-    public GazetelerModel(int id, String name, String live_url, String thumbnail) {
+    public GazetelerModel(int id, String name, String live_url, String thumbnail, String countryname, String regional) {
         this.id = id;
         this.name = name;
         this.live_url = live_url;
         this.thumbnail = thumbnail;
+        this.countryname = countryname;
+        this.regional = regional;
     }
 
     public int getId() {
@@ -47,13 +51,31 @@ public class GazetelerModel implements Serializable {
         this.thumbnail = thumbnail;
     }
 
+    public String getCountryname() {
+        return countryname;
+    }
+
+    public void setCountryname(String countryname) {
+        this.countryname = countryname;
+    }
+
+    public String getRegional() {
+        return regional;
+    }
+
+    public void setRegional(String regional) {
+        this.regional = regional;
+    }
+
     @Override
     public String toString() {
-        return "GezetelerModel{" +
+        return "GazetelerModel{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", live_url='" + live_url + '\'' +
                 ", thumbnail='" + thumbnail + '\'' +
+                ", countryname='" + countryname + '\'' +
+                ", regional='" + regional + '\'' +
                 '}';
     }
 

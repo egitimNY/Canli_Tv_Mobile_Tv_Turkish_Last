@@ -6,16 +6,6 @@
 
     <group android:checkableBehavior="single">
 
-        <item
-            android:id="@+id/turkishLiveTv"
-            android:icon="@drawable/turk_bayrak"
-            android:title="@string/ulusal_tvler" />
-
-        <item
-            android:id="@+id/turkishLiveTvCategories"
-            android:icon="@drawable/category"
-            android:title="@string/ulusal_tvler_kategori" />
-
 
         <item
             android:id="@+id/yerel_tv"
@@ -28,11 +18,6 @@
             android:title="@string/yerel_tvler_kategori" />
 
         <item
-            android:id="@+id/cartoon"
-            android:icon="@drawable/ic_movie"
-            android:title="@string/cizgi_filmler" />
-
-        <item
             android:id="@+id/radyo"
             android:icon="@drawable/ic_radio"
             android:title="@string/radyo_dinle" />
@@ -41,6 +26,39 @@
             android:id="@+id/turkYabanciFilm"
             android:icon="@drawable/ic_movie"
             android:title="@string/yabanci_filmler" />
+
+
+
+        <item
+            android:id="@+id/ekstraTv"
+            android:icon="@drawable/turk_bayrak"
+            android:title="@string/ulusal_tvler" />
+
+        <item
+            android:id="@+id/ekstraTvCategories"
+            android:icon="@drawable/category"
+            android:title="@string/ulusal_tvler_kategori" />
+
+
+        <item
+            android:id="@+id/gazeteler"
+            android:icon="@drawable/gazeteler_kirmizi"
+            android:title="@string/gazeteler" />
+
+        <item
+            android:id="@+id/gazetelerCategory"
+            android:icon="@drawable/category"
+            android:title="@string/gazeteler_kategori" />
+
+        <item
+            android:id="@+id/gazetelerRegigional"
+            android:icon="@drawable/gazeteler"
+            android:title="@string/regional" />
+
+        <item
+            android:id="@+id/gazetelerCountry"
+            android:icon="@drawable/gazeteler"
+            android:title="@string/gazeteler_ulke" />
 
         <item
             android:id="@+id/ytbExtraTv"
@@ -53,9 +71,10 @@
             android:title="@string/ytb_extra_kategori" />
 
         <item
-            android:id="@+id/gazeteler"
-            android:icon="@drawable/gazeteler_kirmizi"
-            android:title="@string/gazeteler" />
+            android:id="@+id/ytbExtraTvCountry"
+            android:icon="@drawable/ic_movie"
+            android:title="@string/ytb_extra_countries" />
+
 
         <item
             android:id="@+id/dunyaTvDrawer"
@@ -69,7 +88,7 @@
 
         <item
             android:id="@+id/dunyaTvCategoryDrawer"
-            android:icon="@drawable/dunya_icon"
+            android:icon="@drawable/category"
             android:title="@string/dunyaTvKategori" />
 
         <!--

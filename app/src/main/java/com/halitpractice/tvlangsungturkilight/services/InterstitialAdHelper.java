@@ -7,16 +7,18 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
-import com.halitpractice.tvlangsungturkilight.MainActivity;
 
 public class InterstitialAdHelper {
 
     private static final String TAG = "InterstitialAdHelper";
     private InterstitialAd mInterstitialAd;
+    private AdListener adListener;
 
     public InterstitialAdHelper(Context context, String adUnitId) {
         loadInterstitialAd(context, adUnitId);
@@ -46,13 +48,29 @@ public class InterstitialAdHelper {
         }
     }
 
+    public void setAdListener(AdListener listener) {
+        this.adListener = listener;
+    }
+
     public void onBackPressedWithAd(Activity activity, Intent intentToStart) {
-        Intent intent = new Intent(activity, MainActivity.class);
-        activity.startActivity(intentToStart);
         if (mInterstitialAd == null) {
+            activity.startActivity(intentToStart);
             activity.finish();
+        } else {
+            mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                @Override
+                public void onAdDismissedFullScreenContent() {
+                    if (adListener != null) {
+                        adListener.onAdClosed();
+                    }
+                    activity.startActivity(intentToStart);
+                    activity.finish();
+                }
+            });
+            mInterstitialAd.show(activity);
         }
     }
 }
+
 
 

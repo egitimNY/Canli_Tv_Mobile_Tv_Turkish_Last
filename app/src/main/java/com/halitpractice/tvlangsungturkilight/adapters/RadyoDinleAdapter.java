@@ -1,5 +1,6 @@
 package com.halitpractice.tvlangsungturkilight.adapters;
 
+import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -16,20 +17,30 @@ import androidx.annotation.NonNull;
 import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.FullScreenContentCallback;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.halitpractice.tvlangsungturkilight.R;
 import com.halitpractice.tvlangsungturkilight.models.RadyoDinleModel;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RadyoDinleAdapter extends RecyclerView.Adapter<RadyoDinleAdapter.MyViewHolder> {
     List<RadyoDinleModel> my_list;
     Context context;
+    private int clickCount = 0; // Track the number of item clicks
+    private InterstitialAd mInterstitialAd;
 
     public RadyoDinleAdapter(List<RadyoDinleModel> my_list, Context context) {
         this.my_list = my_list;
         this.context = context;
+        loadAds(); // Initialize and load the interstitial ad
     }
 
     @NonNull
@@ -76,37 +87,17 @@ public class RadyoDinleAdapter extends RecyclerView.Adapter<RadyoDinleAdapter.My
         // Start marquee scrolling for the name TextView
         holder.name.setSelected(true);
 
+        // Set an OnClickListener to open the Chrome Custom Tab when the channel is clicked
         holder.itemView.setOnClickListener(v -> {
-            // Check if the video ID is empty or null
-            if (radyoDinleModel.getVideoid() != null && !radyoDinleModel.getVideoid().isEmpty()) {
-                // Open the URL in a Chrome Custom Tab
-                CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
-                CustomTabsIntent customTabsIntent = builder.build();
+            openChannelInChromeCustomTab(radyoDinleModel.getVideoid());
 
-                try {
-                    customTabsIntent.launchUrl(context, Uri.parse(radyoDinleModel.getVideoid()));
-                } catch (ActivityNotFoundException e) {
-                    // Handle the case where Chrome Custom Tabs are not available on the device
-                    // Open the URL in the default web browser
-                    Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(radyoDinleModel.getVideoid()));
-                    if (webIntent.resolveActivity(context.getPackageManager()) != null) {
-                        context.startActivity(webIntent);
-                    } else {
-                        // If no browser is found, you can show a message to the user or take other appropriate action
-                        String noBrowserMessage = context.getString(R.string.no_browser_found_message);
-                        Toast.makeText(context, noBrowserMessage, Toast.LENGTH_SHORT).show();
-                    }
-                } catch (Exception e) {
-                    // Handle URL launch error
-                    e.printStackTrace();
-                    // You can show an error message to the user or take other actions
-                }
-            } else {
-                // Handle the case where the video ID is empty or null
-                String videoIdEmptyOrNullMessage = context.getString(R.string.video_id_empty_or_null_message);
-                Toast.makeText(context, videoIdEmptyOrNullMessage, Toast.LENGTH_SHORT).show();
+            clickCount++;
+            if (clickCount >= 1) {
+                showInterstitialAd();
+                resetClickCount(); // Reset the click count
             }
         });
+
     }
 
 
@@ -125,5 +116,84 @@ public class RadyoDinleAdapter extends RecyclerView.Adapter<RadyoDinleAdapter.My
             image = itemView.findViewById(R.id.image);
             name = itemView.findViewById(R.id.name);
         }
+    }
+
+    private void openChannelInChromeCustomTab(String url) {
+        if (url != null && !url.isEmpty()) {
+            CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+            // Disable the share icon in the Chrome Custom Tab
+            builder.setShareState(CustomTabsIntent.SHARE_STATE_OFF);
+            // Customize other properties as needed, for example:
+            builder.setShowTitle(true);
+            // Build the CustomTabsIntent
+            CustomTabsIntent customTabsIntent = builder.build();
+
+            try {
+                customTabsIntent.launchUrl(context, Uri.parse(url));
+            } catch (ActivityNotFoundException e) {
+                // Handle the case where Chrome Custom Tabs are not available on the device
+                // Open the URL in the default web browser
+                Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                if (webIntent.resolveActivity(context.getPackageManager()) != null) {
+                    context.startActivity(webIntent);
+                } else {
+                    // If no browser is found, you can show a message to the user or take other appropriate action
+                    String noBrowserMessage = context.getString(R.string.no_browser_found_message);
+                    Toast.makeText(context, noBrowserMessage, Toast.LENGTH_SHORT).show();
+                }
+            }
+        } else {
+            // Handle the case where the URL is empty or null
+            String urlEmptyOrNullMessage = context.getString(R.string.url_empty_or_null_message);
+            Toast.makeText(context, urlEmptyOrNullMessage, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void setSearchOperation(List<RadyoDinleModel> newList){
+        my_list=new ArrayList<>();
+        my_list.addAll(newList);
+        notifyDataSetChanged();
+    }
+
+    private void showInterstitialAd() {
+        if (mInterstitialAd != null) {
+            mInterstitialAd.show((Activity) context);
+            mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                @Override
+                public void onAdDismissedFullScreenContent() {
+                    super.onAdDismissedFullScreenContent();
+                    mInterstitialAd = null;
+                    resetClickCount(); // Reset the click count
+                    loadAds(); // Reload the ad for subsequent interactions
+                }
+            });
+        }
+    }
+
+    private void loadAds() {
+        MobileAds.initialize(context, initializationStatus -> {
+            // AdMob initialization is complete.
+        });
+
+        // Load the Ad Unit ID from strings.xml
+        String adUnitId = context.getString(R.string.admob_interstitial_ad_unit_id);
+        AdRequest adRequest = new AdRequest.Builder().build();
+
+        InterstitialAd.load(context, adUnitId, adRequest, new InterstitialAdLoadCallback() {
+            @Override
+            public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                mInterstitialAd = interstitialAd;
+            }
+
+            @Override
+            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                // Handle the error
+                mInterstitialAd = null;
+            }
+        });
+    }
+
+    private void resetClickCount() {
+        clickCount = 0;
     }
 }

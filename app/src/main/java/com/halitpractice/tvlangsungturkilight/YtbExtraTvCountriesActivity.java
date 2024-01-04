@@ -77,6 +77,7 @@ public class YtbExtraTvCountriesActivity extends AppCompatActivity {
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
+        /*
         ImageView closedBtn = findViewById(R.id.closeBtnYtbExtraTvCountries);
         closedBtn.setOnClickListener(v -> {
             if (mAdView.getVisibility() == View.VISIBLE) {
@@ -91,6 +92,7 @@ public class YtbExtraTvCountriesActivity extends AppCompatActivity {
                 closedBtn.setVisibility(View.VISIBLE);
             }
         });
+        */
 
 //        fetchData();
 

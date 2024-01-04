@@ -7,12 +7,14 @@ public class UlusalTvModel implements Serializable {
     private String name;
     private String live_url;
     private String thumbnail;
+    private String category;
 
-    public UlusalTvModel(int id, String name, String live_url, String thumbnail) {
+    public UlusalTvModel(int id, String name, String live_url, String thumbnail, String category) {
         this.id = id;
         this.name = name;
         this.live_url = live_url;
         this.thumbnail = thumbnail;
+        this.category = category;
     }
 
     public int getId() {
@@ -47,6 +49,14 @@ public class UlusalTvModel implements Serializable {
         this.thumbnail = thumbnail;
     }
 
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
     @Override
     public String toString() {
         return "UlusalTvModel{" +
@@ -54,6 +64,8 @@ public class UlusalTvModel implements Serializable {
                 ", name='" + name + '\'' +
                 ", live_url='" + live_url + '\'' +
                 ", thumbnail='" + thumbnail + '\'' +
+                ", category='" + category + '\'' +
                 '}';
     }
+
 }

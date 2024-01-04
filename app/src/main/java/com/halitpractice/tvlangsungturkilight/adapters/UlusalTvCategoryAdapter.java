@@ -14,7 +14,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.halitpractice.tvlangsungturkilight.R;
-import com.halitpractice.tvlangsungturkilight.UlusalTvCategoriesDetailsActivity;
+import com.halitpractice.tvlangsungturkilight.EkstraTvCategoriesDetailsActivity;
 import com.halitpractice.tvlangsungturkilight.models.UlusalTvCategoryModel;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
@@ -77,7 +77,7 @@ public class UlusalTvCategoryAdapter extends RecyclerView.Adapter<UlusalTvCatego
         holder.name.setSelected(true);
 
         holder.itemView.setOnClickListener(v -> {
-            Intent i = new Intent(v.getContext(), UlusalTvCategoriesDetailsActivity.class);
+            Intent i = new Intent(v.getContext(), EkstraTvCategoriesDetailsActivity.class);
             int clickedPosition = holder.getAdapterPosition();
             if (clickedPosition != RecyclerView.NO_POSITION) {
                 String selectedCategory = my_list.get(clickedPosition).getName(); // Get the category name

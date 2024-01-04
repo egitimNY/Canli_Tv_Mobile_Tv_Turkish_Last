@@ -36,7 +36,7 @@ import java.util.List;
 
 public class UlusalTvAdapter extends RecyclerView.Adapter<UlusalTvAdapter.MyViewHolder> {
     List<UlusalTvModel> my_list;
-    Context context;
+    private Context context;
     private int clickCount = 0; // Track the number of item clicks
     private InterstitialAd mInterstitialAd;
 
@@ -49,7 +49,7 @@ public class UlusalTvAdapter extends RecyclerView.Adapter<UlusalTvAdapter.MyView
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.turkish_live_tv_list_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.ektra_tv_kategori_list_item, parent, false);
         return new MyViewHolder(view);
     }
 
@@ -66,6 +66,19 @@ public class UlusalTvAdapter extends RecyclerView.Adapter<UlusalTvAdapter.MyView
             // If the text is empty or null, display "No text available" in red
             holder.name.setText(context.getString(R.string.no_text_available));
             holder.name.setTextColor(ContextCompat.getColor(context, R.color.redChannelColor)); // Set the text color to red
+        }
+
+        // Set the country name with the "CountryName: " prefix
+        String categoryName = ulusalTvModel.getCategory();
+        if (categoryName != null && !categoryName.isEmpty()) {
+            String countryText = "Kategori: " + categoryName;
+            holder.category.setText(countryText);
+            holder.category.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary));
+        } else {
+            // If the country name is null or empty, set a default text and change text color
+            holder.category.setText("Kategori: ismi yazılmamış");
+            holder.category.setTextColor(ContextCompat.getColor(context, R.color.redChannelColor));
+            // You can also choose to hide the TextView or set a different message based on your app logic
         }
 
         // Load the image with Glide, resizing it to 150x150 pixels
@@ -86,14 +99,18 @@ public class UlusalTvAdapter extends RecyclerView.Adapter<UlusalTvAdapter.MyView
         holder.name.setSelected(true);
 
         holder.itemView.setOnClickListener(v -> {
-            openChannelInChromeCustomTab(my_list.get(holder.getAdapterPosition()).getLive_url());
             clickCount++;
-
-            if (clickCount >= 4) {
-                showInterstitialAd();
-                resetClickCount(); // Reset the click count
+            if (clickCount >= 2) {
+                // Show interstitial ad
+                showInterstitialAd(ulusalTvModel);
+                // Reset the click count (do not proceed to Chrome Custom Tab immediately)
+                resetClickCount();
+            } else {
+                // If click count is less than 4, increment count and proceed as usual
+                openChannelInChromeCustomTab(ulusalTvModel.getLive_url());
             }
         });
+
     }
 
     @Override
@@ -103,13 +120,14 @@ public class UlusalTvAdapter extends RecyclerView.Adapter<UlusalTvAdapter.MyView
 
     static class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView image;
-        TextView name;
+        TextView name, category;
         RelativeLayout relative;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.image);
             name = itemView.findViewById(R.id.name);
+            category = itemView.findViewById(R.id.categoryEkstra);
         }
     }
 
@@ -149,7 +167,7 @@ public class UlusalTvAdapter extends RecyclerView.Adapter<UlusalTvAdapter.MyView
         notifyDataSetChanged();
     }
 
-    private void showInterstitialAd() {
+    private void showInterstitialAd(UlusalTvModel model) {
         if (mInterstitialAd != null) {
             mInterstitialAd.show((Activity) context);
             mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
@@ -157,10 +175,17 @@ public class UlusalTvAdapter extends RecyclerView.Adapter<UlusalTvAdapter.MyView
                 public void onAdDismissedFullScreenContent() {
                     super.onAdDismissedFullScreenContent();
                     mInterstitialAd = null;
-                    resetClickCount(); // Reset the click count
-                    loadAds(); // Reload the ad for subsequent interactions
+                    // Proceed to open Chrome Custom Tab after ad dismissal
+                    openChannelInChromeCustomTab(model.getLive_url());
+                    // Load a new ad for subsequent interactions
+                    loadAds();
                 }
             });
+        } else {
+            // If ad is not available, proceed to open Chrome Custom Tab
+            openChannelInChromeCustomTab(model.getLive_url());
+            // Load a new ad for subsequent interactions
+            loadAds();
         }
     }
 

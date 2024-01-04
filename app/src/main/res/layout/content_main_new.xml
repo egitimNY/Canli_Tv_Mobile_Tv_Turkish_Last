@@ -14,13 +14,208 @@
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="65dp"
         android:layout_marginTop="80dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                app:cardBackgroundColor="@color/contentMainCardView"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="20dp">
+
+                <LinearLayout
+                    android:id="@+id/yerelTvlerContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="43dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="0dp"
+                        android:layout_height="25dp"
+                        android:layout_margin="15dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/turk_bayrak"
+                        app:civ_border_color="#2c6087"
+                        app:civ_border_width="2dp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="@string/yerel_tvler"
+                        android:textColor="@color/contentMainTexView"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_margin="1dp"
+                        android:layout_weight="2"
+                        android:src="@drawable/ic_navigate_next" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                app:cardBackgroundColor="@color/contentMainCardView"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="20dp">
+
+                <LinearLayout
+                    android:id="@+id/yerelTvlerKategoriContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="43dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="0dp"
+                        android:layout_height="25dp"
+                        android:layout_margin="15dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/category"
+                        app:civ_border_color="#2c6087" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="@string/yerel_tvler_kategori"
+                        android:textColor="@color/contentMainTexView"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_margin="1dp"
+                        android:layout_weight="2"
+                        android:src="@drawable/ic_navigate_next" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                app:cardBackgroundColor="@color/contentMainCardView"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="20dp">
+
+                <LinearLayout
+                    android:id="@+id/radyoDinleContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="43dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="0dp"
+                        android:layout_height="25dp"
+                        android:layout_margin="15dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_radio"
+                        app:civ_border_color="#2c6087" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="@string/radyo_dinle"
+                        android:textColor="@color/contentMainTexView"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_margin="1dp"
+                        android:layout_weight="2"
+                        android:src="@drawable/ic_navigate_next" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                app:cardBackgroundColor="@color/contentMainCardView"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="20dp">
+
+                <LinearLayout
+                    android:id="@+id/yabanciMoviesContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="43dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="0dp"
+                        android:layout_height="25dp"
+                        android:layout_margin="15dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_movie"
+                        app:civ_border_color="#2c6087" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="@string/yabanci_filmler"
+                        android:textColor="@color/contentMainTexView"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_margin="1dp"
+                        android:layout_weight="2"
+                        android:src="@drawable/ic_navigate_next" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/ulusalTvlerCarViewContent"
@@ -120,8 +315,9 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
+
+
             <androidx.cardview.widget.CardView
-                android:id="@+id/indianExtraTv"
                 android:layout_width="match_parent"
                 android:layout_height="43dp"
                 android:layout_marginLeft="10dp"
@@ -132,7 +328,7 @@
                 app:cardElevation="20dp">
 
                 <LinearLayout
-                    android:id="@+id/yerelTvlerContent"
+                    android:id="@+id/gazetelerContent"
                     android:layout_width="match_parent"
                     android:layout_height="43dp"
                     android:layout_gravity="center"
@@ -147,15 +343,14 @@
                         android:layout_height="25dp"
                         android:layout_margin="15dp"
                         android:layout_weight="1"
-                        android:src="@drawable/turk_bayrak"
-                        app:civ_border_color="#2c6087"
-                        app:civ_border_width="2dp" />
+                        android:src="@drawable/gazeteler_kirmizi"
+                        app:civ_border_color="#2c6087" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="5"
-                        android:text="@string/yerel_tvler"
+                        android:text="@string/gazeteler"
                         android:textColor="@color/contentMainTexView"
                         android:textSize="15sp"
                         android:textStyle="bold" />
@@ -170,7 +365,6 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/indianCartoons"
                 android:layout_width="match_parent"
                 android:layout_height="43dp"
                 android:layout_marginLeft="10dp"
@@ -181,7 +375,7 @@
                 app:cardElevation="20dp">
 
                 <LinearLayout
-                    android:id="@+id/yerelTvlerKategoriContent"
+                    android:id="@+id/gazetelerCategoryContent"
                     android:layout_width="match_parent"
                     android:layout_height="43dp"
                     android:layout_gravity="center"
@@ -203,55 +397,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="5"
-                        android:text="@string/yerel_tvler_kategori"
-                        android:textColor="@color/contentMainTexView"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_margin="1dp"
-                        android:layout_weight="2"
-                        android:src="@drawable/ic_navigate_next" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/indianMovies"
-                android:layout_width="match_parent"
-                android:layout_height="43dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                app:cardBackgroundColor="@color/contentMainCardView"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="20dp">
-
-                <LinearLayout
-                    android:id="@+id/cizgiFilmContent"
-                    android:layout_width="match_parent"
-                    android:layout_height="43dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:layout_width="0dp"
-                        android:layout_height="25dp"
-                        android:layout_margin="15dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/ic_movie"
-                        app:civ_border_color="#2c6087" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="5"
-                        android:text="@string/cizgi_filmler"
+                        android:text="@string/gazeteler_kategori"
                         android:textColor="@color/contentMainTexView"
                         android:textSize="15sp"
                         android:textStyle="bold" />
@@ -276,7 +422,7 @@
                 app:cardElevation="20dp">
 
                 <LinearLayout
-                    android:id="@+id/radyoDinleContent"
+                    android:id="@+id/gazetelerRegionalContent"
                     android:layout_width="match_parent"
                     android:layout_height="43dp"
                     android:layout_gravity="center"
@@ -291,14 +437,14 @@
                         android:layout_height="25dp"
                         android:layout_margin="15dp"
                         android:layout_weight="1"
-                        android:src="@drawable/ic_radio"
+                        android:src="@drawable/gazeteler"
                         app:civ_border_color="#2c6087" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="5"
-                        android:text="@string/radyo_dinle"
+                        android:text="@string/regional"
                         android:textColor="@color/contentMainTexView"
                         android:textSize="15sp"
                         android:textStyle="bold" />
@@ -312,6 +458,7 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="43dp"
@@ -323,7 +470,7 @@
                 app:cardElevation="20dp">
 
                 <LinearLayout
-                    android:id="@+id/yabanciMoviesContent"
+                    android:id="@+id/gazetelerCountryContent"
                     android:layout_width="match_parent"
                     android:layout_height="43dp"
                     android:layout_gravity="center"
@@ -338,14 +485,14 @@
                         android:layout_height="25dp"
                         android:layout_margin="15dp"
                         android:layout_weight="1"
-                        android:src="@drawable/ic_movie"
+                        android:src="@drawable/gazeteler"
                         app:civ_border_color="#2c6087" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="5"
-                        android:text="@string/yabanci_filmler"
+                        android:text="@string/gazeteler_ulke"
                         android:textColor="@color/contentMainTexView"
                         android:textSize="15sp"
                         android:textStyle="bold" />
@@ -502,52 +649,6 @@
             </androidx.cardview.widget.CardView>
 
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="43dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                app:cardBackgroundColor="@color/contentMainCardView"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="20dp">
-
-                <LinearLayout
-                    android:id="@+id/gazetelerContent"
-                    android:layout_width="match_parent"
-                    android:layout_height="43dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:layout_width="0dp"
-                        android:layout_height="25dp"
-                        android:layout_margin="15dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/gazeteler_kirmizi"
-                        app:civ_border_color="#2c6087" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="5"
-                        android:text="@string/gazeteler"
-                        android:textColor="@color/contentMainTexView"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_margin="1dp"
-                        android:layout_weight="2"
-                        android:src="@drawable/ic_navigate_next" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -700,12 +801,14 @@
         android:orientation="vertical"
         android:layout_alignParentBottom="true">
 
+        <!--
         <ImageView
             android:id="@+id/closeBtnMainActivity"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:contentDescription="@string/close_button_label"
             android:src="@drawable/ic_exit_main" />
+        -->
 
         <com.google.android.gms.ads.AdView
             android:id="@+id/adViewMainActivity"

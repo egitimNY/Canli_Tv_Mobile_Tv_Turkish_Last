@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -27,7 +28,7 @@ import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.halitpractice.tvlangsungturkilight.R;
-import com.halitpractice.tvlangsungturkilight.YerelTvDetailsActivity;
+import com.halitpractice.tvlangsungturkilight.TurkTvDetailsActivity;
 import com.halitpractice.tvlangsungturkilight.models.YerelTvModel;
 
 import java.util.ArrayList;
@@ -48,7 +49,7 @@ public class YerelTvAdapter extends RecyclerView.Adapter<YerelTvAdapter.MyViewHo
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.yerel_tv_list_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.yerel_tv_kategori_list_item, parent, false);
         return new MyViewHolder(view);
     }
 
@@ -56,6 +57,19 @@ public class YerelTvAdapter extends RecyclerView.Adapter<YerelTvAdapter.MyViewHo
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         final YerelTvModel yerelTvModel = my_list.get(position);
         holder.name.setText(yerelTvModel.getName());
+
+        // Set the country name with the "CountryName: " prefix
+        String categoryName = yerelTvModel.getCategory();
+        if (categoryName != null && !categoryName.isEmpty()) {
+            String countryText = "Kategori: " + categoryName;
+            holder.category.setText(countryText);
+            holder.category.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary));
+        } else {
+            // If the country name is null or empty, set a default text and change text color
+            holder.category.setText("Kategori: ismi yazılmamış");
+            holder.category.setTextColor(ContextCompat.getColor(context, R.color.redChannelColor));
+            // You can also choose to hide the TextView or set a different message based on your app logic
+        }
 
         // Load the image with Glide, resizing it to 150x150 pixels
         if (yerelTvModel.getThumbnail() != null && !yerelTvModel.getThumbnail().isEmpty()) {
@@ -94,7 +108,7 @@ public class YerelTvAdapter extends RecyclerView.Adapter<YerelTvAdapter.MyViewHo
     }
 
     private void startDetailsActivity(MyViewHolder holder) {
-        Intent i = new Intent(holder.itemView.getContext(), YerelTvDetailsActivity.class);
+        Intent i = new Intent(holder.itemView.getContext(), TurkTvDetailsActivity.class);
         i.putExtra("channel", my_list.get(holder.getAdapterPosition()));
         holder.itemView.getContext().startActivity(i);
     }
@@ -106,13 +120,14 @@ public class YerelTvAdapter extends RecyclerView.Adapter<YerelTvAdapter.MyViewHo
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView image;
-        TextView name, role;
+        TextView name, category;
         RelativeLayout relative;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.image);
             name = itemView.findViewById(R.id.name);
+            category = itemView.findViewById(R.id.categoryYerel);
         }
     }
 

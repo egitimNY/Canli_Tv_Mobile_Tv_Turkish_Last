@@ -59,7 +59,7 @@ public class YerelTvYonlendirActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setTitle("Yerel TV'ler");
+            actionBar.setTitle("Türk TV'ler");
         }
 
         main_list = new ArrayList<>();

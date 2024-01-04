@@ -5,13 +5,14 @@ import com.halitpractice.tvlangsungturkilight.models.DunyaTvModel;
 import com.halitpractice.tvlangsungturkilight.models.DunyaTvYonlendirCategoryModel;
 import com.halitpractice.tvlangsungturkilight.models.DunyaTvYonlendirModel;
 import com.halitpractice.tvlangsungturkilight.models.FormattedTextModel;
+import com.halitpractice.tvlangsungturkilight.models.GazetelerCategoryModel;
+import com.halitpractice.tvlangsungturkilight.models.GazetelerCountryModel;
 import com.halitpractice.tvlangsungturkilight.models.GazetelerModel;
 import com.halitpractice.tvlangsungturkilight.models.MarqueeTextModel;
 import com.halitpractice.tvlangsungturkilight.models.RadyoDinleModel;
+import com.halitpractice.tvlangsungturkilight.models.RadyoDinleYonlendirModel;
 import com.halitpractice.tvlangsungturkilight.models.TurkYabanciMovieModel;
 import com.halitpractice.tvlangsungturkilight.models.TurkYabanciMovieYonlendirModel;
-import com.halitpractice.tvlangsungturkilight.models.TurkishCartoonYtbModel;
-import com.halitpractice.tvlangsungturkilight.models.TurkishCartoonYtbRedirectModel;
 import com.halitpractice.tvlangsungturkilight.models.UlusalTvCategoryModel;
 import com.halitpractice.tvlangsungturkilight.models.UlusalTvModel;
 import com.halitpractice.tvlangsungturkilight.models.YerelTvCategoryModel;
@@ -91,8 +92,6 @@ public class ManagerAll extends BaseManager {
     }
 
 
-
-
     public Call<List<YerelTvModel>> yerelTvFetch() {
         return getRestApi().yerelTv();
     }
@@ -125,8 +124,12 @@ public class ManagerAll extends BaseManager {
         return getRestApi().urlGetir();
     }
 
-    public Call<List<TurkYabanciMovieYonlendirModel>> ZReleaseTvOne() {
-        return getRestApi().urlRelease();
+    public Call<List<TurkYabanciMovieYonlendirModel>> turkYabanciFilmYonlendir() {
+        return getRestApi().yabanciFilmYonlendir();
+    }
+
+    public Call<List<RadyoDinleYonlendirModel>> radyoDinleYonlendir() {
+        return getRestApi().turkRadyoDinleYonlendir();
     }
 
 
@@ -135,14 +138,6 @@ public class ManagerAll extends BaseManager {
         return getRestApi().radyoDinleBakim();
     }
 
-
-    public Call<List<TurkishCartoonYtbModel>> getIndoCartoonTv() {
-        return getRestApi().indoCartoonTv();
-    }
-
-    public Call<List<TurkishCartoonYtbRedirectModel>> indiaCartoonRedirectFetch() {
-        return getRestApi().urlReleaseRedirect();
-    }
 
 
 
@@ -191,6 +186,30 @@ public class ManagerAll extends BaseManager {
 
     public Call<List<GazetelerModel>> gazetelerFetch() {
         return getRestApi().gazeteler();
+    }
+
+    public Call<List<GazetelerCategoryModel>> gazetelerCategoryFetch() {
+        return getRestApi().gazetelerCategory();
+    }
+
+    public Call<List<GazetelerModel>> gazetelerCategoryDetailsFetch(String category) {
+        return getRestApi().gazetelerCategoryDetails(category);
+    }
+
+    public Call<List<GazetelerCountryModel>> gazetelerCountryFetch() {
+        return getRestApi().gazetelerCountry();
+    }
+
+    public Call<List<GazetelerModel>> gazetelerCountryDetailsFetch(String category) {
+        return getRestApi().gazetelerCountryDetails(category);
+    }
+
+    public Call<List<GazetelerCategoryModel>> gazetelerRegionalFetch() {
+        return getRestApi().gazetelerRegional();
+    }
+
+    public Call<List<GazetelerModel>> gazetelerRegionalDetailsFetch(String category) {
+        return getRestApi().gazetelerRegionalDetails(category);
     }
 
 

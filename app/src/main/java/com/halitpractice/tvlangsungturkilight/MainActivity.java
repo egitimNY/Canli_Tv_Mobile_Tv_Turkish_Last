@@ -10,7 +10,6 @@ import android.text.method.LinkMovementMethod;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +28,12 @@ import com.halitpractice.tvlangsungturkilight.RestApi.BaseUrl;
 import com.halitpractice.tvlangsungturkilight.activities.DunyaTvActivity;
 import com.halitpractice.tvlangsungturkilight.activities.DunyaTvCategoriesActivity;
 import com.halitpractice.tvlangsungturkilight.activities.DunyaTvCountriesActivity;
+import com.halitpractice.tvlangsungturkilight.activities.GazetelerActivity;
+import com.halitpractice.tvlangsungturkilight.activities.GazetelerCategoriesActivity;
+import com.halitpractice.tvlangsungturkilight.activities.GazetelerCountriesActivity;
+import com.halitpractice.tvlangsungturkilight.activities.GazetelerRegionalActivity;
+import com.halitpractice.tvlangsungturkilight.activities.RadyoDinleActivity;
+import com.halitpractice.tvlangsungturkilight.activities.TurkYabanciMovieActivity;
 import com.halitpractice.tvlangsungturkilight.services.GDPRConsentManager;
 import com.halitpractice.tvlangsungturkilight.services.InAppUpdate;
 import com.halitpractice.tvlangsungturkilight.services.InternetConnectivityChecker;
@@ -45,9 +50,6 @@ public class MainActivity extends AppCompatActivity implements InternetConnectiv
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private ActionBarDrawerToggle toggle;  // Declare the ActionBarDrawerToggle
-
-    private AdView mAdView;
-    ImageView closedBtn;
 
     private InAppUpdate inAppUpdate;
 
@@ -77,20 +79,18 @@ public class MainActivity extends AppCompatActivity implements InternetConnectiv
         }
 
         findViewById(R.id.ulusalTvlerContent).setOnClickListener(view ->
-                startActivity(new Intent(MainActivity.this, UlusalTvActivity.class))
+                startActivity(new Intent(MainActivity.this, EkstraTvActivity.class))
         );
         findViewById(R.id.ulusalTvlerCategory).setOnClickListener(view ->
-                startActivity(new Intent(MainActivity.this, UlusalTvCategoriesActivity.class))
+                startActivity(new Intent(MainActivity.this, EkstraTvCategoriesActivity.class))
         );
         findViewById(R.id.yerelTvlerContent).setOnClickListener(view ->
-                startActivity(new Intent(MainActivity.this, YerelTvActivity.class))
+                startActivity(new Intent(MainActivity.this, TurkTvActivity.class))
         );
         findViewById(R.id.yerelTvlerKategoriContent).setOnClickListener(view ->
-                startActivity(new Intent(MainActivity.this, YerelTvCategoriesActivity.class))
+                startActivity(new Intent(MainActivity.this, TurkTvCategoriesActivity.class))
         );
-        findViewById(R.id.cizgiFilmContent).setOnClickListener(view ->
-                startActivity(new Intent(MainActivity.this, TurkishCartoonYtbActivity.class))
-        );
+
         findViewById(R.id.radyoDinleContent).setOnClickListener(view ->
                 startActivity(new Intent(MainActivity.this, RadyoDinleActivity.class))
         );
@@ -108,6 +108,15 @@ public class MainActivity extends AppCompatActivity implements InternetConnectiv
         );
         findViewById(R.id.gazetelerContent).setOnClickListener(view ->
                 startActivity(new Intent(MainActivity.this, GazetelerActivity.class))
+        );
+        findViewById(R.id.gazetelerCategoryContent).setOnClickListener(view ->
+                startActivity(new Intent(MainActivity.this, GazetelerCategoriesActivity.class))
+        );
+        findViewById(R.id.gazetelerRegionalContent).setOnClickListener(view ->
+                startActivity(new Intent(MainActivity.this, GazetelerRegionalActivity.class))
+        );
+        findViewById(R.id.gazetelerCountryContent).setOnClickListener(view ->
+                startActivity(new Intent(MainActivity.this, GazetelerCountriesActivity.class))
         );
         findViewById(R.id.dunyaTvContent).setOnClickListener(view ->
                 startActivity(new Intent(MainActivity.this, DunyaTvActivity.class))
@@ -163,30 +172,26 @@ public class MainActivity extends AppCompatActivity implements InternetConnectiv
 
         navigationView.setNavigationItemSelectedListener(item -> {
             int id = item.getItemId();
-                if (id == R.id.turkishLiveTv) {
+                if (id == R.id.ekstraTv) {
                     // Handle item 1 click
-                    Intent intent = new Intent(MainActivity.this, UlusalTvActivity.class);
+                    Intent intent = new Intent(MainActivity.this, EkstraTvActivity.class);
                     startActivity(intent);
-                } else if (id == R.id.turkishLiveTvCategories) {
+                } else if (id == R.id.ekstraTvCategories) {
                     // Handle item 2 click
-                    Intent intent = new Intent(MainActivity.this, UlusalTvCategoriesActivity.class);
+                    Intent intent = new Intent(MainActivity.this, EkstraTvCategoriesActivity.class);
                     startActivity(intent);
                     finish();
                 } else if (id == R.id.yerel_tv) {
                     // Handle item 2 click
-                    Intent intent = new Intent(MainActivity.this, YerelTvActivity.class);
+                    Intent intent = new Intent(MainActivity.this, TurkTvActivity.class);
                     startActivity(intent);
                 } else if (id == R.id.nav_yerel_tv_kategori) {
                     // Handle item 2 click
-                    Intent intent = new Intent(MainActivity.this, YerelTvCategoriesActivity.class);
+                    Intent intent = new Intent(MainActivity.this, TurkTvCategoriesActivity.class);
                     startActivity(intent);
                 } else if (id == R.id.radyo) {
                     // Handle item 2 click
                     Intent intent = new Intent(MainActivity.this, RadyoDinleActivity.class);
-                    startActivity(intent);
-                } else if (id == R.id.cartoon) {
-                    // Handle item 2 click
-                    Intent intent = new Intent(MainActivity.this, TurkishCartoonYtbActivity.class);
                     startActivity(intent);
                 } else if (id == R.id.turkYabanciFilm) {
                     // Handle item 2 click
@@ -200,9 +205,25 @@ public class MainActivity extends AppCompatActivity implements InternetConnectiv
                     // Handle item 2 click
                     Intent intent = new Intent(MainActivity.this, YtbExtraTvCategoriesActivity.class);
                     startActivity(intent);
+                } else if (id == R.id.ytbExtraTvCountry) {
+                    // Handle item 2 click
+                    Intent intent = new Intent(MainActivity.this, YtbExtraTvCountriesActivity.class);
+                    startActivity(intent);
                 } else if (id == R.id.gazeteler) {
                     // Handle item 2 click
                     Intent intent = new Intent(MainActivity.this, GazetelerActivity.class);
+                    startActivity(intent);
+                } else if (id == R.id.gazetelerCategory) {
+                    // Handle item 2 click
+                    Intent intent = new Intent(MainActivity.this, GazetelerCategoriesActivity.class);
+                    startActivity(intent);
+                } else if (id == R.id.gazetelerRegigional) {
+                    // Handle item 2 click
+                    Intent intent = new Intent(MainActivity.this, GazetelerRegionalActivity.class);
+                    startActivity(intent);
+                } else if (id == R.id.gazetelerCountry) {
+                    // Handle item 2 click
+                    Intent intent = new Intent(MainActivity.this, GazetelerCountriesActivity.class);
                     startActivity(intent);
                 } else if (id == R.id.dunyaTvDrawer) {
                     // Handle item 2 click
@@ -227,11 +248,13 @@ public class MainActivity extends AppCompatActivity implements InternetConnectiv
             showTermsAndConditionsDialog();
         }
 
-        mAdView = findViewById(R.id.adViewMainActivity);
+        AdView mAdView = findViewById(R.id.adViewMainActivity);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
-        closedBtn = findViewById(R.id.closeBtnMainActivity);
+
+        /*
+        ImageView closedBtn = findViewById(R.id.closeBtnMainActivity);
         closedBtn.setOnClickListener(v -> {
             if (mAdView.getVisibility() == View.VISIBLE) {
                 mAdView.setVisibility(View.GONE);
@@ -245,6 +268,7 @@ public class MainActivity extends AppCompatActivity implements InternetConnectiv
                 closedBtn.setVisibility(View.VISIBLE);
             }
         });
+        */
 
 
 //        App Auto Update enabled

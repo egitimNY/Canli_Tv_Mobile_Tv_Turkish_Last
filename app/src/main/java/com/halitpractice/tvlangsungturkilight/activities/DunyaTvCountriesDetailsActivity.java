@@ -104,6 +104,7 @@ public class DunyaTvCountriesDetailsActivity extends AppCompatActivity {
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
+        /*
         ImageView closedBtn = findViewById(R.id.closeBtnDunyaTvCountriesDetails);
         closedBtn.setOnClickListener(v -> {
             if (mAdView.getVisibility() == View.VISIBLE) {
@@ -118,6 +119,7 @@ public class DunyaTvCountriesDetailsActivity extends AppCompatActivity {
                 closedBtn.setVisibility(View.VISIBLE);
             }
         });
+        */
 
     }
 

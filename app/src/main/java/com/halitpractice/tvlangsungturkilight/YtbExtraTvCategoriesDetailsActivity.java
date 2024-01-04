@@ -102,6 +102,7 @@ public class YtbExtraTvCategoriesDetailsActivity extends AppCompatActivity {
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
+        /*
         ImageView closedBtn = findViewById(R.id.closeBtnYtbExtraCategoriesDetails);
         closedBtn.setOnClickListener(v -> {
             if (mAdView.getVisibility() == View.VISIBLE) {
@@ -116,6 +117,7 @@ public class YtbExtraTvCategoriesDetailsActivity extends AppCompatActivity {
                 closedBtn.setVisibility(View.VISIBLE);
             }
         });
+        */
 
     }
 

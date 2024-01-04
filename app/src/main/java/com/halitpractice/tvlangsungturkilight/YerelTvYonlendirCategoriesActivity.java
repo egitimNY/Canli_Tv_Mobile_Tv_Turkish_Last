@@ -49,7 +49,7 @@ public class YerelTvYonlendirCategoriesActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setTitle("Yerel TV'ler Kategori");
+            actionBar.setTitle("Türk TV'ler Kategori");
         }
 
         ImageView homeButton = findViewById(R.id.homeButton);
