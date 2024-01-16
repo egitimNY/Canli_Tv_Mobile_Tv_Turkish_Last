@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -51,7 +50,7 @@ public class DisclaimerWebViewFetchRetrofitActivity extends AppCompatActivity {
         AdView mAdView = findViewById(R.id.adViewDisc);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
-
+        /*
         ImageView closedBtn = findViewById(R.id.closeDisc);
         closedBtn.setOnClickListener(v -> {
             if (mAdView.getVisibility() == View.VISIBLE) {
@@ -66,6 +65,7 @@ public class DisclaimerWebViewFetchRetrofitActivity extends AppCompatActivity {
                 closedBtn.setVisibility(View.VISIBLE);
             }
         });
+        */
 
         fetchData();
     }

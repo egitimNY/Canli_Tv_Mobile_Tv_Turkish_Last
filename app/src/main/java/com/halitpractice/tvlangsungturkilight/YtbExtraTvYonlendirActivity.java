@@ -8,8 +8,6 @@ import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -73,7 +71,7 @@ public class YtbExtraTvYonlendirActivity extends AppCompatActivity {
         AdView mAdView = findViewById(R.id.adViewExtraTvYonlendir);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
-
+        /*
         ImageView closedBtn = findViewById(R.id.closeBtnExtraTvYonlendir);
         closedBtn.setOnClickListener(v -> {
             if (mAdView.getVisibility() == View.VISIBLE) {
@@ -88,6 +86,7 @@ public class YtbExtraTvYonlendirActivity extends AppCompatActivity {
                 closedBtn.setVisibility(View.VISIBLE);
             }
         });
+        */
 
         // Show the install Chrome dialog
         ChromeInstallDialogHelper.showInstallChromeDialog(this);

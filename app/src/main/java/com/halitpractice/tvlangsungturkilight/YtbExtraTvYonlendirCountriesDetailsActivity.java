@@ -3,7 +3,6 @@ package com.halitpractice.tvlangsungturkilight;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -62,17 +61,17 @@ public class YtbExtraTvYonlendirCountriesDetailsActivity extends AppCompatActivi
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             if (selectedCategory != null) {
-                actionBar.setTitle("Ülkeler: " + selectedCategory);
+                actionBar.setTitle("Ülke: " + selectedCategory);
                 fetchData(selectedCategory);
             } else {
-                actionBar.setTitle("Ülkeler: ");
+                actionBar.setTitle("Ülke: ");
             }
         }
 
         AdView mAdView = findViewById(R.id.adViewYtbExtraYonlendirCountries);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
-
+        /*
         ImageView closedBtn = findViewById(R.id.closeBtnYtbExtraYonlendirCountries);
         closedBtn.setOnClickListener(v -> {
             if (mAdView.getVisibility() == View.VISIBLE) {
@@ -87,6 +86,7 @@ public class YtbExtraTvYonlendirCountriesDetailsActivity extends AppCompatActivi
                 closedBtn.setVisibility(View.VISIBLE);
             }
         });
+        */
 
     }
 

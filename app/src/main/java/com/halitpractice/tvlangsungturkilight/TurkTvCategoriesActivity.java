@@ -123,7 +123,7 @@ public class TurkTvCategoriesActivity extends AppCompatActivity {
             progressBar.setVisibility(View.GONE);
         } else {
             // No cached data, fetch from the network
-            Call<List<YerelTvCategoryModel>> req = ManagerAll.getInstance().yerelTvCategoryFetch();
+            Call<List<YerelTvCategoryModel>> req = ManagerAll.getInstance().yerelTurkTvCategoryFetch();
             req.enqueue(new Callback<List<YerelTvCategoryModel>>() {
                 @Override
                 public void onResponse(Call<List<YerelTvCategoryModel>> call, Response<List<YerelTvCategoryModel>> response) {
@@ -188,7 +188,7 @@ public class TurkTvCategoriesActivity extends AppCompatActivity {
 
     private void redirectYonlendir() {
         // Redirect to FeatureUnderConstructionActivity
-        Intent intent = new Intent(TurkTvCategoriesActivity.this, YerelTvYonlendirCategoriesActivity.class);
+        Intent intent = new Intent(TurkTvCategoriesActivity.this, TurkTvYonlendirCategoriesActivity.class);
         startActivity(intent);
     }
 

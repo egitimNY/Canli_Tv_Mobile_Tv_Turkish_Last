@@ -95,14 +95,18 @@ public class YerelTvYonlendirAdapter extends RecyclerView.Adapter<YerelTvYonlend
 
         // Set an OnClickListener to open the Chrome Custom Tab when the channel is clicked
         holder.itemView.setOnClickListener(v -> {
-            openChannelInChromeCustomTab(yerelTvYonlendirModel.getLive_url());
-
             clickCount++;
-            if (clickCount >= 5) {
-                showInterstitialAd();
-                resetClickCount(); // Reset the click count
+            if (clickCount >= 2) {
+                // Show interstitial ad
+                showInterstitialAd(yerelTvYonlendirModel);
+                // Reset the click count (do not proceed to Chrome Custom Tab immediately)
+                resetClickCount();
+            } else {
+                // If click count is less than 4, increment count and proceed as usual
+                openChannelInChromeCustomTab(yerelTvYonlendirModel.getLive_url());
             }
         });
+
     }
 
     @Override
@@ -133,17 +137,23 @@ public class YerelTvYonlendirAdapter extends RecyclerView.Adapter<YerelTvYonlend
             // Disable the share icon in the Chrome Custom Tab
             builder.setShareState(CustomTabsIntent.SHARE_STATE_OFF);
             // Customize other properties as needed, for example:
-//            builder.setToolbarColor(ContextCompat.getColor(context, R.color.white));
             builder.setShowTitle(true);
             // Build the CustomTabsIntent
             CustomTabsIntent customTabsIntent = builder.build();
+
             try {
                 customTabsIntent.launchUrl(context, Uri.parse(url));
             } catch (ActivityNotFoundException e) {
                 // Handle the case where Chrome Custom Tabs are not available on the device
                 // Open the URL in the default web browser
                 Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                context.startActivity(webIntent);
+                if (webIntent.resolveActivity(context.getPackageManager()) != null) {
+                    context.startActivity(webIntent);
+                } else {
+                    // If no browser is found, you can show a message to the user or take other appropriate action
+                    String noBrowserMessage = context.getString(R.string.no_browser_found_message);
+                    Toast.makeText(context, noBrowserMessage, Toast.LENGTH_SHORT).show();
+                }
             }
         } else {
             // Handle the case where the URL is empty or null
@@ -152,7 +162,7 @@ public class YerelTvYonlendirAdapter extends RecyclerView.Adapter<YerelTvYonlend
         }
     }
 
-    private void showInterstitialAd() {
+    private void showInterstitialAd(YerelTvYonlendirModel model) {
         if (mInterstitialAd != null) {
             mInterstitialAd.show((Activity) context);
             mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
@@ -160,12 +170,20 @@ public class YerelTvYonlendirAdapter extends RecyclerView.Adapter<YerelTvYonlend
                 public void onAdDismissedFullScreenContent() {
                     super.onAdDismissedFullScreenContent();
                     mInterstitialAd = null;
-                    resetClickCount(); // Reset the click count
-                    loadAds(); // Reload the ad for subsequent interactions
+                    // Proceed to open Chrome Custom Tab after ad dismissal
+                    openChannelInChromeCustomTab(model.getLive_url());
+                    // Load a new ad for subsequent interactions
+                    loadAds();
                 }
             });
+        } else {
+            // If ad is not available, proceed to open Chrome Custom Tab
+            openChannelInChromeCustomTab(model.getLive_url());
+            // Load a new ad for subsequent interactions
+            loadAds();
         }
     }
+
 
     private void loadAds() {
         MobileAds.initialize(context, initializationStatus -> {

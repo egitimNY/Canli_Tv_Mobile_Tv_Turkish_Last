@@ -123,7 +123,7 @@ public class EkstraTvActivity extends AppCompatActivity {
 
     private void fetchData() {
         progressBar.setVisibility(View.VISIBLE); // Show the ProgressBar
-        Call<List<UlusalTvModel>> req = ManagerAll.getInstance().ulusalTvFetch();
+        Call<List<UlusalTvModel>> req = ManagerAll.getInstance().extraTvFetch();
         req.enqueue(new Callback<List<UlusalTvModel>>() {
             @Override
             public void onResponse(Call<List<UlusalTvModel>> call, Response<List<UlusalTvModel>> response) {

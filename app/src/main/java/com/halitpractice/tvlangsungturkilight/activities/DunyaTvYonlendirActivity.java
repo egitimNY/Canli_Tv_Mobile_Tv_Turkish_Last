@@ -8,8 +8,6 @@ import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -61,7 +59,7 @@ public class DunyaTvYonlendirActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setTitle("Dünya Tv'leri Hepsi");
+            actionBar.setTitle("Dünya Tv'leri");
         }
 
         main_list = new ArrayList<>();
@@ -74,7 +72,7 @@ public class DunyaTvYonlendirActivity extends AppCompatActivity {
         AdView mAdView = findViewById(R.id.adViewDunyaTvYonlendir);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
-
+        /*
         ImageView closedBtn = findViewById(R.id.closeBtnDunyaTvYonlendir);
         closedBtn.setOnClickListener(v -> {
             if (mAdView.getVisibility() == View.VISIBLE) {
@@ -89,6 +87,7 @@ public class DunyaTvYonlendirActivity extends AppCompatActivity {
                 closedBtn.setVisibility(View.VISIBLE);
             }
         });
+        */
 
         // Show the install Chrome dialog
         ChromeInstallDialogHelper.showInstallChromeDialog(this);

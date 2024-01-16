@@ -34,13 +34,13 @@ import com.halitpractice.tvlangsungturkilight.models.YerelTvModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class YerelTvAdapter extends RecyclerView.Adapter<YerelTvAdapter.MyViewHolder> {
+public class TurkTvAdapter extends RecyclerView.Adapter<TurkTvAdapter.MyViewHolder> {
     private List<YerelTvModel> my_list;
     private Context context;
     private int clickCount = 0; // Track the number of item clicks
     private InterstitialAd mInterstitialAd;
 
-    public YerelTvAdapter(List<YerelTvModel> my_list, Context context) {
+    public TurkTvAdapter(List<YerelTvModel> my_list, Context context) {
         this.my_list = my_list;
         this.context = context;
         loadAds(); // Initialize and load the interstitial ad
@@ -66,7 +66,7 @@ public class YerelTvAdapter extends RecyclerView.Adapter<YerelTvAdapter.MyViewHo
             holder.category.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary));
         } else {
             // If the country name is null or empty, set a default text and change text color
-            holder.category.setText("Kategori: ismi yazılmamış");
+            holder.category.setText("Kategori: yazılmamış");
             holder.category.setTextColor(ContextCompat.getColor(context, R.color.redChannelColor));
             // You can also choose to hide the TextView or set a different message based on your app logic
         }

@@ -54,7 +54,7 @@ public class YtbExtraTvCountriesActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setTitle("Ytb Extra TV Ulkeler");
+            actionBar.setTitle("Ytb Ekstra TV Ülkeler");
         }
 
         ImageView homeButton = findViewById(R.id.homeButton);

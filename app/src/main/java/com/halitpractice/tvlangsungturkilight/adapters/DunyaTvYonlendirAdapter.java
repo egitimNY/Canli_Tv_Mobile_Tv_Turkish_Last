@@ -77,8 +77,23 @@ public class DunyaTvYonlendirAdapter extends RecyclerView.Adapter<DunyaTvYonlend
             holder.country.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary));
         } else {
             // If the country name is null or empty, set a default text and change text color
-            holder.country.setText("Ülke: ismi yazılmamış");
+            holder.country.setText("Ülke: yazılmamış");
             holder.country.setTextColor(ContextCompat.getColor(context, R.color.redChannelColor));
+//            holder.country.setVisibility(View.GONE);
+            // You can also choose to hide the TextView or set a different message based on your app logic
+        }
+
+
+        // Set the country name with the "CountryName: " prefix
+        String categoryName = dunyaTvYonlendirModel.getCategory();
+        if (categoryName != null && !categoryName.isEmpty()) {
+            String categoryText = "Kat: " + categoryName;
+            holder.category.setText(categoryText);
+            holder.category.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary));
+        } else {
+            // If the country name is null or empty, set a default text and change text color
+            holder.category.setText("Kat: yazılmamış");
+            holder.category.setTextColor(ContextCompat.getColor(context, R.color.redChannelColor));
             // You can also choose to hide the TextView or set a different message based on your app logic
         }
 
@@ -108,14 +123,18 @@ public class DunyaTvYonlendirAdapter extends RecyclerView.Adapter<DunyaTvYonlend
 
         // Set an OnClickListener to open the Chrome Custom Tab when the channel is clicked
         holder.itemView.setOnClickListener(v -> {
-            openChannelInChromeCustomTab(dunyaTvYonlendirModel.getLive_url());
-
             clickCount++;
-            if (clickCount >= 5) {
-                showInterstitialAd();
-                resetClickCount(); // Reset the click count
+            if (clickCount >= 2) {
+                // Show interstitial ad
+                showInterstitialAd(dunyaTvYonlendirModel);
+                // Reset the click count (do not proceed to Chrome Custom Tab immediately)
+                resetClickCount();
+            } else {
+                // If click count is less than 4, increment count and proceed as usual
+                openChannelInChromeCustomTab(dunyaTvYonlendirModel.getLive_url());
             }
         });
+
     }
 
     @Override
@@ -125,20 +144,16 @@ public class DunyaTvYonlendirAdapter extends RecyclerView.Adapter<DunyaTvYonlend
 
     static class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView image;
-        TextView name, country;
+        TextView name, country, category;
         RelativeLayout relative;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.image);
             name = itemView.findViewById(R.id.name);
-            country = itemView.findViewById(R.id.dunyaYonlendirUlkeler);
+            country = itemView.findViewById(R.id.ulkelerYonlendirItem);
+            category = itemView.findViewById(R.id.categoryYonlendirItem);
         }
-    }
-
-    public void setSearchOperation(List<DunyaTvYonlendirModel> newList) {
-        my_list = new ArrayList<>(newList); // Use ArrayList constructor for shallow copy
-        notifyDataSetChanged();
     }
 
     private void openChannelInChromeCustomTab(String url) {
@@ -147,17 +162,23 @@ public class DunyaTvYonlendirAdapter extends RecyclerView.Adapter<DunyaTvYonlend
             // Disable the share icon in the Chrome Custom Tab
             builder.setShareState(CustomTabsIntent.SHARE_STATE_OFF);
             // Customize other properties as needed, for example:
-//            builder.setToolbarColor(ContextCompat.getColor(context, R.color.white));
             builder.setShowTitle(true);
             // Build the CustomTabsIntent
             CustomTabsIntent customTabsIntent = builder.build();
+
             try {
                 customTabsIntent.launchUrl(context, Uri.parse(url));
             } catch (ActivityNotFoundException e) {
                 // Handle the case where Chrome Custom Tabs are not available on the device
                 // Open the URL in the default web browser
                 Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                context.startActivity(webIntent);
+                if (webIntent.resolveActivity(context.getPackageManager()) != null) {
+                    context.startActivity(webIntent);
+                } else {
+                    // If no browser is found, you can show a message to the user or take other appropriate action
+                    String noBrowserMessage = context.getString(R.string.no_browser_found_message);
+                    Toast.makeText(context, noBrowserMessage, Toast.LENGTH_SHORT).show();
+                }
             }
         } else {
             // Handle the case where the URL is empty or null
@@ -166,7 +187,7 @@ public class DunyaTvYonlendirAdapter extends RecyclerView.Adapter<DunyaTvYonlend
         }
     }
 
-    private void showInterstitialAd() {
+    private void showInterstitialAd(DunyaTvYonlendirModel model) {
         if (mInterstitialAd != null) {
             mInterstitialAd.show((Activity) context);
             mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
@@ -174,12 +195,20 @@ public class DunyaTvYonlendirAdapter extends RecyclerView.Adapter<DunyaTvYonlend
                 public void onAdDismissedFullScreenContent() {
                     super.onAdDismissedFullScreenContent();
                     mInterstitialAd = null;
-                    resetClickCount(); // Reset the click count
-                    loadAds(); // Reload the ad for subsequent interactions
+                    // Proceed to open Chrome Custom Tab after ad dismissal
+                    openChannelInChromeCustomTab(model.getLive_url());
+                    // Load a new ad for subsequent interactions
+                    loadAds();
                 }
             });
+        } else {
+            // If ad is not available, proceed to open Chrome Custom Tab
+            openChannelInChromeCustomTab(model.getLive_url());
+            // Load a new ad for subsequent interactions
+            loadAds();
         }
     }
+
 
     private void loadAds() {
         MobileAds.initialize(context, initializationStatus -> {
@@ -207,4 +236,11 @@ public class DunyaTvYonlendirAdapter extends RecyclerView.Adapter<DunyaTvYonlend
     private void resetClickCount() {
         clickCount = 0;
     }
+
+
+    public void setSearchOperation(List<DunyaTvYonlendirModel> newList) {
+        my_list = new ArrayList<>(newList); // Use ArrayList constructor for shallow copy
+        notifyDataSetChanged();
+    }
+
 }

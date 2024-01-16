@@ -3,7 +3,6 @@ package com.halitpractice.tvlangsungturkilight;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -49,7 +48,7 @@ public class YtbExtraTvYonlendirCategoriesActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setTitle("Ytb Extra TV Kategori");
+            actionBar.setTitle("Ytb Ekstra TV Kategori");
         }
 
         ImageView homeButton = findViewById(R.id.homeButton);
@@ -68,7 +67,7 @@ public class YtbExtraTvYonlendirCategoriesActivity extends AppCompatActivity {
         AdView mAdView = findViewById(R.id.adViewYtbExtraTvYonlendirCategories);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
-
+        /*
         ImageView closedBtn = findViewById(R.id.closeBtnYtbExtraTvYonlendirCategories);
         closedBtn.setOnClickListener(v -> {
             if (mAdView.getVisibility() == View.VISIBLE) {
@@ -83,6 +82,7 @@ public class YtbExtraTvYonlendirCategoriesActivity extends AppCompatActivity {
                 closedBtn.setVisibility(View.VISIBLE);
             }
         });
+        */
 
         fetchData();
 

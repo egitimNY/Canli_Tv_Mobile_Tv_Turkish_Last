@@ -28,6 +28,7 @@ import com.halitpractice.tvlangsungturkilight.RestApi.BaseUrl;
 import com.halitpractice.tvlangsungturkilight.activities.DunyaTvActivity;
 import com.halitpractice.tvlangsungturkilight.activities.DunyaTvCategoriesActivity;
 import com.halitpractice.tvlangsungturkilight.activities.DunyaTvCountriesActivity;
+import com.halitpractice.tvlangsungturkilight.activities.DunyaTvLanguageActivity;
 import com.halitpractice.tvlangsungturkilight.activities.GazetelerActivity;
 import com.halitpractice.tvlangsungturkilight.activities.GazetelerCategoriesActivity;
 import com.halitpractice.tvlangsungturkilight.activities.GazetelerCountriesActivity;
@@ -73,10 +74,13 @@ public class MainActivity extends AppCompatActivity implements InternetConnectiv
             getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back); // Replace with your custom button icon
         }
 
+        /*
         // Add the following lines to clear the back stack when the app starts from MainActivity
         if ((getIntent().getFlags() & Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY) != 0) {
             finish();
         }
+        */
+
 
         findViewById(R.id.ulusalTvlerContent).setOnClickListener(view ->
                 startActivity(new Intent(MainActivity.this, EkstraTvActivity.class))
@@ -106,6 +110,9 @@ public class MainActivity extends AppCompatActivity implements InternetConnectiv
         findViewById(R.id.ytbExtraTvCountriesContent).setOnClickListener(view ->
                 startActivity(new Intent(MainActivity.this, YtbExtraTvCountriesActivity.class))
         );
+        findViewById(R.id.ytbExtraTvLanguageContent).setOnClickListener(view ->
+                startActivity(new Intent(MainActivity.this, YtbExtraTvLanguageActivity.class))
+        );
         findViewById(R.id.gazetelerContent).setOnClickListener(view ->
                 startActivity(new Intent(MainActivity.this, GazetelerActivity.class))
         );
@@ -126,6 +133,9 @@ public class MainActivity extends AppCompatActivity implements InternetConnectiv
         );
         findViewById(R.id.dunyaTvCountriesContent).setOnClickListener(view ->
                 startActivity(new Intent(MainActivity.this, DunyaTvCountriesActivity.class))
+        );
+        findViewById(R.id.dunyaTvLanguageContent).setOnClickListener(view ->
+                startActivity(new Intent(MainActivity.this, DunyaTvLanguageActivity.class))
         );
 
 
@@ -209,6 +219,10 @@ public class MainActivity extends AppCompatActivity implements InternetConnectiv
                     // Handle item 2 click
                     Intent intent = new Intent(MainActivity.this, YtbExtraTvCountriesActivity.class);
                     startActivity(intent);
+                } else if (id == R.id.ytbExtraTvLanguageDrawer) {
+                    // Handle item 2 click
+                    Intent intent = new Intent(MainActivity.this, YtbExtraTvLanguageActivity.class);
+                    startActivity(intent);
                 } else if (id == R.id.gazeteler) {
                     // Handle item 2 click
                     Intent intent = new Intent(MainActivity.this, GazetelerActivity.class);
@@ -236,6 +250,11 @@ public class MainActivity extends AppCompatActivity implements InternetConnectiv
                 } else if (id == R.id.dunyaTvCategoryDrawer) {
                     // Handle item 2 click
                     Intent intent = new Intent(MainActivity.this, DunyaTvCategoriesActivity.class);
+                    startActivity(intent);
+                }
+                else if (id == R.id.dunyaTvLanguageDrawer) {
+                    // Handle item 2 click
+                    Intent intent = new Intent(MainActivity.this, DunyaTvLanguageActivity.class);
                     startActivity(intent);
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
@@ -296,7 +315,9 @@ public class MainActivity extends AppCompatActivity implements InternetConnectiv
     }
 
     private void showNoInternetWarning() {
-        Toast.makeText(this, "No internet connection. Please check your internet settings.", Toast.LENGTH_LONG).show();
+//        Toast.makeText(this, "No internet connection. Please check your internet settings.", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "İnternet bağlantısı yok. Lütfen ağ ayarlarınızı kontrol edin.", Toast.LENGTH_LONG).show();
+
     }
 
     private void showTermsAndConditionsDialog() {

@@ -1,14 +1,19 @@
 package com.halitpractice.tvlangsungturkilight;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.TypedValue;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,8 +21,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.halitpractice.tvlangsungturkilight.RestApi.ManagerAll;
-import com.halitpractice.tvlangsungturkilight.adapters.YerelTvYonlendirCategoryAdapter;
-import com.halitpractice.tvlangsungturkilight.models.YerelTvYonlendirCategoryModel;
+import com.halitpractice.tvlangsungturkilight.adapters.YerelTvYonlendirAdapter;
+import com.halitpractice.tvlangsungturkilight.models.YerelTvYonlendirModel;
+import com.halitpractice.tvlangsungturkilight.services.ChromeInstallDialogHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,17 +32,19 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class YerelTvYonlendirCategoriesActivity extends AppCompatActivity {
+public class TurkTvYonlendirActivity extends AppCompatActivity {
 
+    private SearchView searchView = null;  /////// SearchView codes parts
+    private SearchView.OnQueryTextListener queryTextListener;  /////// SearchView codes parts
 
     private RecyclerView recyclerView;
-    private List<YerelTvYonlendirCategoryModel> main_list;
-    private YerelTvYonlendirCategoryAdapter adapter;
+    private List<YerelTvYonlendirModel> main_list;
+    private YerelTvYonlendirAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_yerel_tv_yonlendir_categories);
+        setContentView(R.layout.activity_turk_tv_yonlendir);
 
         Toolbar toolbar = findViewById(R.id.custom_toolbar);
         setSupportActionBar(toolbar);
@@ -49,27 +57,21 @@ public class YerelTvYonlendirCategoriesActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setTitle("Türk TV'ler Kategori");
+            actionBar.setTitle("Türk TV'ler");
         }
 
-        ImageView homeButton = findViewById(R.id.homeButton);
-        homeButton.setOnClickListener(v -> {
-            // Handle the home button click here
-            Intent homeIntent = new Intent(YerelTvYonlendirCategoriesActivity.this, MainActivity.class);
-            startActivity(homeIntent);
-            finish(); // Close the current activity
-        });
-
         main_list = new ArrayList<>();
-        recyclerView = findViewById(R.id.yonlendir_category_yonlendir_slider_list);
+        recyclerView = findViewById(R.id.yereltv_big_slider_list);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        AdView mAdView = findViewById(R.id.adViewYerelTvYonlendirCategories);
+        fetchData();
+
+        AdView mAdView = findViewById(R.id.adViewYerelTvYonlendir);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
-
-        ImageView closedBtn = findViewById(R.id.closeBtnYerelTvYonlendirCategories);
+        /*
+        ImageView closedBtn = findViewById(R.id.closeBtnYerelTvYonlendir);
         closedBtn.setOnClickListener(v -> {
             if (mAdView.getVisibility() == View.VISIBLE) {
                 mAdView.setVisibility(View.GONE);
@@ -83,24 +85,24 @@ public class YerelTvYonlendirCategoriesActivity extends AppCompatActivity {
                 closedBtn.setVisibility(View.VISIBLE);
             }
         });
+        */
 
-        fetchData();
+        // Show the install Chrome dialog
+        ChromeInstallDialogHelper.showInstallChromeDialog(this);
 
     }
 
     private void fetchData() {
-
-        Call<List<YerelTvYonlendirCategoryModel>> req = ManagerAll.getInstance().yerelTvCategoryYonlendirFetch();
-        req.enqueue(new Callback<List<YerelTvYonlendirCategoryModel>>() {
+        Call<List<YerelTvYonlendirModel>> req = ManagerAll.getInstance().yerelTurkTvYonlendirFetch();
+        req.enqueue(new Callback<List<YerelTvYonlendirModel>>() {
             @Override
-            public void onResponse(Call<List<YerelTvYonlendirCategoryModel>> call, Response<List<YerelTvYonlendirCategoryModel>> response) {
-
+            public void onResponse(Call<List<YerelTvYonlendirModel>> call, Response<List<YerelTvYonlendirModel>> response) {
                 if (response.isSuccessful()) {
 
                     main_list = response.body();
 
                     if (main_list != null && !main_list.isEmpty()) {
-                        adapter = new YerelTvYonlendirCategoryAdapter(main_list, YerelTvYonlendirCategoriesActivity.this);
+                        adapter = new YerelTvYonlendirAdapter(main_list, TurkTvYonlendirActivity.this);
                         recyclerView.setAdapter(adapter);
 
                     } else {
@@ -112,8 +114,9 @@ public class YerelTvYonlendirCategoriesActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<YerelTvYonlendirCategoryModel>> call, Throwable t) {
+            public void onFailure(Call<List<YerelTvYonlendirModel>> call, Throwable t) {
                 handleNetworkFailure();
+                t.printStackTrace();
             }
         });
     }
@@ -144,10 +147,60 @@ public class YerelTvYonlendirCategoriesActivity extends AppCompatActivity {
 
     private void redirectYonlendir() {
         // Redirect to FeatureUnderConstructionActivity
-        Intent intent = new Intent(YerelTvYonlendirCategoriesActivity.this, MainActivity.class);
+        Intent intent = new Intent(TurkTvYonlendirActivity.this, MainActivity.class);
         startActivity(intent);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+
+        if (searchItem != null) {
+            searchView = (SearchView) searchItem.getActionView();
+        }
+        if (searchView != null) {
+            searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+
+            queryTextListener = new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String query) {
+                    return false;
+                }
+
+                @Override
+                public boolean onQueryTextChange(String newText) {
+                    newText = newText.toLowerCase();
+                    List<YerelTvYonlendirModel> myList = new ArrayList<>();
+
+                    for (YerelTvYonlendirModel model : main_list) {
+                        String javaSoru = model.getName().toLowerCase();
+
+                        if (javaSoru.contains(newText))
+                            myList.add(model);
+                    }
+
+                    adapter.setSearchOperation(myList);
+                    return false;
+                }
+            };
+            searchView.setOnQueryTextListener(queryTextListener);
+
+            // Programmatically set the left margin of the SearchView
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+            );
+            int marginInDp = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, getResources().getDisplayMetrics());
+            params.setMargins(marginInDp, 0, 0, 0);
+            searchView.setLayoutParams(params);
+        }
+
+        return true;
+    }
 
 
     @Override

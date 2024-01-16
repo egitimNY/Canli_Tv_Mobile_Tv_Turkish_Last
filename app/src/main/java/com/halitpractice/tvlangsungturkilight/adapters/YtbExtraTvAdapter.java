@@ -65,8 +65,23 @@ public class YtbExtraTvAdapter extends RecyclerView.Adapter<YtbExtraTvAdapter.My
             holder.country.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary));
         } else {
             // If the country name is null or empty, set a default text and change text color
-            holder.country.setText("Ülke: ismi yazılmamış");
+            holder.country.setText("Ülke: yazılmamış");
             holder.country.setTextColor(ContextCompat.getColor(context, R.color.redChannelColor));
+//            holder.country.setVisibility(View.GONE);
+            // You can also choose to hide the TextView or set a different message based on your app logic
+        }
+
+
+        // Set the country name with the "CountryName: " prefix
+        String categoryName = ytbExtraTvModel.getCategory();
+        if (categoryName != null && !categoryName.isEmpty()) {
+            String categoryText = "Kat: " + categoryName;
+            holder.category.setText(categoryText);
+            holder.category.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary));
+        } else {
+            // If the country name is null or empty, set a default text and change text color
+            holder.category.setText("Kat: yazılmamış");
+            holder.category.setTextColor(ContextCompat.getColor(context, R.color.redChannelColor));
             // You can also choose to hide the TextView or set a different message based on your app logic
         }
 
@@ -120,13 +135,14 @@ public class YtbExtraTvAdapter extends RecyclerView.Adapter<YtbExtraTvAdapter.My
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView image;
-        TextView name, country;
+        TextView name, country, category;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.image);
             name = itemView.findViewById(R.id.name);
-            country = itemView.findViewById(R.id.country);
+            country = itemView.findViewById(R.id.ulkelerItem);
+            category = itemView.findViewById(R.id.categoryItem);
         }
     }
 

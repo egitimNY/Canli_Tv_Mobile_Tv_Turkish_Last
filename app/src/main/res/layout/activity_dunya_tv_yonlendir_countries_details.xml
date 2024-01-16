@@ -13,8 +13,12 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/dunya_tv_countries_yonlendir_details_recycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="55dp">
+        android:layout_height="0dp"
+        android:layout_marginTop="55dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
     </androidx.recyclerview.widget.RecyclerView>
 
     <!-- Progress Bar -->
@@ -36,20 +40,22 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
+        <!--
         <ImageView
             android:id="@+id/closeBtnDunyaTvYonlendirCountriesDetails"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:src="@drawable/ic_exit"
             android:contentDescription="@string/close_button_label" />
-
+        -->
         <com.google.android.gms.ads.AdView
             android:id="@+id/adViewDunyaTvYonlendirCountriesDetails"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             app:adSize="SMART_BANNER"
-            app:adUnitId="@string/admob_ad_unit_id">
+            app:adUnitId="@string/admob_ad_unit_id"
+            android:layout_marginTop="5dp">
         </com.google.android.gms.ads.AdView>
     </LinearLayout>
 

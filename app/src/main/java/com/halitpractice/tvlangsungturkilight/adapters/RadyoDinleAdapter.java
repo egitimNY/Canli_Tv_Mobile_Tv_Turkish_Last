@@ -89,12 +89,15 @@ public class RadyoDinleAdapter extends RecyclerView.Adapter<RadyoDinleAdapter.My
 
         // Set an OnClickListener to open the Chrome Custom Tab when the channel is clicked
         holder.itemView.setOnClickListener(v -> {
-            openChannelInChromeCustomTab(radyoDinleModel.getVideoid());
-
             clickCount++;
-            if (clickCount >= 1) {
-                showInterstitialAd();
-                resetClickCount(); // Reset the click count
+            if (clickCount >= 2) {
+                // Show interstitial ad
+                showInterstitialAd(radyoDinleModel);
+                // Reset the click count (do not proceed to Chrome Custom Tab immediately)
+                resetClickCount();
+            } else {
+                // If click count is less than 4, increment count and proceed as usual
+                openChannelInChromeCustomTab(radyoDinleModel.getVideoid());
             }
         });
 
@@ -149,13 +152,7 @@ public class RadyoDinleAdapter extends RecyclerView.Adapter<RadyoDinleAdapter.My
         }
     }
 
-    public void setSearchOperation(List<RadyoDinleModel> newList){
-        my_list=new ArrayList<>();
-        my_list.addAll(newList);
-        notifyDataSetChanged();
-    }
-
-    private void showInterstitialAd() {
+    private void showInterstitialAd(RadyoDinleModel model) {
         if (mInterstitialAd != null) {
             mInterstitialAd.show((Activity) context);
             mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
@@ -163,10 +160,17 @@ public class RadyoDinleAdapter extends RecyclerView.Adapter<RadyoDinleAdapter.My
                 public void onAdDismissedFullScreenContent() {
                     super.onAdDismissedFullScreenContent();
                     mInterstitialAd = null;
-                    resetClickCount(); // Reset the click count
-                    loadAds(); // Reload the ad for subsequent interactions
+                    // Proceed to open Chrome Custom Tab after ad dismissal
+                    openChannelInChromeCustomTab(model.getVideoid());
+                    // Load a new ad for subsequent interactions
+                    loadAds();
                 }
             });
+        } else {
+            // If ad is not available, proceed to open Chrome Custom Tab
+            openChannelInChromeCustomTab(model.getVideoid());
+            // Load a new ad for subsequent interactions
+            loadAds();
         }
     }
 
@@ -196,4 +200,12 @@ public class RadyoDinleAdapter extends RecyclerView.Adapter<RadyoDinleAdapter.My
     private void resetClickCount() {
         clickCount = 0;
     }
+
+
+    public void setSearchOperation(List<RadyoDinleModel> newList){
+        my_list=new ArrayList<>();
+        my_list.addAll(newList);
+        notifyDataSetChanged();
+    }
+
 }

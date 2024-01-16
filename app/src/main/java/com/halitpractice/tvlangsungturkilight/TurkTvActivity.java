@@ -23,7 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.halitpractice.tvlangsungturkilight.RestApi.ManagerAll;
-import com.halitpractice.tvlangsungturkilight.adapters.YerelTvAdapter;
+import com.halitpractice.tvlangsungturkilight.adapters.TurkTvAdapter;
 import com.halitpractice.tvlangsungturkilight.models.YerelTvModel;
 import com.halitpractice.tvlangsungturkilight.services.MarqueeTextHelperYerelTV;
 import com.halitpractice.tvlangsungturkilight.services.YerelTvDataCache;
@@ -42,7 +42,7 @@ public class TurkTvActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private List<YerelTvModel> main_list;
-    private YerelTvAdapter adapter;
+    private TurkTvAdapter adapter;
     private ProgressBar progressBar;
 
     private YerelTvDataCache dataCache; // Instance of DataCache for caching data
@@ -121,7 +121,7 @@ public class TurkTvActivity extends AppCompatActivity {
 
     private void fetchData() {
         progressBar.setVisibility(View.VISIBLE); // Show the ProgressBar
-        Call<List<YerelTvModel>> req = ManagerAll.getInstance().yerelTvFetch();
+        Call<List<YerelTvModel>> req = ManagerAll.getInstance().yerelTurkTvFetch();
         req.enqueue(new Callback<List<YerelTvModel>>() {
             @Override
             public void onResponse(Call<List<YerelTvModel>> call, Response<List<YerelTvModel>> response) {
@@ -130,7 +130,7 @@ public class TurkTvActivity extends AppCompatActivity {
                     main_list = response.body();
 
                     if (main_list != null && !main_list.isEmpty()) {
-                        adapter = new YerelTvAdapter(main_list, TurkTvActivity.this);
+                        adapter = new TurkTvAdapter(main_list, TurkTvActivity.this);
                         recyclerView.setAdapter(adapter);
 
                         // Cache the data
@@ -156,7 +156,7 @@ public class TurkTvActivity extends AppCompatActivity {
 
     private void updateUIWithCachedData(List<YerelTvModel> cachedData) {
         if (cachedData != null && !cachedData.isEmpty()) {
-            adapter = new YerelTvAdapter(cachedData, TurkTvActivity.this);
+            adapter = new TurkTvAdapter(cachedData, TurkTvActivity.this);
             recyclerView.setAdapter(adapter);
         } else {
             handleNullResponse();
@@ -188,7 +188,7 @@ public class TurkTvActivity extends AppCompatActivity {
 
     private void redirectYonlendir() {
         // Redirect to FeatureUnderConstructionActivity
-        Intent intent = new Intent(TurkTvActivity.this, YerelTvYonlendirActivity.class);
+        Intent intent = new Intent(TurkTvActivity.this, TurkTvYonlendirActivity.class);
         startActivity(intent);
     }
 
@@ -236,7 +236,7 @@ public class TurkTvActivity extends AppCompatActivity {
                     if (adapter != null) {
                         adapter.setSearchOperation(myList);
                     } else {
-                        adapter = new YerelTvAdapter(myList, TurkTvActivity.this);
+                        adapter = new TurkTvAdapter(myList, TurkTvActivity.this);
                         recyclerView.setAdapter(adapter);
                     }
 

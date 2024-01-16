@@ -168,487 +168,6 @@
 
 
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="43dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                app:cardBackgroundColor="@color/contentMainCardView"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="20dp">
-
-                <LinearLayout
-                    android:id="@+id/yabanciMoviesContent"
-                    android:layout_width="match_parent"
-                    android:layout_height="43dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:layout_width="0dp"
-                        android:layout_height="25dp"
-                        android:layout_margin="15dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/ic_movie"
-                        app:civ_border_color="#2c6087" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="5"
-                        android:text="@string/yabanci_filmler"
-                        android:textColor="@color/contentMainTexView"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_margin="1dp"
-                        android:layout_weight="2"
-                        android:src="@drawable/ic_navigate_next" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/ulusalTvlerCarViewContent"
-                android:layout_width="match_parent"
-                android:layout_height="43dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:clickable="true"
-                android:focusable="true"
-                app:cardBackgroundColor="@color/contentMainCardView"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="20dp">
-
-                <LinearLayout
-                    android:id="@+id/ulusalTvlerContent"
-                    android:layout_width="match_parent"
-                    android:layout_height="43dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:layout_width="0dp"
-                        android:layout_height="25dp"
-                        android:layout_margin="15dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/turk_bayrak"
-                        app:civ_border_color="#2c6087"
-                        app:civ_border_width="2dp" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="5"
-                        android:text="@string/ulusal_tvler"
-                        android:textColor="@color/contentMainTexView"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_margin="1dp"
-                        android:layout_weight="2"
-                        android:src="@drawable/ic_navigate_next" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="43dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                app:cardBackgroundColor="@color/contentMainCardView"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="20dp">
-
-                <LinearLayout
-                    android:id="@+id/ulusalTvlerCategory"
-                    android:layout_width="match_parent"
-                    android:layout_height="43dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:layout_width="0dp"
-                        android:layout_height="25dp"
-                        android:layout_margin="15dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/category"
-                        app:cardBackgroundColor="@color/contentMainCardView" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="5"
-                        android:text="@string/ulusal_tvler_kategori"
-                        android:textColor="@color/contentMainTexView"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_margin="1dp"
-                        android:layout_weight="2"
-                        android:src="@drawable/ic_navigate_next" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="43dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                app:cardBackgroundColor="@color/contentMainCardView"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="20dp">
-
-                <LinearLayout
-                    android:id="@+id/gazetelerContent"
-                    android:layout_width="match_parent"
-                    android:layout_height="43dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:layout_width="0dp"
-                        android:layout_height="25dp"
-                        android:layout_margin="15dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/gazeteler_kirmizi"
-                        app:civ_border_color="#2c6087" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="5"
-                        android:text="@string/gazeteler"
-                        android:textColor="@color/contentMainTexView"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_margin="1dp"
-                        android:layout_weight="2"
-                        android:src="@drawable/ic_navigate_next" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="43dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                app:cardBackgroundColor="@color/contentMainCardView"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="20dp">
-
-                <LinearLayout
-                    android:id="@+id/gazetelerCategoryContent"
-                    android:layout_width="match_parent"
-                    android:layout_height="43dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:layout_width="0dp"
-                        android:layout_height="25dp"
-                        android:layout_margin="15dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/category"
-                        app:civ_border_color="#2c6087" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="5"
-                        android:text="@string/gazeteler_kategori"
-                        android:textColor="@color/contentMainTexView"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_margin="1dp"
-                        android:layout_weight="2"
-                        android:src="@drawable/ic_navigate_next" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="43dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                app:cardBackgroundColor="@color/contentMainCardView"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="20dp">
-
-                <LinearLayout
-                    android:id="@+id/gazetelerRegionalContent"
-                    android:layout_width="match_parent"
-                    android:layout_height="43dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:layout_width="0dp"
-                        android:layout_height="25dp"
-                        android:layout_margin="15dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/gazeteler"
-                        app:civ_border_color="#2c6087" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="5"
-                        android:text="@string/regional"
-                        android:textColor="@color/contentMainTexView"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_margin="1dp"
-                        android:layout_weight="2"
-                        android:src="@drawable/ic_navigate_next" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="43dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                app:cardBackgroundColor="@color/contentMainCardView"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="20dp">
-
-                <LinearLayout
-                    android:id="@+id/gazetelerCountryContent"
-                    android:layout_width="match_parent"
-                    android:layout_height="43dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:layout_width="0dp"
-                        android:layout_height="25dp"
-                        android:layout_margin="15dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/gazeteler"
-                        app:civ_border_color="#2c6087" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="5"
-                        android:text="@string/gazeteler_ulke"
-                        android:textColor="@color/contentMainTexView"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_margin="1dp"
-                        android:layout_weight="2"
-                        android:src="@drawable/ic_navigate_next" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="43dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                app:cardBackgroundColor="@color/contentMainCardView"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="20dp">
-
-                <LinearLayout
-                    android:id="@+id/ytbExtraTvContent"
-                    android:layout_width="match_parent"
-                    android:layout_height="43dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:layout_width="0dp"
-                        android:layout_height="25dp"
-                        android:layout_margin="15dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/ic_movie"
-                        app:civ_border_color="#2c6087" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="5"
-                        android:text="@string/ytb_extra"
-                        android:textColor="@color/contentMainTexView"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_margin="1dp"
-                        android:layout_weight="2"
-                        android:src="@drawable/ic_navigate_next" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="43dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                app:cardBackgroundColor="@color/contentMainCardView"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="20dp">
-
-                <LinearLayout
-                    android:id="@+id/ytbExtraTvCategoryContent"
-                    android:layout_width="match_parent"
-                    android:layout_height="43dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:layout_width="0dp"
-                        android:layout_height="25dp"
-                        android:layout_margin="15dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/ic_movie"
-                        app:civ_border_color="#2c6087" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="5"
-                        android:text="@string/ytb_extra_kategori"
-                        android:textColor="@color/contentMainTexView"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_margin="1dp"
-                        android:layout_weight="2"
-                        android:src="@drawable/ic_navigate_next" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="43dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                app:cardBackgroundColor="@color/contentMainCardView"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="20dp">
-
-                <LinearLayout
-                    android:id="@+id/ytbExtraTvCountriesContent"
-                    android:layout_width="match_parent"
-                    android:layout_height="43dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:layout_width="0dp"
-                        android:layout_height="25dp"
-                        android:layout_margin="15dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/ic_movie"
-                        app:civ_border_color="#2c6087" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="5"
-                        android:text="@string/ytb_extra_countries"
-                        android:textColor="@color/contentMainTexView"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_margin="1dp"
-                        android:layout_weight="2"
-                        android:src="@drawable/ic_navigate_next" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -777,6 +296,589 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="5"
                         android:text="@string/ulkeler"
+                        android:textColor="@color/contentMainTexView"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_margin="1dp"
+                        android:layout_weight="2"
+                        android:src="@drawable/ic_navigate_next" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                app:cardBackgroundColor="@color/contentMainCardView"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="20dp">
+
+                <LinearLayout
+                    android:id="@+id/dunyaTvLanguageContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="43dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="0dp"
+                        android:layout_height="25dp"
+                        android:layout_margin="15dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/dunya_icon"
+                        app:civ_border_color="#2c6087" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="@string/dil"
+                        android:textColor="@color/contentMainTexView"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_margin="1dp"
+                        android:layout_weight="2"
+                        android:src="@drawable/ic_navigate_next" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/ulusalTvlerCarViewContent"
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardBackgroundColor="@color/contentMainCardView"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="20dp">
+
+                <LinearLayout
+                    android:id="@+id/ulusalTvlerContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="43dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="0dp"
+                        android:layout_height="25dp"
+                        android:layout_margin="15dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/turk_bayrak"
+                        app:civ_border_color="#2c6087"
+                        app:civ_border_width="2dp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="@string/ulusal_tvler"
+                        android:textColor="@color/contentMainTexView"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_margin="1dp"
+                        android:layout_weight="2"
+                        android:src="@drawable/ic_navigate_next" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                app:cardBackgroundColor="@color/contentMainCardView"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="20dp">
+
+                <LinearLayout
+                    android:id="@+id/ulusalTvlerCategory"
+                    android:layout_width="match_parent"
+                    android:layout_height="43dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="0dp"
+                        android:layout_height="25dp"
+                        android:layout_margin="15dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/category"
+                        app:cardBackgroundColor="@color/contentMainCardView" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="@string/ulusal_tvler_kategori"
+                        android:textColor="@color/contentMainTexView"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_margin="1dp"
+                        android:layout_weight="2"
+                        android:src="@drawable/ic_navigate_next" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                app:cardBackgroundColor="@color/contentMainCardView"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="20dp">
+
+                <LinearLayout
+                    android:id="@+id/yabanciMoviesContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="43dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="0dp"
+                        android:layout_height="25dp"
+                        android:layout_margin="15dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_movie"
+                        app:civ_border_color="#2c6087" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="@string/yabanci_filmler"
+                        android:textColor="@color/contentMainTexView"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_margin="1dp"
+                        android:layout_weight="2"
+                        android:src="@drawable/ic_navigate_next" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                app:cardBackgroundColor="@color/contentMainCardView"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="20dp">
+
+                <LinearLayout
+                    android:id="@+id/ytbExtraTvContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="43dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="0dp"
+                        android:layout_height="25dp"
+                        android:layout_margin="15dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/ytb"
+                        app:civ_border_color="#2c6087" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="@string/ytb_extra"
+                        android:textColor="@color/contentMainTexView"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_margin="1dp"
+                        android:layout_weight="2"
+                        android:src="@drawable/ic_navigate_next" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                app:cardBackgroundColor="@color/contentMainCardView"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="20dp">
+
+                <LinearLayout
+                    android:id="@+id/ytbExtraTvCategoryContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="43dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="0dp"
+                        android:layout_height="25dp"
+                        android:layout_margin="15dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/ytb"
+                        app:civ_border_color="#2c6087" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="@string/ytb_extra_kategori"
+                        android:textColor="@color/contentMainTexView"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_margin="1dp"
+                        android:layout_weight="2"
+                        android:src="@drawable/ic_navigate_next" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                app:cardBackgroundColor="@color/contentMainCardView"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="20dp">
+
+                <LinearLayout
+                    android:id="@+id/ytbExtraTvCountriesContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="43dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="0dp"
+                        android:layout_height="25dp"
+                        android:layout_margin="15dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/ytb"
+                        app:civ_border_color="#2c6087" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="@string/ytb_extra_countries"
+                        android:textColor="@color/contentMainTexView"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_margin="1dp"
+                        android:layout_weight="2"
+                        android:src="@drawable/ic_navigate_next" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                app:cardBackgroundColor="@color/contentMainCardView"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="20dp">
+
+                <LinearLayout
+                    android:id="@+id/ytbExtraTvLanguageContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="43dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="0dp"
+                        android:layout_height="25dp"
+                        android:layout_margin="15dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/ytb"
+                        app:civ_border_color="#2c6087" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="@string/ytb_extra_language"
+                        android:textColor="@color/contentMainTexView"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_margin="1dp"
+                        android:layout_weight="2"
+                        android:src="@drawable/ic_navigate_next" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                app:cardBackgroundColor="@color/contentMainCardView"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="20dp">
+
+                <LinearLayout
+                    android:id="@+id/gazetelerContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="43dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="0dp"
+                        android:layout_height="25dp"
+                        android:layout_margin="15dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/gazeteler"
+                        app:civ_border_color="#2c6087" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="@string/gazeteler"
+                        android:textColor="@color/contentMainTexView"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_margin="1dp"
+                        android:layout_weight="2"
+                        android:src="@drawable/ic_navigate_next" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                app:cardBackgroundColor="@color/contentMainCardView"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="20dp">
+
+                <LinearLayout
+                    android:id="@+id/gazetelerCategoryContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="43dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="0dp"
+                        android:layout_height="25dp"
+                        android:layout_margin="15dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/gazeteler"
+                        app:civ_border_color="#2c6087" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="@string/gazeteler_kategori"
+                        android:textColor="@color/contentMainTexView"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_margin="1dp"
+                        android:layout_weight="2"
+                        android:src="@drawable/ic_navigate_next" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                app:cardBackgroundColor="@color/contentMainCardView"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="20dp">
+
+                <LinearLayout
+                    android:id="@+id/gazetelerRegionalContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="43dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="0dp"
+                        android:layout_height="25dp"
+                        android:layout_margin="15dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/gazeteler"
+                        app:civ_border_color="#2c6087" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="@string/regional"
+                        android:textColor="@color/contentMainTexView"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_margin="1dp"
+                        android:layout_weight="2"
+                        android:src="@drawable/ic_navigate_next" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="43dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                app:cardBackgroundColor="@color/contentMainCardView"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="20dp">
+
+                <LinearLayout
+                    android:id="@+id/gazetelerCountryContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="43dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="0dp"
+                        android:layout_height="25dp"
+                        android:layout_margin="15dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/gazeteler"
+                        app:civ_border_color="#2c6087" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="@string/gazeteler_ulke"
                         android:textColor="@color/contentMainTexView"
                         android:textSize="15sp"
                         android:textStyle="bold" />

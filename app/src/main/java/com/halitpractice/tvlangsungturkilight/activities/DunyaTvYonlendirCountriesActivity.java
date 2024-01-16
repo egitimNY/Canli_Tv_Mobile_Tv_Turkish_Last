@@ -3,7 +3,6 @@ package com.halitpractice.tvlangsungturkilight.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -69,7 +68,7 @@ public class DunyaTvYonlendirCountriesActivity extends AppCompatActivity {
         AdView mAdView = findViewById(R.id.adViewDunyaTvYonlendirCountries);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
-
+        /*
         ImageView closedBtn = findViewById(R.id.closeBtnDunyaTvYonlendirCountries);
         closedBtn.setOnClickListener(v -> {
             if (mAdView.getVisibility() == View.VISIBLE) {
@@ -84,6 +83,7 @@ public class DunyaTvYonlendirCountriesActivity extends AppCompatActivity {
                 closedBtn.setVisibility(View.VISIBLE);
             }
         });
+        */
 
         fetchData();
 

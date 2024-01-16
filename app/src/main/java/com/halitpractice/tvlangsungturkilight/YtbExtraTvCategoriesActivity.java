@@ -54,7 +54,7 @@ public class YtbExtraTvCategoriesActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setTitle("Ytb Extra TV Kategori");
+            actionBar.setTitle("Ytb Ekstra TV Kategori");
         }
 
         ImageView homeButton = findViewById(R.id.homeButton);

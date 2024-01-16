@@ -75,8 +75,23 @@ public class YtbExtraTvYonlendirAdapter extends RecyclerView.Adapter<YtbExtraTvY
             holder.country.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary));
         } else {
             // If the country name is null or empty, set a default text and change text color
-            holder.country.setText("Ülke: ismi yazılmamış");
+            holder.country.setText("Ülke: yazılmamış");
             holder.country.setTextColor(ContextCompat.getColor(context, R.color.redChannelColor));
+//            holder.country.setVisibility(View.GONE);
+            // You can also choose to hide the TextView or set a different message based on your app logic
+        }
+
+
+        // Set the country name with the "CountryName: " prefix
+        String categoryName = ytbExtraTvYonlendirModel.getCategory();
+        if (categoryName != null && !categoryName.isEmpty()) {
+            String categoryText = "Kat: " + categoryName;
+            holder.category.setText(categoryText);
+            holder.category.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary));
+        } else {
+            // If the country name is null or empty, set a default text and change text color
+            holder.category.setText("Kat: yazılmamış");
+            holder.category.setTextColor(ContextCompat.getColor(context, R.color.redChannelColor));
             // You can also choose to hide the TextView or set a different message based on your app logic
         }
 
@@ -99,14 +114,18 @@ public class YtbExtraTvYonlendirAdapter extends RecyclerView.Adapter<YtbExtraTvY
 
         // Set an OnClickListener to open the Chrome Custom Tab when the channel is clicked
         holder.itemView.setOnClickListener(v -> {
-            openChannelInChromeCustomTab(ytbExtraTvYonlendirModel.getLive_url());
-
             clickCount++;
-            if (clickCount >= 4) {
-                showInterstitialAd();
-                resetClickCount(); // Reset the click count
+            if (clickCount >= 2) {
+                // Show interstitial ad
+                showInterstitialAd(ytbExtraTvYonlendirModel);
+                // Reset the click count (do not proceed to Chrome Custom Tab immediately)
+                resetClickCount();
+            } else {
+                // If click count is less than 4, increment count and proceed as usual
+                openChannelInChromeCustomTab(ytbExtraTvYonlendirModel.getLive_url());
             }
         });
+
     }
 
 
@@ -117,14 +136,15 @@ public class YtbExtraTvYonlendirAdapter extends RecyclerView.Adapter<YtbExtraTvY
 
     static class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView image;
-        TextView name, country;
+        TextView name, country, category;
         RelativeLayout relative;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.image);
             name = itemView.findViewById(R.id.name);
-            country = itemView.findViewById(R.id.ytbExtraYonlendirUlkeler);
+            country = itemView.findViewById(R.id.yonlendirUlkeler);
+            category = itemView.findViewById(R.id.yonlendirCategory);
         }
     }
 
@@ -160,13 +180,7 @@ public class YtbExtraTvYonlendirAdapter extends RecyclerView.Adapter<YtbExtraTvY
         }
     }
 
-    public void setSearchOperation(List<YtbExtraTvYonlendirModel> newList){
-        my_list=new ArrayList<>();
-        my_list.addAll(newList);
-        notifyDataSetChanged();
-    }
-
-    private void showInterstitialAd() {
+    private void showInterstitialAd(YtbExtraTvYonlendirModel model) {
         if (mInterstitialAd != null) {
             mInterstitialAd.show((Activity) context);
             mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
@@ -174,10 +188,17 @@ public class YtbExtraTvYonlendirAdapter extends RecyclerView.Adapter<YtbExtraTvY
                 public void onAdDismissedFullScreenContent() {
                     super.onAdDismissedFullScreenContent();
                     mInterstitialAd = null;
-                    resetClickCount(); // Reset the click count
-                    loadAds(); // Reload the ad for subsequent interactions
+                    // Proceed to open Chrome Custom Tab after ad dismissal
+                    openChannelInChromeCustomTab(model.getLive_url());
+                    // Load a new ad for subsequent interactions
+                    loadAds();
                 }
             });
+        } else {
+            // If ad is not available, proceed to open Chrome Custom Tab
+            openChannelInChromeCustomTab(model.getLive_url());
+            // Load a new ad for subsequent interactions
+            loadAds();
         }
     }
 
@@ -206,6 +227,13 @@ public class YtbExtraTvYonlendirAdapter extends RecyclerView.Adapter<YtbExtraTvY
 
     private void resetClickCount() {
         clickCount = 0;
+    }
+
+
+    public void setSearchOperation(List<YtbExtraTvYonlendirModel> newList){
+        my_list=new ArrayList<>();
+        my_list.addAll(newList);
+        notifyDataSetChanged();
     }
 
 }

@@ -162,10 +162,6 @@ public class UlusalTvAdapter extends RecyclerView.Adapter<UlusalTvAdapter.MyView
         }
     }
 
-    public void setSearchOperation(List<UlusalTvModel> newList) {
-        my_list = new ArrayList<>(newList); // Use ArrayList constructor for shallow copy
-        notifyDataSetChanged();
-    }
 
     private void showInterstitialAd(UlusalTvModel model) {
         if (mInterstitialAd != null) {
@@ -215,4 +211,11 @@ public class UlusalTvAdapter extends RecyclerView.Adapter<UlusalTvAdapter.MyView
     private void resetClickCount() {
         clickCount = 0;
     }
+
+
+    public void setSearchOperation(List<UlusalTvModel> newList) {
+        my_list = new ArrayList<>(newList); // Use ArrayList constructor for shallow copy
+        notifyDataSetChanged();
+    }
+
 }

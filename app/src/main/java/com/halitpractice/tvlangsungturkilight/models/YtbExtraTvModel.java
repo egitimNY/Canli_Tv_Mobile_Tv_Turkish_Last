@@ -8,13 +8,17 @@ public class YtbExtraTvModel implements Serializable {
     private String live_url;
     private String thumbnail;
     private String countryname;
+    private String language;
+    private String category;
 
-    public YtbExtraTvModel(int id, String name, String live_url, String thumbnail, String countryname) {
+    public YtbExtraTvModel(int id, String name, String live_url, String thumbnail, String countryname, String language, String category) {
         this.id = id;
         this.name = name;
         this.live_url = live_url;
         this.thumbnail = thumbnail;
         this.countryname = countryname;
+        this.language = language;
+        this.category = category;
     }
 
     public int getId() {
@@ -57,6 +61,22 @@ public class YtbExtraTvModel implements Serializable {
         this.countryname = countryname;
     }
 
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
     @Override
     public String toString() {
         return "YtbExtraTvModel{" +
@@ -65,6 +85,8 @@ public class YtbExtraTvModel implements Serializable {
                 ", live_url='" + live_url + '\'' +
                 ", thumbnail='" + thumbnail + '\'' +
                 ", countryname='" + countryname + '\'' +
+                ", language='" + language + '\'' +
+                ", category='" + category + '\'' +
                 '}';
     }
 

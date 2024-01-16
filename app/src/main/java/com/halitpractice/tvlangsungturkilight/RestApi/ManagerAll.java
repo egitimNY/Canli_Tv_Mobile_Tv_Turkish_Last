@@ -15,11 +15,14 @@ import com.halitpractice.tvlangsungturkilight.models.TurkYabanciMovieModel;
 import com.halitpractice.tvlangsungturkilight.models.TurkYabanciMovieYonlendirModel;
 import com.halitpractice.tvlangsungturkilight.models.UlusalTvCategoryModel;
 import com.halitpractice.tvlangsungturkilight.models.UlusalTvModel;
+import com.halitpractice.tvlangsungturkilight.models.DunyaTvLanguageModel;
+import com.halitpractice.tvlangsungturkilight.models.DunyaTvYonlendirLanguageModel;
 import com.halitpractice.tvlangsungturkilight.models.YerelTvCategoryModel;
 import com.halitpractice.tvlangsungturkilight.models.YerelTvModel;
 import com.halitpractice.tvlangsungturkilight.models.YerelTvYonlendirCategoryModel;
 import com.halitpractice.tvlangsungturkilight.models.YerelTvYonlendirModel;
 import com.halitpractice.tvlangsungturkilight.models.YtbExtraTvCategoryModel;
+import com.halitpractice.tvlangsungturkilight.models.YtbExtraTvLanguageModel;
 import com.halitpractice.tvlangsungturkilight.models.YtbExtraTvModel;
 import com.halitpractice.tvlangsungturkilight.models.YtbExtraTvYonlendirCategoryModel;
 import com.halitpractice.tvlangsungturkilight.models.YtbExtraTvYonlendirCountryModel;
@@ -79,45 +82,54 @@ public class ManagerAll extends BaseManager {
     }
 
 
-    public Call<List<UlusalTvModel>> ulusalTvFetch() {
-        return getRestApi().ulusalTV();
+
+
+    public Call<List<YerelTvModel>> yerelTurkTvFetch() {
+        return getRestApi().yerelTurkTvs();
     }
 
-    public Call<List<UlusalTvCategoryModel>> ulusalTvCategoryFetch() {
-        return getRestApi().ulusalTvCategory();
+    public Call<List<YerelTvCategoryModel>> yerelTurkTvCategoryFetch() {
+        return getRestApi().yerelTurkTvsCategory();
     }
 
-    public Call<List<UlusalTvModel>> ulusalTvCategoryDetailsFetch(String category) {
-        return getRestApi().ulusalTvCategoryDetails(category);
-    }
-
-
-    public Call<List<YerelTvModel>> yerelTvFetch() {
-        return getRestApi().yerelTv();
-    }
-
-    public Call<List<YerelTvCategoryModel>> yerelTvCategoryFetch() {
-        return getRestApi().yerelTvCategory();
-    }
-
-    public Call<List<YerelTvModel>> yerelTvCategoryDetailsFetch(String category) {
-        return getRestApi().getYerelTvByCategory(category);
+    public Call<List<YerelTvModel>> yerelTurkTvCategoryDetailsFetch(String category) {
+        return getRestApi().yerelTurkTvsCategory(category);
     }
 
 
 
-    public Call<List<YerelTvYonlendirModel>> yerelTvYonlendirFetch() {
-        return getRestApi().yerelTvYonlendir();
+    public Call<List<YerelTvYonlendirModel>> yerelTurkTvYonlendirFetch() {
+        return getRestApi().yerelTurkTvsYonlendir();
     }
 
 
-    public Call<List<YerelTvYonlendirCategoryModel>> yerelTvCategoryYonlendirFetch() {
-        return getRestApi().yerelTvCategoryYonlendir();
+    public Call<List<YerelTvYonlendirCategoryModel>> yerelTurkTvCategoryYonlendirFetch() {
+        return getRestApi().yerelTurkTvsCategoryYonlendir();
     }
 
-    public Call<List<YerelTvYonlendirModel>> getYerelTvByCategoryYonlendirFetch(String category) {
-        return getRestApi().getYerelTvByCategoryYonlendir(category);
+    public Call<List<YerelTvYonlendirModel>> yerelTurkTvCategoryYonlendirFetch(String category) {
+        return getRestApi().yerelTurkTvsCategoryYonlendir(category);
     }
+
+
+
+
+
+
+    public Call<List<UlusalTvModel>> extraTvFetch() {
+        return getRestApi().extraTvs();
+    }
+
+    public Call<List<UlusalTvCategoryModel>> extraTvCategoryFetch() {
+        return getRestApi().extraTvsCategory();
+    }
+
+    public Call<List<UlusalTvModel>> extraTvCategoryDetailsFetch(String category) {
+        return getRestApi().extraTvsCategoryDetails(category);
+    }
+
+
+
 
 
     public Call<List<TurkYabanciMovieModel>> getTurkYabanciMovie() {
@@ -161,6 +173,14 @@ public class ManagerAll extends BaseManager {
         return getRestApi().getYtbExtraTvByCountry(category);
     }
 
+    public Call<List<YtbExtraTvLanguageModel>> ytbExtraTvLanguageFetch() {
+        return getRestApi().ytbExtraTvLanguage();
+    }
+
+    public Call<List<YtbExtraTvModel>> ytbExtraTvLanguageDetailsFetch(String category) {
+        return getRestApi().ytbExtraTvLanguageDetails(category);
+    }
+
 
     public Call<List<YtbExtraTvYonlendirModel>> ytbExtraTvYonlendirFetch() {
         return getRestApi().ytbExtraTvYonlendir();
@@ -180,6 +200,14 @@ public class ManagerAll extends BaseManager {
 
     public Call<List<YtbExtraTvYonlendirModel>> getYtbExtraTvByCountryYonlendirFetch(String category) {
         return getRestApi().getYtbExtraTvByCountryYonlendir(category);
+    }
+
+    public Call<List<YtbExtraTvLanguageModel>> ytbExtraTvLanguageYonlendirFetch() {
+        return getRestApi().ytbExtraTvLanguageYonlendir();
+    }
+
+    public Call<List<YtbExtraTvYonlendirModel>> ytbExtraTvLanguageDetailsYonlendirFetch(String category) {
+        return getRestApi().ytbExtraTvLanguageDetailsYonlendir(category);
     }
 
 
@@ -235,6 +263,14 @@ public class ManagerAll extends BaseManager {
         return getRestApi().getDunyaTvByCountries(category);
     }
 
+    public Call<List<DunyaTvLanguageModel>> cizgiFilmTvLanguageFetch() {
+        return getRestApi().cigiFilmTvLanguage();
+    }
+
+    public Call<List<DunyaTvModel>> cigiFilmTvLanguageDetailsFetch(String category) {
+        return getRestApi().cigiFilmTvLanguageDetails(category);
+    }
+
 
 
     public Call<List<DunyaTvYonlendirModel>> dunyaTvYonlendirFetch() {
@@ -256,6 +292,14 @@ public class ManagerAll extends BaseManager {
 
     public Call<List<DunyaTvYonlendirModel>> dunyaTvYonlendirCountriesDetailsFetch(String category) {
         return getRestApi().getDunyaTvYonlendirByCountries(category);
+    }
+
+    public Call<List<DunyaTvYonlendirLanguageModel>> dunyaTvLanguageYonlendirFetch() {
+        return getRestApi().dunyaTvLanguageYonlendir();
+    }
+
+    public Call<List<DunyaTvYonlendirModel>> getDunyaTvByLanguageYonlendirFetch(String category) {
+        return getRestApi().getDunyaTvByLanguageYonlendir(category);
     }
 
 }

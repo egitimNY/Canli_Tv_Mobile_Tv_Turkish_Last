@@ -126,7 +126,7 @@ public class EkstraTvCategoriesActivity extends AppCompatActivity {
             progressBar.setVisibility(View.GONE);
         } else {
             // No cached data, fetch from the network
-            Call<List<UlusalTvCategoryModel>> req = ManagerAll.getInstance().ulusalTvCategoryFetch();
+            Call<List<UlusalTvCategoryModel>> req = ManagerAll.getInstance().extraTvCategoryFetch();
             req.enqueue(new Callback<List<UlusalTvCategoryModel>>() {
                 @Override
                 public void onResponse(Call<List<UlusalTvCategoryModel>> call, Response<List<UlusalTvCategoryModel>> response) {

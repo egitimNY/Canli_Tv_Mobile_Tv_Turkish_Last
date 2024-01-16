@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.halitpractice.tvlangsungturkilight.R;
-import com.halitpractice.tvlangsungturkilight.YerelTvYonlendirCategoriesDetailsActivity;
+import com.halitpractice.tvlangsungturkilight.TurkTvYonlendirCategoriesDetailsActivity;
 import com.halitpractice.tvlangsungturkilight.models.YerelTvYonlendirCategoryModel;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
@@ -67,7 +67,7 @@ public class YerelTvYonlendirCategoryAdapter extends RecyclerView.Adapter<YerelT
         holder.name.setSelected(true);
 
         holder.itemView.setOnClickListener(v -> {
-            Intent i = new Intent(v.getContext(), YerelTvYonlendirCategoriesDetailsActivity.class);
+            Intent i = new Intent(v.getContext(), TurkTvYonlendirCategoriesDetailsActivity.class);
             int clickedPosition = holder.getAdapterPosition();
             if (clickedPosition != RecyclerView.NO_POSITION) {
                 String selectedCategory = my_list.get(clickedPosition).getName(); // Get the category name

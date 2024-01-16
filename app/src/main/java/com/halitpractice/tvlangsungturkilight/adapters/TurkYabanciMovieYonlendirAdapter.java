@@ -76,16 +76,22 @@ public class TurkYabanciMovieYonlendirAdapter extends RecyclerView.Adapter<TurkY
 
         // Start marquee scrolling for the name TextView
         holder.name.setSelected(true);
-        holder.itemView.setOnClickListener(v -> {
-            // Open the URL in a Chrome Custom Tab
-            openChannelInChromeCustomTab(turkYabanciMovieYonlendirModel.getVideoid());
 
+
+        // Set an OnClickListener to open the Chrome Custom Tab when the channel is clicked
+        holder.itemView.setOnClickListener(v -> {
             clickCount++;
-            if (clickCount >= 4) {
-                showInterstitialAd();
-                resetClickCount(); // Reset the click count
+            if (clickCount >= 2) {
+                // Show interstitial ad
+                showInterstitialAd(turkYabanciMovieYonlendirModel);
+                // Reset the click count (do not proceed to Chrome Custom Tab immediately)
+                resetClickCount();
+            } else {
+                // If click count is less than 4, increment count and proceed as usual
+                openChannelInChromeCustomTab(turkYabanciMovieYonlendirModel.getVideoid());
             }
         });
+
     }
 
     @Override
@@ -135,7 +141,7 @@ public class TurkYabanciMovieYonlendirAdapter extends RecyclerView.Adapter<TurkY
         }
     }
 
-    private void showInterstitialAd() {
+    private void showInterstitialAd(TurkYabanciMovieYonlendirModel model) {
         if (mInterstitialAd != null) {
             mInterstitialAd.show((Activity) context);
             mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
@@ -143,10 +149,17 @@ public class TurkYabanciMovieYonlendirAdapter extends RecyclerView.Adapter<TurkY
                 public void onAdDismissedFullScreenContent() {
                     super.onAdDismissedFullScreenContent();
                     mInterstitialAd = null;
-                    resetClickCount(); // Reset the click count
-                    loadAds(); // Reload the ad for subsequent interactions
+                    // Proceed to open Chrome Custom Tab after ad dismissal
+                    openChannelInChromeCustomTab(model.getVideoid());
+                    // Load a new ad for subsequent interactions
+                    loadAds();
                 }
             });
+        } else {
+            // If ad is not available, proceed to open Chrome Custom Tab
+            openChannelInChromeCustomTab(model.getVideoid());
+            // Load a new ad for subsequent interactions
+            loadAds();
         }
     }
 

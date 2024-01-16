@@ -44,9 +44,10 @@
     <string name="yerel_tvler">Türk Tv\'ler</string>
     <string name="yerel_tvler_kategori">Türk Tv\'ler Kategori</string>
     <string name="cizgi_filmler">Çizgi Filmler</string>
-    <string name="ytb_extra">YTB Ekstra - Hersey</string>
+    <string name="ytb_extra">YTB Ekstra</string>
     <string name="ytb_extra_kategori">YTB Ekstra - Kategori</string>
     <string name="ytb_extra_countries">YTB Ekstra - Ülkeler</string>
+    <string name="ytb_extra_language">YTB Ekstra - DİL</string>
     <string name="ytb_extra_category_not_found">Kategori hatasi</string>
     <string name="ytb_extra_country_not_found">Ülke hatasi</string>
     <string name="country">Country!</string>
@@ -56,15 +57,19 @@
     <string name="gazeteler_kategori">Gazeteler Kategori</string>
     <string name="regional">Gazeteler Bölgesel</string>
     <string name="gazeteler_ulke">Gazeteler Ülkeler</string>
-    <string name="dunyaTv">Dünya Tv\'leri Hepsi</string>
+    <string name="dunyaTv">Dünya Tv\'leri</string>
     <string name="ulkeler">Dünya Tv\'leri Ülkeler</string>
+    <string name="dil">Dünya Tv\'leri DİL</string>
     <string name="dunyaTvKategori">Dünya Tv\'leri Kategori</string>
     <string name="dunyaTvUlkeler">Dünya Tv\'leri Ülkeler</string>
+    <string name="dunyaTvDil">Dünya Tv\'leri DİL</string>
     <string name="radyo_dinle">Radyo Dinle</string>
     <string name="yabanci_filmler">Yabancı Filmler</string>
     <string name="her_tur_tv_video">Ytb Spor - Sinema - Haber - Çizgi Film</string>
     <string name="her_tur_tv_video_multiline">Ytb Spor \n Sinema - \nHaber - \nÇizgi Film</string>
     <string name="close_button_label">Close</string>
     <string name="kategori_bulunamadı">Kategori Bulunamadı</string>
+    <string name="category">Category!</string>
+    <string name="category_hatasi">Category Bulunamadi!</string>
 
 </resources>

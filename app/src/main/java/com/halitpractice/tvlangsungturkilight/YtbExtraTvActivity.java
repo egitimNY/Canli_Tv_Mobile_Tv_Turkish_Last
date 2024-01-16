@@ -64,7 +64,7 @@ public class YtbExtraTvActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setTitle("Ytb Extra TV");
+            actionBar.setTitle("Ytb Ekstra TV");
         }
 
         TextView marqueeTextView = findViewById(R.id.marqueeTextView);

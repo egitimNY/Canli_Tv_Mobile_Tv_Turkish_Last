@@ -67,7 +67,7 @@ public class DunyaTvActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setTitle("Dünya Tv'leri Hepsi");
+            actionBar.setTitle("Dünya Tv'leri");
         }
 
         TextView marqueeTextView = findViewById(R.id.marqueeTextView);

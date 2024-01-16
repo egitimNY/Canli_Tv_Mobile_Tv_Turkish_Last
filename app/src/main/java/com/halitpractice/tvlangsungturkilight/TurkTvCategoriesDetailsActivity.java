@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.halitpractice.tvlangsungturkilight.RestApi.ManagerAll;
-import com.halitpractice.tvlangsungturkilight.adapters.YerelTvAdapter;
+import com.halitpractice.tvlangsungturkilight.adapters.TurkTvAdapter;
 import com.halitpractice.tvlangsungturkilight.models.YerelTvModel;
 import com.halitpractice.tvlangsungturkilight.services.YerelTvCategoriesDetailsDataCache;
 
@@ -30,7 +30,7 @@ public class TurkTvCategoriesDetailsActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private List<YerelTvModel> main_list;
-    private YerelTvAdapter adapter;
+    private TurkTvAdapter adapter;
     private ProgressBar progressBar;
 
     // In your activity class
@@ -131,7 +131,7 @@ public class TurkTvCategoriesDetailsActivity extends AppCompatActivity {
             updateUIWithCachedData(cachedData);
             progressBar.setVisibility(View.GONE);
         } else {
-            Call<List<YerelTvModel>> req = ManagerAll.getInstance().yerelTvCategoryDetailsFetch(selectedCategory);
+            Call<List<YerelTvModel>> req = ManagerAll.getInstance().yerelTurkTvCategoryDetailsFetch(selectedCategory);
             req.enqueue(new Callback<List<YerelTvModel>>() {
                 @Override
                 public void onResponse(Call<List<YerelTvModel>> call, Response<List<YerelTvModel>> response) {
@@ -164,7 +164,7 @@ public class TurkTvCategoriesDetailsActivity extends AppCompatActivity {
 
     private void updateUIWithCachedData(List<YerelTvModel> cachedData) {
         if (cachedData != null && !cachedData.isEmpty()) {
-            adapter = new YerelTvAdapter(cachedData, TurkTvCategoriesDetailsActivity.this);
+            adapter = new TurkTvAdapter(cachedData, TurkTvCategoriesDetailsActivity.this);
             recyclerView.setAdapter(adapter);
         } else {
             handleNullResponse();
@@ -196,7 +196,7 @@ public class TurkTvCategoriesDetailsActivity extends AppCompatActivity {
 
     private void redirectYonlendir() {
         // Redirect to FeatureUnderConstructionActivity
-        Intent intent = new Intent(TurkTvCategoriesDetailsActivity.this, YerelTvYonlendirCategoriesDetailsActivity.class);
+        Intent intent = new Intent(TurkTvCategoriesDetailsActivity.this, TurkTvYonlendirCategoriesDetailsActivity.class);
         startActivity(intent);
     }
 
